@@ -18,11 +18,17 @@ Open [http://127.0.0.1:43125](http://127.0.0.1:43125).
 - Progress dots
 - Swipe on mobile
 
+## Data sources (interactive slides)
+
+- **IMF COFER** — Currency Composition of Official Foreign Exchange Reserves (allocated shares). Primary source for composition from the mid-1990s onward; earlier postwar figures in the teaching table are from IMF/ECB compiled series commonly cited in reserve-currency research.
+- **ECB long-run research** — e.g. Eichengreen, Mehl & Chiţu, *Stability or upheaval?* (ECB Working Paper 1715) on sterling–dollar transition after WWII.
+- **Eichengreen & Flandreau** — reconstructions of interwar FX-reserve shares (dollar overtakes sterling in the mid-1920s in key samples).
+
+Pre-1965 points on the century chart are **rounded scholarly estimates** for teaching, not official COFER releases. Gold remained the primary reserve asset before WWII.
+
 ## Stack
 
-Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, Recharts (illustrative FX chart).
-
-Charts and reserve-share figures are **educational approximations**, not live market or official IMF data.
+Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, Recharts.
 
 ## Scripts
 

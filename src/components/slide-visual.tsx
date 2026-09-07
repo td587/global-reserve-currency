@@ -14,6 +14,7 @@ import { NixonVisual } from "@/components/visuals/nixon";
 import { PillarsVisual } from "@/components/visuals/pillars";
 import { PlumbingVisual } from "@/components/visuals/plumbing";
 import { PrivilegeVisual } from "@/components/visuals/privilege";
+import { DominanceTimelineVisual } from "@/components/visuals/dominance-timeline";
 import { ReserveShareVisual } from "@/components/visuals/reserve-share";
 import { TakeawaysVisual } from "@/components/visuals/takeaways";
 import { TitleVisual } from "@/components/visuals/title-visual";
@@ -54,6 +55,8 @@ export function SlideVisual({ type }: { type: VisualType }) {
       return <TriffinVisual />;
     case "reserve-share":
       return <ReserveShareVisual />;
+    case "dominance-timeline":
+      return <DominanceTimelineVisual />;
     case "challenges":
       return <ChallengesVisual />;
     case "takeaways":

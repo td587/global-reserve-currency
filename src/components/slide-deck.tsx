@@ -25,6 +25,16 @@ export function SlideDeck() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
       if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault();
         setIndex((i) => Math.min(total - 1, i + 1));
@@ -72,7 +82,12 @@ export function SlideDeck() {
       <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 md:px-8 md:py-8">
         <article
           key={slide.id}
-          className="animate-slide-in grid flex-1 grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 lg:items-center"
+          className={cn(
+            "animate-slide-in grid flex-1 gap-8 lg:gap-12 lg:items-center",
+            slide.layout === "wide"
+              ? "grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)]"
+              : "grid-cols-1 lg:grid-cols-2"
+          )}
         >
           <div className="flex flex-col justify-center">
             {slide.eyebrow && (
@@ -85,7 +100,9 @@ export function SlideDeck() {
                 "font-serif leading-[1.1] text-paper",
                 slide.visual === "title"
                   ? "text-4xl md:text-6xl lg:text-7xl"
-                  : "text-3xl md:text-5xl"
+                  : slide.layout === "wide"
+                    ? "text-3xl md:text-4xl lg:text-5xl"
+                    : "text-3xl md:text-5xl"
               )}
             >
               {slide.title}
@@ -111,7 +128,12 @@ export function SlideDeck() {
             )}
           </div>
 
-          <div className="min-h-[280px] md:min-h-[340px] lg:min-h-[380px]">
+          <div
+            className={cn(
+              "min-h-[280px] md:min-h-[340px]",
+              slide.layout === "wide" ? "lg:min-h-[420px]" : "lg:min-h-[380px]"
+            )}
+          >
             <SlideVisual type={slide.visual} />
           </div>
         </article>

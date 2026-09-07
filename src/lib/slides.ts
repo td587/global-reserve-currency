@@ -15,6 +15,7 @@ export type VisualType =
   | "plumbing"
   | "triffin"
   | "reserve-share"
+  | "dominance-timeline"
   | "challenges"
   | "takeaways";
 
@@ -26,6 +27,8 @@ export type Slide = {
   points?: string[];
   footnote?: string;
   visual: VisualType;
+  /** wide = chart-led layout for interactive visuals */
+  layout?: "split" | "wide";
 };
 
 export const slides: Slide[] = [
@@ -208,16 +211,32 @@ export const slides: Slide[] = [
   },
   {
     id: "todays-mix",
-    eyebrow: "Today",
+    eyebrow: "Interactive · IMF COFER",
     title: "Who holds what now?",
-    body: "Allocated global FX reserves remain dollar-heavy. The euro is second; yen, pound, and renminbi trail. Shares shift slowly.",
+    body: "Drag the year slider. Allocated FX reserves stay dollar-heavy, but the mix shifts: euro after 1999, a smaller yen/pound role, and a modest renminbi presence after the mid-2010s.",
     points: [
-      "USD still the clear majority of allocated reserves",
-      "EUR provides the main alternative within deep markets",
-      "CNY’s rise is real but constrained by convertibility and depth",
+      "1965–70s: USD near peak Bretton Woods / early float shares",
+      "1980s–90s: diversification into DEM, ECU, and yen",
+      "1999–today: euro is #2; CNY appears later and remains small",
     ],
-    footnote: "Illustrative COFER-style shares for teaching—not an official IMF release.",
+    footnote:
+      "Source: IMF COFER allocated shares (compiled IMF/ECB tables). EUR* before 1999 = Deutsche mark + French franc + ECU. Other = remainder (AUD, CAD, CHF, etc.).",
     visual: "reserve-share",
+  },
+  {
+    id: "century-arc",
+    eyebrow: "Interactive · 1900–today",
+    title: "A century of dollar dominance",
+    body: "Track the USD share of foreign-exchange reserves from the sterling era to today. Gold markers are turning points—hover or tap a year chip for the story.",
+    points: [
+      "Y-axis: USD share of identified FX reserves (%)",
+      "Pre-1965 points are scholarly estimates; 1965+ are IMF/ECB compiled",
+      "Use this slide to narrate the whole arc in one view",
+    ],
+    footnote:
+      "Sources: IMF COFER; ECB long-run reserve composition research; Eichengreen & Flandreau on the sterling–dollar transition. Pre-WWII gold was still the primary reserve asset.",
+    visual: "dominance-timeline",
+    layout: "wide",
   },
   {
     id: "challenges",
