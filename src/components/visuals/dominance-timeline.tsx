@@ -5,6 +5,7 @@ import {
   Area,
   CartesianGrid,
   ComposedChart,
+  ReferenceLine,
   ResponsiveContainer,
   Scatter,
   Tooltip,
@@ -17,53 +18,58 @@ import {
   type TimelineEvent,
 } from "@/lib/historical-data";
 
-type ChartRow = {
+type SeriesRow = {
   year: number;
-  usdShare: number | null;
-  eventShare: number | null;
-  eventLabel?: string;
-  eventDescription?: string;
-  quality?: "official" | "estimate";
+  usdShare: number;
+  quality: "official" | "estimate";
 };
 
-function shareAt(year: number): { usdShare: number; quality?: "official" | "estimate" } {
+type EventRow = {
+  year: number;
+  usdShare: number;
+  label: string;
+  description: string;
+};
+
+function shareAt(year: number): number {
   const exact = usdDominanceSeries.find((p) => p.year === year);
-  if (exact) return { usdShare: exact.usdShare, quality: exact.quality };
+  if (exact) return exact.usdShare;
   const before = [...usdDominanceSeries].reverse().find((p) => p.year < year);
   const after = usdDominanceSeries.find((p) => p.year > year);
   if (before && after) {
     const t = (year - before.year) / (after.year - before.year);
-    return {
-      usdShare: before.usdShare + t * (after.usdShare - before.usdShare),
-      quality: "estimate",
-    };
+    return before.usdShare + t * (after.usdShare - before.usdShare);
   }
-  return { usdShare: before?.usdShare ?? after?.usdShare ?? 0 };
+  return before?.usdShare ?? after?.usdShare ?? 0;
 }
 
 export function DominanceTimelineVisual() {
-  const [activeEvent, setActiveEvent] = useState<TimelineEvent | null>(null);
+  const [activeEvent, setActiveEvent] = useState<TimelineEvent | null>(
+    dominanceEvents.find((e) => e.year === 1944) ?? null
+  );
 
-  const data = useMemo(() => {
-    const years = new Set<number>([
-      ...usdDominanceSeries.map((p) => p.year),
-      ...dominanceEvents.map((e) => e.year),
-    ]);
-    return [...years]
-      .sort((a, b) => a - b)
-      .map((year): ChartRow => {
-        const { usdShare, quality } = shareAt(year);
-        const matchedEvent = dominanceEvents.find((e) => e.year === year);
-        return {
-          year,
-          usdShare,
-          eventShare: matchedEvent ? usdShare : null,
-          eventLabel: matchedEvent?.label,
-          eventDescription: matchedEvent?.description,
-          quality,
-        };
-      });
-  }, []);
+  const series = useMemo<SeriesRow[]>(
+    () =>
+      usdDominanceSeries.map((p) => ({
+        year: p.year,
+        usdShare: p.usdShare,
+        quality: p.quality,
+      })),
+    []
+  );
+
+  const eventPoints = useMemo<EventRow[]>(
+    () =>
+      dominanceEvents.map((e) => ({
+        year: e.year,
+        usdShare: shareAt(e.year),
+        label: e.label,
+        description: e.description,
+      })),
+    []
+  );
+
+  const activeShare = activeEvent ? shareAt(activeEvent.year) : null;
 
   return (
     <div
@@ -78,21 +84,24 @@ export function DominanceTimelineVisual() {
           </p>
           <p className="font-serif text-xl text-paper md:text-2xl">1900 → today</p>
         </div>
-        <p className="hidden text-right text-xs text-steel-soft sm:block">
-          Hover or tap gold markers
-        </p>
+        {activeShare != null && activeEvent && (
+          <p className="text-right font-serif text-2xl tabular-nums text-gold md:text-3xl">
+            {activeShare.toFixed(0)}%
+          </p>
+        )}
       </div>
 
-      <div className="min-h-[220px] flex-1 md:min-h-[260px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={data} margin={{ top: 12, right: 8, left: -8, bottom: 4 }}>
+      {/* Explicit height — ResponsiveContainer collapses to 0 inside flex-1 alone */}
+      <div className="h-[240px] w-full shrink-0 md:h-[280px]">
+        <ResponsiveContainer width="100%" height={280}>
+          <ComposedChart margin={{ top: 16, right: 12, left: 0, bottom: 4 }}>
             <defs>
               <linearGradient id="usdFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#7ea0b5" stopOpacity={0.35} />
+                <stop offset="0%" stopColor="#7ea0b5" stopOpacity={0.4} />
                 <stop offset="100%" stopColor="#7ea0b5" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="rgb(126 160 181 / 12%)" vertical={false} />
+            <CartesianGrid stroke="rgb(126 160 181 / 14%)" vertical={false} />
             <XAxis
               dataKey="year"
               type="number"
@@ -101,40 +110,49 @@ export function DominanceTimelineVisual() {
               tick={{ fill: "#a8c0cf", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
+              allowDataOverflow
             />
             <YAxis
+              dataKey="usdShare"
+              type="number"
               domain={[0, 100]}
               ticks={[0, 25, 50, 75, 100]}
               tick={{ fill: "#a8c0cf", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
+              width={42}
               tickFormatter={(v) => `${v}%`}
             />
             <Tooltip
-              cursor={{ stroke: "rgb(196 163 90 / 35%)", strokeWidth: 1 }}
+              cursor={{ stroke: "rgb(196 163 90 / 40%)", strokeWidth: 1 }}
               content={({ active, payload }) => {
                 if (!active || !payload?.length) return null;
-                const row = payload[0]?.payload as ChartRow;
-                if (row.eventLabel) {
+                const row = payload[0]?.payload as SeriesRow | EventRow;
+                const ev = "label" in row ? row : null;
+                if (ev) {
                   return (
-                    <div className="max-w-xs rounded-lg border border-gold/40 bg-ink/95 px-3 py-2 shadow-lg">
+                    <div className="max-w-xs rounded-lg border border-gold/40 bg-ink px-3 py-2 shadow-lg">
                       <p className="text-xs tracking-[0.14em] text-gold uppercase">
-                        {row.year} · {row.eventLabel}
+                        {ev.year} · {ev.label}
                       </p>
-                      <p className="mt-1 text-sm leading-snug text-paper">
-                        {row.eventDescription}
+                      <p className="mt-1 font-serif text-lg text-paper">
+                        ~{ev.usdShare.toFixed(0)}% USD
+                      </p>
+                      <p className="mt-1 text-sm leading-snug text-steel-soft">
+                        {ev.description}
                       </p>
                     </div>
                   );
                 }
+                const s = row as SeriesRow;
                 return (
-                  <div className="rounded-lg border border-border bg-ink/95 px-3 py-2">
-                    <p className="text-xs text-steel">{row.year}</p>
+                  <div className="rounded-lg border border-border bg-ink px-3 py-2">
+                    <p className="text-xs text-steel">{s.year}</p>
                     <p className="font-serif text-lg text-paper">
-                      {row.usdShare?.toFixed(1)}% USD
+                      {s.usdShare.toFixed(1)}% USD
                     </p>
                     <p className="text-[0.65rem] text-steel-soft">
-                      {row.quality === "estimate"
+                      {s.quality === "estimate"
                         ? "Scholarly estimate (pre-COFER)"
                         : "IMF/ECB compiled share"}
                     </p>
@@ -142,22 +160,37 @@ export function DominanceTimelineVisual() {
                 );
               }}
             />
+            {activeEvent && (
+              <ReferenceLine
+                x={activeEvent.year}
+                stroke="#c4a35a"
+                strokeDasharray="4 4"
+                strokeOpacity={0.7}
+              />
+            )}
             <Area
+              data={series}
               type="monotone"
               dataKey="usdShare"
               stroke="#7ea0b5"
-              strokeWidth={2.25}
+              strokeWidth={2.5}
               fill="url(#usdFill)"
-              connectNulls
               isAnimationActive={false}
+              name="USD share"
             />
             <Scatter
-              dataKey="eventShare"
+              data={eventPoints}
+              dataKey="usdShare"
               fill="#c4a35a"
-              stroke="#071521"
-              strokeWidth={1}
-              r={6}
+              stroke="#e8eef4"
+              strokeWidth={1.5}
+              name="Events"
               isAnimationActive={false}
+              onClick={(state) => {
+                const year = (state as { payload?: EventRow })?.payload?.year;
+                const match = dominanceEvents.find((e) => e.year === year);
+                if (match) setActiveEvent(match);
+              }}
             />
           </ComposedChart>
         </ResponsiveContainer>
@@ -168,9 +201,7 @@ export function DominanceTimelineVisual() {
           <button
             key={event.year}
             type="button"
-            onClick={() =>
-              setActiveEvent((cur) => (cur?.year === event.year ? null : event))
-            }
+            onClick={() => setActiveEvent(event)}
             className={`rounded-full border px-2.5 py-1 text-[0.7rem] transition-colors ${
               activeEvent?.year === event.year
                 ? "border-gold/60 bg-gold/15 text-gold"
@@ -182,11 +213,12 @@ export function DominanceTimelineVisual() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-border bg-card/60 px-3 py-2.5 min-h-[4.25rem]">
+      <div className="rounded-xl border border-border bg-card/70 px-3 py-2.5 min-h-[4.5rem]">
         {activeEvent ? (
           <>
             <p className="text-xs tracking-[0.14em] text-gold uppercase">
               {activeEvent.year} · {activeEvent.label}
+              {activeShare != null ? ` · ~${activeShare.toFixed(0)}% USD` : ""}
             </p>
             <p className="mt-1 text-sm leading-snug text-paper">
               {activeEvent.description}
@@ -194,9 +226,9 @@ export function DominanceTimelineVisual() {
           </>
         ) : (
           <p className="text-sm text-steel-soft">
-            From 1965: IMF COFER / ECB compiled allocated shares. Before 1965:
-            rounded estimates from Eichengreen & Flandreau and ECB long-run
-            research. Gold dominated reserves before WWII.
+            Tap a year chip or a gold point. From 1965: IMF COFER / ECB compiled
+            shares. Before 1965: scholarly estimates (Eichengreen & Flandreau,
+            ECB). Gold dominated reserves before WWII.
           </p>
         )}
       </div>
