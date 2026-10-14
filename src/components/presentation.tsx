@@ -121,6 +121,7 @@ export function Presentation({ initial }: { initial: Baseline }) {
   const [visible, setVisible] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(false);
   const [refreshError, setRefreshError] = useState("");
+  const [rStarInRule, setRStarInRule] = useState(false);
 
   async function refresh() {
     setLoading(true);
@@ -145,8 +146,8 @@ export function Presentation({ initial }: { initial: Baseline }) {
     [levels],
   );
   const sol = useMemo(
-    () => (levels ? solve(levels, shocks) : null),
-    [levels, shocks],
+    () => (levels ? solve(levels, shocks, { rStarInRule }) : null),
+    [levels, shocks, rStarInRule],
   );
   const activePreset = presetName(shocks);
 
@@ -154,7 +155,7 @@ export function Presentation({ initial }: { initial: Baseline }) {
   const unemployment = baseline.series.unemployment?.value ?? null;
   const paragraph =
     sol && baseSol
-      ? narrate(shocks, sol, baseSol, { headline, unemployment })
+      ? narrate(shocks, sol, baseSol, { headline, unemployment }, { rStarInRule })
       : "The model baseline is incomplete, so the curves are not drawn.";
 
   function shown(key: string) {
@@ -365,6 +366,25 @@ export function Presentation({ initial }: { initial: Baseline }) {
             Zero is the baseline. Off drops the channel out of the
             equilibrium and out of the paragraph. The slider keeps its place.
           </p>
+          <div className="shock">
+            <div className="shock-top">
+              <span>Fed policy rule</span>
+              <button
+                type="button"
+                className={rStarInRule ? "mini on" : "mini off"}
+                aria-pressed={rStarInRule}
+                onClick={() => setRStarInRule((current) => !current)}
+              >
+                {rStarInRule ? "Tracks r*" : "Lags r*"}
+              </button>
+            </div>
+            <p>
+              Lags r* (default): the funds rate responds only to inflation and
+              the gap, as if the Fed is slow to recognize a higher neutral
+              rate. Tracks r*: the funds rate also moves one-for-one with the
+              change in r*. Presets keep this setting.
+            </p>
+          </div>
           <Shock
             title="AI capex"
             detail="Desired investment, percent of GDP. The near-term demand shock: data centers, compute, power, and software, before productivity shows up in FE."
@@ -466,7 +486,7 @@ Y = Y0 + capex + 0.6 × gY − 0.8 × (r − r0)
 FE = gY, measured from today's potential
 gap = Y − FE
 π = π0 + 0.4 × (gap − gap0)
-i = i0 + 1.5 × (π − π0) + 0.5 × (gap − gap0)
+i = i0 + 1.5 × (π − π0) + 0.5 × (gap − gap0) [+ (r* − r̄*) when the rule tracks r*]
 r = i − π0
 ACM 10-year = expected path + term premium
 expected path moves with r* and with 0.25 × the inflation change
@@ -479,9 +499,10 @@ term premium falls one-for-one with the fiscal shock
           and lowers desired saving by {PARAMS.psiSave}. Only{" "}
           {PARAMS.demandShare * 100} percent of the potential-output gain
           shows up as current spending. The rest opens slack relative to the
-          new full-employment line until demand catches up. The funds rate
-          responds to inflation and the gap. It does not jump one-for-one
-          with r*. Long yields do.
+          new full-employment line until demand catches up. By default the funds rate
+          responds to inflation and the gap and does not jump one-for-one
+          with r*. Long yields do. Switch the policy rule to track r* to see
+          the case where the Fed recognizes the higher neutral rate.
         </p>
         <ul className="sources">
           {SERIES_ORDER.map((key) => {

@@ -92,14 +92,28 @@ export function effectiveShocks(shocks: Shocks) {
   };
 }
 
-export function solve(levels: ModelLevels, shocks: Shocks): Solution {
+export type PolicyOptions = {
+  /** When true, the Fed tracks the new r* one-for-one in its rule. */
+  rStarInRule?: boolean;
+};
+
+export function solve(
+  levels: ModelLevels,
+  shocks: Shocks,
+  options: PolicyOptions = {},
+): Solution {
   const e = effectiveShocks(shocks);
   const imbalance =
     e.capex + (PARAMS.psiProd + PARAMS.psiSave) * e.gy - e.prec;
   const dRStar = imbalance / slopeSum;
-  const dGap = (e.capex - (1 - PARAMS.demandShare) * e.gy) / denom;
+  // Policy rule: Δi = taylor × Δgap + (rStarInRule ? Δr* : 0).
+  // The IS curve feels Δi through the real rate, so a Fed that tracks r*
+  // also tightens demand: Δgap = (capex − (1 − share)·gY − a·Δr*) / denom.
+  const rStarPass = options.rStarInRule ? dRStar : 0;
+  const dGap =
+    (e.capex - (1 - PARAMS.demandShare) * e.gy - PARAMS.a * rStarPass) / denom;
   const dInflation = PARAMS.kappa * dGap;
-  const dFunds = taylor * dGap;
+  const dFunds = taylor * dGap + rStarPass;
   const dY10 = dRStar + PARAMS.longInflationWeight * dInflation - e.tau;
   const dReal10 = dRStar - e.tau;
 
@@ -160,6 +174,7 @@ export function narrate(
   sol: Solution,
   base: Solution,
   extras: { headline: number | null; unemployment: number | null },
+  options: PolicyOptions = {},
 ): string {
   const e = effectiveShocks(shocks);
   const active = e.capexOn || e.sweOn || e.precOn || e.fiscalOn;
@@ -222,6 +237,12 @@ export function narrate(
   } else {
     parts.push(
       `The ACM 10-year yield is ${bpPhrase(sol.dY10)}, at ${pp(sol.y10)} percent. The expected path is ${pp(sol.expected)} and the term premium is ${pp(sol.termPremium)}. The 10-year real yield is ${bpPhrase(sol.dReal10)}, at ${pp(sol.real10)} percent.`,
+    );
+  }
+
+  if (options.rStarInRule && Math.abs(sol.dRStar) > 0.005) {
+    parts.push(
+      `The Fed's rule tracks r* here, so the policy rate carries the ${bpPhrase(sol.dRStar)} move in the neutral rate on top of its response to inflation and the gap. Set the rule back to "Fed lags r*" to see the slow-recognition case.`,
     );
   }
 

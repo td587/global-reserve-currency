@@ -17,7 +17,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Demand today, supply tomorrow",
   description:
-    "Alex Dinh's in-class briefing on the AI boom: capex before productivity, the equilibrium real rate, and the PIMCO alternative.",
+    "The Fourward Guidance Group's in-class briefing (Rodrigo Abucham, Alex Dinh, Dan Sen, Takaaki Tanabe) on the AI boom: capex before productivity, the equilibrium real rate, and the PIMCO alternative.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

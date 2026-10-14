@@ -56,6 +56,18 @@ check("switches off match baseline", Math.abs(off.rStar - zero.rStar) < 1e-9 && 
 const rnd = solve(levels, { ...PRESETS.later, rnd: true });
 check("rnd amplifies potential", rnd.potential > later.potential * 1.5);
 
+const laterTrack = solve(levels, PRESETS.later, { rStarInRule: true });
+const nowTrack = solve(levels, PRESETS.now, { rStarInRule: true });
+check("tracking r* raises later funds", laterTrack.dFunds > 0);
+check("tracking r* leaves r* unchanged", Math.abs(laterTrack.dRStar - later.dRStar) < 1e-9);
+check("tracking r* keeps real long yield up", laterTrack.dReal10 > 0);
+check("tracking r* tightens more now", nowTrack.dFunds > now.dFunds);
+check("tracking r* lowers later inflation more", laterTrack.dInflation < later.dInflation);
+check(
+  "tracking r* is neutral at baseline",
+  Math.abs(solve(levels, PRESETS.baseline, { rStarInRule: true }).funds - zero.funds) < 1e-9,
+);
+
 console.log(
   JSON.stringify(
     {
@@ -65,6 +77,7 @@ console.log(
       unemployment: baseline.series.unemployment.value,
       rStar: zero.rStar,
       laterFunds: later.funds,
+      laterFundsTrackingRStar: laterTrack.funds,
       laterR: later.rStar,
       pimcoR: pimco.rStar,
     },
