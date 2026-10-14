@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Open [http://127.0.0.1:43125](http://127.0.0.1:43125).
+Open [http://127.0.0.1:43125](http://127.0.0.1:43125). The slide version is [http://127.0.0.1:43125/slides](http://127.0.0.1:43125/slides). Arrow keys move between slides. Shock settings carry from one slide to the next.
 
 ## Data
 

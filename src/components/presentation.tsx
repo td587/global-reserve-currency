@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   IsFeChart,
@@ -176,6 +177,9 @@ export function Presentation({ initial }: { initial: Baseline }) {
         </p>
         <p className="team">
           Rodrigo Abucham, Alex Dinh, Dan Sen, Takaaki Tanabe
+        </p>
+        <p className="team">
+          <Link href="/slides">Open the slide version</Link>
         </p>
       </header>
 
