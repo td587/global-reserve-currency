@@ -143,6 +143,36 @@ export function solve(
   };
 }
 
+/**
+ * Every corner of the slider box that the charts should frame without
+ * rescaling: capex 0–1.5, the paper's 32.6 productivity gain, precautionary
+ * saving 0–1.5, term premium 0–100 bp, with the policy rule both ways.
+ * The model is linear in each shock, so any setting inside the box lands
+ * inside the range these corners span. Settings beyond it (productivity
+ * above 32.6, or the R&D channel) widen the axes smoothly.
+ */
+const envelopeCache = new WeakMap<ModelLevels, Solution[]>();
+
+export function chartEnvelope(levels: ModelLevels): Solution[] {
+  const cached = envelopeCache.get(levels);
+  if (cached) return cached;
+  const out: Solution[] = [];
+  for (const capex of [0, 1.5])
+    for (const swe of [0, 32.6])
+      for (const precautionary of [0, 1.5])
+        for (const termPremium of [0, 100])
+          for (const rStarInRule of [false, true])
+            out.push(
+              solve(
+                levels,
+                { ...INITIAL_SHOCKS, capex, swe, precautionary, termPremium },
+                { rStarInRule },
+              ),
+            );
+  envelopeCache.set(levels, out);
+  return out;
+}
+
 export function presetName(shocks: Shocks): string | null {
   for (const [name, preset] of Object.entries(PRESETS)) {
     if (JSON.stringify(shocks) === JSON.stringify(preset)) return name;

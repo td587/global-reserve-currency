@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { PARAMS, type ModelLevels } from "@/lib/model";
+import { PARAMS, chartEnvelope, type ModelLevels } from "@/lib/model";
 import type { CurveVisibility, Solution } from "@/lib/types";
 
 type Levels = ModelLevels;
@@ -11,7 +11,8 @@ type Props = {
   show: CurveVisibility;
 };
 
-function extent(values: number[], pad = 0.18) {
+/** Axis range. Continuous in its inputs: no threshold where the scale jumps. */
+function extent(values: number[], pad = 0.18, minSpan = 1.2) {
   const finite = values.filter((value) => Number.isFinite(value));
   let min = Math.min(...finite);
   let max = Math.max(...finite);
@@ -19,12 +20,18 @@ function extent(values: number[], pad = 0.18) {
     min = 0;
     max = 1;
   }
-  if (Math.abs(max - min) < 0.4) {
-    min -= 0.6;
-    max += 0.6;
+  if (max - min < minSpan) {
+    const mid = (min + max) / 2;
+    min = mid - minSpan / 2;
+    max = mid + minSpan / 2;
   }
   const extra = (max - min) * pad;
   return { min: min - extra, max: max + extra };
+}
+
+/** Baseline, current shock, and the fixed envelope the axes always cover. */
+function frameSet(levels: Levels, base: Solution, shocked: Solution) {
+  return [base, shocked, ...chartEnvelope(levels)];
 }
 
 function map(
@@ -90,8 +97,10 @@ function Legend({
 
 export function SavingInvestmentChart({ levels, base, shocked, show }: Props) {
   const hidden = !show.saving && !show.investment;
-  const rMin = Math.min(levels.rStar0, shocked.rStar, base.rStar) - 1.2;
-  const rMax = Math.max(levels.rStar0, shocked.rStar, base.rStar) + 1.2;
+  const all = frameSet(levels, base, shocked);
+  const rStars = [levels.rStar0, ...all.map((sol) => sol.rStar)];
+  const rMin = Math.min(...rStars) - 1.2;
+  const rMax = Math.max(...rStars) + 1.2;
   const quantity = (r: number, which: "s" | "i", sol: Solution) => {
     if (which === "i") {
       return -PARAMS.bI * (r - levels.rStar0) + sol.capex + PARAMS.psiProd * sol.gy;
@@ -100,14 +109,12 @@ export function SavingInvestmentChart({ levels, base, shocked, show }: Props) {
   };
   const samples = [rMin, rMax];
   const qs = [
-    quantity(rMin, "s", base),
-    quantity(rMax, "s", base),
-    quantity(rMin, "i", base),
-    quantity(rMax, "i", base),
-    quantity(rMin, "s", shocked),
-    quantity(rMax, "s", shocked),
-    quantity(rMin, "i", shocked),
-    quantity(rMax, "i", shocked),
+    ...all.flatMap((sol) => [
+      quantity(rMin, "s", sol),
+      quantity(rMax, "s", sol),
+      quantity(rMin, "i", sol),
+      quantity(rMax, "i", sol),
+    ]),
     0,
   ];
   const q = extent(qs, 0.2);
@@ -171,20 +178,19 @@ export function SavingInvestmentChart({ levels, base, shocked, show }: Props) {
 export function IsFeChart({ levels, base, shocked, show }: Props) {
   const hidden = !show.is && !show.fe;
   const r0 = levels.i0 - levels.pi0;
-  const rValues = [base.realPolicy, shocked.realPolicy, r0];
-  const rExt = extent(rValues, 0.45);
+  const all = frameSet(levels, base, shocked);
+  const rValues = [r0, ...all.map((sol) => sol.realPolicy)];
+  const rExt = extent(rValues, 0.25);
   const yOf = (r: number, sol: Solution) =>
     levels.gap0 + sol.capex + PARAMS.demandShare * sol.gy - PARAMS.a * (r - r0);
   const yValues = [
     0,
-    base.potential,
-    shocked.potential,
-    base.output,
-    shocked.output,
-    yOf(rExt.min, base),
-    yOf(rExt.max, base),
-    yOf(rExt.min, shocked),
-    yOf(rExt.max, shocked),
+    ...all.flatMap((sol) => [
+      sol.potential,
+      sol.output,
+      yOf(rExt.min, sol),
+      yOf(rExt.max, sol),
+    ]),
   ];
   const yExt = extent(yValues, 0.12);
   const left = 52;
@@ -244,14 +250,20 @@ export function IsFeChart({ levels, base, shocked, show }: Props) {
 }
 
 export function PhillipsChart({ levels, base, shocked, show }: Props) {
+  const all = frameSet(levels, base, shocked);
   const gapExt = extent(
-    [base.gap, shocked.gap, levels.gap0 - 1.2, levels.gap0 + 1.2],
+    [levels.gap0 - 1.2, levels.gap0 + 1.2, ...all.map((sol) => sol.gap)],
     0.2,
   );
   const piLine = (gap: number) =>
     levels.pi0 + PARAMS.kappa * (gap - levels.gap0);
   const piExt = extent(
-    [piLine(gapExt.min), piLine(gapExt.max), PARAMS.piTarget, base.inflation, shocked.inflation],
+    [
+      piLine(gapExt.min),
+      piLine(gapExt.max),
+      PARAMS.piTarget,
+      ...all.map((sol) => sol.inflation),
+    ],
     0.12,
   );
   const left = 52;
@@ -299,7 +311,7 @@ export function PhillipsChart({ levels, base, shocked, show }: Props) {
   );
 }
 
-export function YieldChart({ base, shocked, show }: Props) {
+export function YieldChart({ levels, base, shocked, show }: Props) {
   const hidden = !show.expectedPath && !show.termPremium;
   const rows = [
     show.expectedPath
@@ -311,7 +323,15 @@ export function YieldChart({ base, shocked, show }: Props) {
     { label: "10-year yield", base: base.y10, shocked: shocked.y10 },
   ].filter((row): row is { label: string; base: number; shocked: number } => row != null);
 
-  const values = rows.flatMap((row) => [row.base, row.shocked]);
+  const all = frameSet(levels, base, shocked);
+  const values = [
+    ...rows.flatMap((row) => [row.base, row.shocked]),
+    ...all.flatMap((sol) => [
+      ...(show.expectedPath ? [sol.expected] : []),
+      ...(show.termPremium ? [sol.termPremium] : []),
+      sol.y10,
+    ]),
+  ];
   const ext = extent(values, 0.25);
   const left = 118;
   const right = 610;
