@@ -176,7 +176,7 @@ export function SavingInvestmentChart({ levels, base, shocked, show }: Props) {
 }
 
 export function IsFeChart({ levels, base, shocked, show }: Props) {
-  const hidden = !show.is && !show.fe;
+  const hidden = !show.is && !show.mp && !show.fe;
   const r0 = levels.i0 - levels.pi0;
   const all = frameSet(levels, base, shocked);
   const rValues = [r0, ...all.map((sol) => sol.realPolicy)];
@@ -204,11 +204,11 @@ export function IsFeChart({ levels, base, shocked, show }: Props) {
 
   return (
     <Frame
-      title="IS and full employment"
-      note="Output is measured against today's potential. The dot is the short-run policy equilibrium, not r*."
+      title="IS–MP–FE"
+      note="Output is measured against today's potential. MP is the real policy rate the Fed sets. The dot is where IS crosses MP, the short-run equilibrium. It is not r*."
       hidden={hidden}
     >
-      <svg viewBox="0 0 640 280" role="img" aria-label="IS and full employment diagram">
+      <svg viewBox="0 0 640 280" role="img" aria-label="IS, MP, and full employment diagram">
         <line className="axis" x1={left} y1={top} x2={left} y2={bottom} />
         <line className="axis" x1={left} y1={bottom} x2={right} y2={bottom} />
         {ticks(rExt.min, rExt.max).map((tick) => (
@@ -225,6 +225,9 @@ export function IsFeChart({ levels, base, shocked, show }: Props) {
           <line className="ghost" x1={x(base.potential)} y1={top} x2={x(base.potential)} y2={bottom} />
         )}
         {show.is && <path d={isPath(base)} className="ghost" />}
+        {show.mp && (
+          <line className="ghost" x1={left} y1={y(base.realPolicy)} x2={right} y2={y(base.realPolicy)} />
+        )}
         {show.fe && (
           <line
             className="solid-ink"
@@ -235,6 +238,15 @@ export function IsFeChart({ levels, base, shocked, show }: Props) {
           />
         )}
         {show.is && <path d={isPath(shocked)} className="solid-accent" />}
+        {show.mp && (
+          <line
+            className="solid-mp"
+            x1={left}
+            y1={y(shocked.realPolicy)}
+            x2={right}
+            y2={y(shocked.realPolicy)}
+          />
+        )}
         <circle className="dot-base" cx={x(base.output)} cy={y(base.realPolicy)} r="4.5" />
         <circle className="dot" cx={x(shocked.output)} cy={y(shocked.realPolicy)} r="5.5" />
       </svg>
@@ -242,6 +254,7 @@ export function IsFeChart({ levels, base, shocked, show }: Props) {
         items={[
           { label: "Baseline", swatch: "#c2b8aa" },
           { label: "IS", swatch: "#8c2f1b" },
+          { label: "MP", swatch: "#2f6670" },
           { label: "FE", swatch: "#1c1917" },
         ]}
       />

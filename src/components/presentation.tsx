@@ -45,6 +45,7 @@ const SERIES_ORDER = [
 
 const CURVE_TOGGLES: { key: CurveKey; label: string }[] = [
   { key: "is", label: "IS" },
+  { key: "mp", label: "MP" },
   { key: "fe", label: "FE" },
   { key: "phillips", label: "Phillips curve" },
   { key: "saving", label: "Saving" },
@@ -55,6 +56,7 @@ const CURVE_TOGGLES: { key: CurveKey; label: string }[] = [
 
 const ALL_CURVES: CurveVisibility = {
   is: true,
+  mp: true,
   fe: true,
   phillips: true,
   saving: true,
@@ -487,7 +489,7 @@ FE = gY, measured from today's potential
 gap = Y − FE
 π = π0 + 0.4 × (gap − gap0)
 i = i0 + 1.5 × (π − π0) + 0.5 × (gap − gap0) [+ (r* − r̄*) when the rule tracks r*]
-r = i − π0
+MP: r = i − π0, the real policy rate (flat in the IS–MP–FE chart)
 ACM 10-year = expected path + term premium
 expected path moves with r* and with 0.25 × the inflation change
 term premium falls one-for-one with the fiscal shock

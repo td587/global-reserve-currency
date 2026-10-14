@@ -34,6 +34,7 @@ export type Shocks = {
 
 export type CurveKey =
   | "is"
+  | "mp"
   | "fe"
   | "phillips"
   | "saving"

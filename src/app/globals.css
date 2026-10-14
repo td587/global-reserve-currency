@@ -8,6 +8,7 @@
   --card: #fffcf8;
   --accent: #8c2f1b;
   --ghost: #c2b8aa;
+  --mp: #2f6670;
 }
 
 * {
@@ -267,6 +268,7 @@ h1 {
 
 .solid-accent,
 .solid-ink,
+.solid-mp,
 .target {
   fill: none;
   stroke-width: 2.2;
@@ -278,6 +280,10 @@ h1 {
 
 .solid-ink {
   stroke: var(--ink);
+}
+
+.solid-mp {
+  stroke: var(--mp);
 }
 
 .target {

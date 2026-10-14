@@ -30,7 +30,7 @@ const SLIDES = [
   { id: "timing", label: "Timing" },
   { id: "prints", label: "Baseline" },
   { id: "saving", label: "Saving–investment" },
-  { id: "isfe", label: "IS and FE" },
+  { id: "isfe", label: "IS–MP–FE" },
   { id: "phillips", label: "Phillips curve" },
   { id: "yield", label: "Long yield" },
   { id: "tell", label: "The line" },
@@ -49,6 +49,7 @@ const PRINTS = [
 
 const ALL_CURVES: CurveVisibility = {
   is: true,
+  mp: true,
   fe: true,
   phillips: true,
   saving: true,
@@ -213,9 +214,9 @@ export function Slides({ initial }: { initial: Baseline }) {
         )}
         {slide.id === "isfe" && (
           <ChartSlide
-            kicker="Goods market"
+            kicker="IS–MP–FE"
             title="Full employment waits"
-            line="Today the IS curve shifts with capex and full-employment output stays put. Later, the software-engineering gain shifts the full-employment line right."
+            line="Today the IS curve shifts right with capex, the Fed raises MP, and full-employment output stays put. Later, the software-engineering gain shifts FE right and MP can come down."
             shocks={shocks}
             setShocks={setShocks}
             sol={sol}
