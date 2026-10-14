@@ -15,9 +15,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Global Reserve Currency | Educational Slide Deck",
+  title: "Demand today, supply tomorrow",
   description:
-    "An interactive educational presentation on FX rates, inflation, the gold standard, Bretton Woods, and why the dollar remains the world’s reserve currency.",
+    "Alex Dinh's in-class briefing on the AI boom: capex before productivity, the equilibrium real rate, and the PIMCO alternative.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
