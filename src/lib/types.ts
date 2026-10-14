@@ -1,4 +1,4 @@
-export type SeriesStatus = "reference" | "snapshot" | "missing";
+export type SeriesStatus = "reference" | "snapshot" | "live" | "missing";
 
 export type Observation = {
   key: string;

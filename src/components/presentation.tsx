@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   IsFeChart,
   PhillipsChart,
@@ -108,6 +108,7 @@ function formatValue(obs: Observation) {
 
 function statusLine(obs: Observation) {
   if (obs.status === "missing" || obs.value == null) return "Missing";
+  if (obs.status === "live") return `Live · ${obs.dateLabel}`;
   if (obs.status === "snapshot") return `Snapshot · ${obs.dateLabel}`;
   return `Reference file · ${obs.dateLabel}`;
 }
@@ -124,7 +125,7 @@ export function Presentation({ initial }: { initial: Baseline }) {
     setLoading(true);
     setRefreshError("");
     try {
-      const response = await fetch("/api/baseline", { cache: "no-store" });
+      const response = await fetch("/api/baseline?live=1", { cache: "no-store" });
       if (!response.ok) throw new Error("bad status");
       const next = (await response.json()) as Baseline;
       setBaseline(next);
@@ -136,10 +137,6 @@ export function Presentation({ initial }: { initial: Baseline }) {
       setLoading(false);
     }
   }
-
-  useEffect(() => {
-    void refresh();
-  }, []);
 
   const levels = useMemo(() => levelsFrom(baseline), [baseline]);
   const baseSol = useMemo(
@@ -187,8 +184,9 @@ export function Presentation({ initial }: { initial: Baseline }) {
           <div>
             <h2>Baseline</h2>
             <p>
-              Prints from the reference files, as of {baseline.asOf}. Shock
-              settings stay put when you refresh.
+              Prints as of {baseline.asOf}. Refresh tries a short live pull
+              and keeps the reference file when a series does not return.
+              Shock settings stay put.
             </p>
           </div>
           <button
@@ -197,7 +195,7 @@ export function Presentation({ initial }: { initial: Baseline }) {
             onClick={() => void refresh()}
             disabled={loading}
           >
-            {loading ? "Reading files…" : "Refresh"}
+            {loading ? "Pulling…" : "Refresh"}
           </button>
         </div>
         {(baseline.failures.length > 0 || refreshError) && (
