@@ -229,11 +229,11 @@ export function narrate(
     );
   } else if (e.sweOn && !e.capexOn) {
     parts.push(
-      `Later: software-engineering productivity is ${pp(shocks.swe, 1)} percent higher, the present-value gain Blumenfeld, Hazell, Lian, and Schaab measure from November 2022 through December 2025. The GDP weight is ${pp(e.gamma, 3)}, so potential output is ${pp(e.gy)} percent higher and the full-employment line shifts right. Inflation pressure eases: core inflation is ${bpPhrase(sol.dInflation)} and the funds rate is ${bpPhrase(sol.dFunds)}, at ${pp(sol.funds)} percent. Desired investment rises and desired saving falls, so the equilibrium real rate is still ${bpPhrase(sol.dRStar)}, at ${pp(sol.rStar)} percent.`,
+      `Later, if the expected gain is realized: markets price a ${pp(shocks.swe, 1)} percent software-engineering productivity gain, the market-implied estimate from Blumenfeld, Hazell, Lian, and Schaab over November 2022 to December 2025. That is an expectation, not a measured gain. If it arrives, with a GDP weight of ${pp(e.gamma, 3)}, potential output is ${pp(e.gy)} percent higher and the full-employment line shifts right. Inflation pressure eases: core inflation is ${bpPhrase(sol.dInflation)} and the funds rate is ${bpPhrase(sol.dFunds)}, at ${pp(sol.funds)} percent. Desired investment rises and desired saving falls, so the equilibrium real rate is still ${bpPhrase(sol.dRStar)}, at ${pp(sol.rStar)} percent.`,
     );
   } else if (e.sweOn && e.capexOn) {
     parts.push(
-      `Demand is still on and the supply shock has arrived. Capex of ${pp(e.capex)} percent of GDP keeps investment demand elevated, and a ${pp(shocks.swe, 1)} percent software-engineering productivity gain raises potential output by ${pp(e.gy)} percent (weight ${pp(e.gamma, 3)}). The full-employment line shifts right, the gap moves to ${pp(sol.gap)} percent, and core inflation is ${bpPhrase(sol.dInflation)}. The funds rate is ${bpPhrase(sol.dFunds)}, at ${pp(sol.funds)} percent. The saving–investment balance puts r* ${bpPhrase(sol.dRStar)}, at ${pp(sol.rStar)} percent, so the long real yield can stay high even as the policy rate ${sol.dFunds < -0.005 ? "falls" : "moves"}.`,
+      `Demand is still on, and here the expected supply gain has also arrived. Capex of ${pp(e.capex)} percent of GDP keeps investment demand elevated, and if the ${pp(shocks.swe, 1)} percent expected software-engineering productivity gain is realized, potential output rises by ${pp(e.gy)} percent (weight ${pp(e.gamma, 3)}). The full-employment line shifts right, the gap moves to ${pp(sol.gap)} percent, and core inflation is ${bpPhrase(sol.dInflation)}. The funds rate is ${bpPhrase(sol.dFunds)}, at ${pp(sol.funds)} percent. The saving–investment balance puts r* ${bpPhrase(sol.dRStar)}, at ${pp(sol.rStar)} percent, so the long real yield can stay high even as the policy rate ${sol.dFunds < -0.005 ? "falls" : "moves"}.`,
     );
   }
 
@@ -262,7 +262,7 @@ export function narrate(
           ? "Net, r* still rises"
           : "Net, r* is about unchanged";
     parts.push(
-      `The PIMCO alternative is on: ${bits.join(" and ")}. Wilding and Scott argue that AI news has lowered far-forward yields through precautionary saving and a smaller term premium, even if trend growth is higher. ${net}, at ${pp(sol.rStar)} percent, and the ACM 10-year yield is ${bpPhrase(sol.dY10)}, at ${pp(sol.y10)} percent. Set those two switches off to return to the talk's claim that the equilibrium real rate rises.`,
+      `The PIMCO alternative is on: ${bits.join(" and ")}. Wilding and Scott argue that AI news has lowered far-forward yields through precautionary saving and a smaller term premium, even if trend growth is higher. ${net}, at ${pp(sol.rStar)} percent, and the ACM 10-year yield is ${bpPhrase(sol.dY10)}, at ${pp(sol.y10)} percent. Set those two switches off to see the case where the equilibrium real rate rises instead. Which channel wins is why the effect on long rates is ambiguous.`,
     );
   } else {
     parts.push(

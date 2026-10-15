@@ -2,7 +2,9 @@
 
 In-class briefing for Rodrigo Abucham, Alex Dinh, Dan Sen, and Takaaki Tanabe. MGT 932E, 24 October 2026.
 
-The AI boom is a demand shock today and a supply shock tomorrow. Capex lifts investment and inflation before productivity arrives. The saving–investment balance pushes the equilibrium real rate up. Later, the software-engineering productivity gain can ease inflation enough for the Fed to cut, while long real yields stay high. PIMCO’s precautionary-saving and term-premium channels are the alternative.
+Core question: is AI-driven productive capacity expanding fast enough to keep up with the demand boom it has already created? Base case: the demand effect is more visible today than the realized supply effect, and the productivity channel matters more over time. The effect on long-term rates is ambiguous: a higher r* pushes them up, while PIMCO’s precautionary-saving and term-premium channels pull them down.
+
+The main page (`/`) is the full briefing. `/slides` follows the presentation outline section by section. See `CHANGELOG.md` for what changed and why.
 
 ## Run locally
 

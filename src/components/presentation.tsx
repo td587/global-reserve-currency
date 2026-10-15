@@ -172,11 +172,11 @@ export function Presentation({ initial }: { initial: Baseline }) {
         </p>
         <h1>The AI boom: demand today, supply tomorrow</h1>
         <p className="thesis">
-          The AI boom is a demand shock today and a supply shock tomorrow.
-          Capex lifts investment and inflation before productivity arrives.
-          The saving–investment balance pushes the equilibrium real rate up.
-          Later, the productivity gain can ease inflation enough for the Fed
-          to cut, while long real yields stay high.
+          Is AI-driven productive capacity expanding fast enough to keep up
+          with the demand boom it has already created? Our base case: the
+          demand effect is more visible today than the realized supply
+          effect, and the productivity channel matters more over time. The
+          effect on long-term rates is ambiguous.
         </p>
         <p className="team">
           Rodrigo Abucham, Alex Dinh, Dan Sen, Takaaki Tanabe
@@ -403,7 +403,7 @@ export function Presentation({ initial }: { initial: Baseline }) {
           />
           <Shock
             title="Software-engineering productivity"
-            detail="Percent. 32.6 is the Blumenfeld, Hazell, Lian, and Schaab present-value gain from November 2022 through December 2025. It shifts FE by gamma times this number."
+            detail="Percent. 32.6 is the market-implied expected gain from Blumenfeld, Hazell, Lian, and Schaab, estimated from November 2022 through December 2025. It is an expectation, not a measured gain. Turning it on asks: what if it is realized? It shifts FE by gamma times this number."
             value={shocks.swe}
             min={0}
             max={70}
