@@ -76,8 +76,14 @@ export const DEFAULT_RATE_STATE: RateState = Object.fromEntries(
 
 export const ratesMeta = rates.meta;
 
-export function buildRatesChartData(start = "2020-01") {
-  return (rates.observations as Array<Record<string, string | number | null>>)
+export function buildRatesChartData(
+  start = "2020-01",
+  rows?: Array<Record<string, string | number | null>>
+) {
+  const source =
+    rows ??
+    (rates.observations as Array<Record<string, string | number | null>>);
+  return source
     .filter((o) => String(o.date) >= start)
     .map((o) => {
       const [y, m] = String(o.date).split("-");

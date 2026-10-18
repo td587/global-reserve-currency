@@ -11,20 +11,28 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useInflationData } from "@/components/inflation/data-provider";
 import {
   buildRatesChartData,
   DEFAULT_RATE_STATE,
   RATE_SERIES,
-  ratesMeta,
   type RateKey,
   type RateState,
 } from "@/lib/rates";
 import { cn } from "@/lib/utils";
 
 export function RatesPanel() {
+  const { ratesObservations, ratesMeta, mode: dataMode } = useInflationData();
   const [state, setState] = useState<RateState>(DEFAULT_RATE_STATE);
   const [, startTransition] = useTransition();
-  const data = useMemo(() => buildRatesChartData("2020-01"), []);
+  const data = useMemo(
+    () =>
+      buildRatesChartData(
+        "2020-01",
+        ratesObservations as Array<Record<string, string | number | null>>
+      ),
+    [ratesObservations]
+  );
   const active = RATE_SERIES.filter((s) => state[s.key]);
 
   function toggle(key: RateKey) {
@@ -146,8 +154,9 @@ export function RatesPanel() {
         </ul>
         <p className="mt-4 text-[0.7rem] text-mist/60">
           Monthly averages of daily FRED · {ratesMeta.window.start} →{" "}
-          {ratesMeta.window.end} · built {ratesMeta.builtAt} ·{" "}
-          {ratesMeta.frequency}
+          {ratesMeta.window.end} ·{" "}
+          {dataMode === "live-fred" ? "live pull" : "snapshot"} as-of{" "}
+          {ratesMeta.fetchedAt ?? ratesMeta.builtAt} · {ratesMeta.frequency}
         </p>
       </div>
     </section>

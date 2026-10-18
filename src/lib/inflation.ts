@@ -51,13 +51,18 @@ function contributionFor(obs: Observation, id: CpiShockId): number {
  */
 export function buildChartSeries(
   state: ShockState,
-  opts?: { start?: string; mode?: "cpi" | "pce" }
+  opts?: {
+    start?: string;
+    mode?: "cpi" | "pce";
+    observations?: Observation[];
+  }
 ): ChartPoint[] {
   const start = opts?.start ?? "2020-01";
   const mode = opts?.mode ?? "cpi";
+  const rows = opts?.observations ?? observations;
   const removedCpi = CPI_SHOCK_IDS.filter((id) => !state[id]);
 
-  return observations
+  return rows
     .filter((o) => o.date >= start)
     .map((o) => {
       if (mode === "pce") {
@@ -77,7 +82,6 @@ export function buildChartSeries(
         if (!state.demandPce && o.shapiro?.demand != null) {
           removed += o.shapiro.demand;
         }
-        // Optional: if user also wants supply narrative on PCE lens — only demand is toggled per plan
         return {
           date: o.date,
           label: formatMonth(o.date),
@@ -107,8 +111,16 @@ export function buildChartSeries(
     .filter((p) => Number.isFinite(p.actual));
 }
 
-export function latestSnapshot(state: ShockState, mode: "cpi" | "pce") {
-  const pts = buildChartSeries(state, { mode, start: "2020-01" });
+export function latestSnapshot(
+  state: ShockState,
+  mode: "cpi" | "pce",
+  obs?: Observation[]
+) {
+  const pts = buildChartSeries(state, {
+    mode,
+    start: "2020-01",
+    observations: obs,
+  });
   const last = pts.at(-1);
   const peak = pts.reduce(
     (best, p) => (p.actual > best.actual ? p : best),

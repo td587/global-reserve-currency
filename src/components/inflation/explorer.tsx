@@ -1,12 +1,13 @@
 "use client";
 
 import { useMemo, useState, useTransition } from "react";
+import { DataFreshnessBar } from "@/components/inflation/data-freshness";
+import { useInflationData } from "@/components/inflation/data-provider";
 import { InflationChart } from "@/components/inflation/inflation-chart";
 import { ShockToggles } from "@/components/inflation/shock-toggles";
 import {
   anyRemoved,
   buildChartSeries,
-  inflationMeta,
   latestSnapshot,
   removedLabels,
 } from "@/lib/inflation";
@@ -20,6 +21,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export function InflationExplorer() {
+  const { observations, inflationMeta } = useInflationData();
   const [state, setState] = useState<ShockState>(DEFAULT_SHOCK_STATE);
   const [mode, setMode] = useState<"cpi" | "pce">("cpi");
   const [showHeadlinePce, setShowHeadlinePce] = useState(false);
@@ -27,13 +29,14 @@ export function InflationExplorer() {
   const [, startTransition] = useTransition();
 
   const chartData = useMemo(
-    () => buildChartSeries(state, { mode, start: "2020-01" }),
-    [state, mode]
+    () =>
+      buildChartSeries(state, { mode, start: "2020-01", observations }),
+    [state, mode, observations]
   );
   const showCf = anyRemoved(state, mode);
   const { last, peak } = useMemo(
-    () => latestSnapshot(state, mode),
-    [state, mode]
+    () => latestSnapshot(state, mode, observations),
+    [state, mode, observations]
   );
   const removed = removedLabels(state, mode);
   const removedNames = removed
@@ -51,6 +54,9 @@ export function InflationExplorer() {
       id="explorer"
       className="relative scroll-mt-4 px-4 py-14 md:px-8 md:py-20"
     >
+      <div className="mx-auto max-w-6xl">
+        <DataFreshnessBar className="mb-8" />
+      </div>
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:gap-12">
         <div className="flex min-h-0 flex-col">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
@@ -180,7 +186,8 @@ export function InflationExplorer() {
           </p>
           <p className="mt-1 text-[0.7rem] text-mist/60">
             Data window {inflationMeta.window.start} → {inflationMeta.window.end}
-            · built {inflationMeta.builtAt} · FRED / BLS / SF Fed
+            · as-of {inflationMeta.fetchedAt ?? inflationMeta.builtAt} · FRED /
+            BLS / SF Fed
           </p>
         </div>
 

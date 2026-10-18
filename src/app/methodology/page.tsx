@@ -33,6 +33,28 @@ export default function MethodologyPage() {
         </p>
 
         <section className="mt-12 space-y-4">
+          <h2 className="font-serif text-2xl text-paper">
+            Snapshot vs Refresh
+          </h2>
+          <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-mist">
+            <li>
+              Default: <strong className="text-paper">Embedded snapshot</strong>{" "}
+              baked at build time (see “Last updated” on the explorer).
+            </li>
+            <li>
+              <strong className="text-paper">Refresh data</strong> calls{" "}
+              <code className="text-paper">/api/data/refresh</code>, which
+              re-downloads public FRED CSVs (no API key) and rebuilds CPI/PCE
+              contributions and rates. Charts update in-session.
+            </li>
+            <li>
+              Shapiro demand/supply stays on the embedded SF Fed snapshot during
+              live refresh (not re-scraped from FRBSF).
+            </li>
+          </ul>
+        </section>
+
+        <section className="mt-12 space-y-4">
           <h2 className="font-serif text-2xl text-paper">Toggle semantics</h2>
           <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-mist">
             <li>
