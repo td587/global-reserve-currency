@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start --port 43125 --hostname 0.0.0.0",
     "lint": "eslint",
-    "data:inflation": "node scripts/build-inflation-data.mjs"
+    "data:inflation": "node scripts/build-inflation-data.mjs",
+    "data:rates": "node scripts/build-rates-data.mjs",
+    "data:all": "npm run data:inflation && npm run data:rates"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

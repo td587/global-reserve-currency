@@ -13,10 +13,24 @@ import {
 } from "recharts";
 import type { ChartPoint } from "@/lib/inflation";
 
+export type OverlayPoint = ChartPoint & {
+  headlinePce?: number | null;
+  corePce?: number | null;
+};
+
 type Props = {
-  data: ChartPoint[];
+  data: OverlayPoint[];
   showCounterfactual: boolean;
   mode: "cpi" | "pce";
+  showHeadlinePce: boolean;
+  showCorePce: boolean;
+};
+
+const NAME: Record<string, string> = {
+  actual: "Actual",
+  counterfactual: "Counterfactual",
+  headlinePce: "Headline PCE y/y",
+  corePce: "Core PCE y/y",
 };
 
 function CustomTooltip({
@@ -35,7 +49,7 @@ function CustomTooltip({
       {payload.map((p) => (
         <p key={p.dataKey} className="flex justify-between gap-6 text-mist">
           <span style={{ color: p.color }}>
-            {p.dataKey === "actual" ? "Actual" : "Counterfactual"}
+            {NAME[p.dataKey] ?? p.dataKey}
           </span>
           <span className="tabular-nums text-paper">
             {Number(p.value).toFixed(1)}%
@@ -46,7 +60,13 @@ function CustomTooltip({
   );
 }
 
-export function InflationChart({ data, showCounterfactual, mode }: Props) {
+export function InflationChart({
+  data,
+  showCounterfactual,
+  mode,
+  showHeadlinePce,
+  showCorePce,
+}: Props) {
   return (
     <div className="h-full min-h-[280px] w-full animate-fade-rise">
       <ResponsiveContainer width="100%" height="100%">
@@ -112,6 +132,33 @@ export function InflationChart({ data, showCounterfactual, mode }: Props) {
               strokeWidth={2.5}
               strokeDasharray="7 5"
               dot={false}
+              isAnimationActive
+              animationDuration={700}
+            />
+          )}
+          {showHeadlinePce && mode === "cpi" && (
+            <Line
+              type="monotone"
+              dataKey="headlinePce"
+              name="Headline PCE y/y"
+              stroke="#5eb7a5"
+              strokeWidth={1.75}
+              dot={false}
+              connectNulls
+              isAnimationActive
+              animationDuration={700}
+            />
+          )}
+          {showCorePce && (
+            <Line
+              type="monotone"
+              dataKey="corePce"
+              name="Core PCE y/y"
+              stroke="#6a9bb8"
+              strokeWidth={1.75}
+              strokeDasharray={mode === "pce" ? undefined : "4 3"}
+              dot={false}
+              connectNulls
               isAnimationActive
               animationDuration={700}
             />

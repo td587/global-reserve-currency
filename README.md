@@ -6,7 +6,7 @@ Interactive Next.js presentation on US inflation (≈2020–2025): headline CPI/
 
 ```bash
 npm install
-npm run data:inflation   # rebuild embedded series from data/
+npm run data:all         # rebuild inflation + rates JSON from data/fred
 npm run dev              # http://127.0.0.1:43125
 ```
 
@@ -28,11 +28,17 @@ Each factor starts **ON** (included). Flip **OFF** to **remove that component’
 | Services ex-shelter | Proxy from services less energy − shelter |
 | Demand impulse | SF Fed Shapiro demand-driven PCE y/y |
 
+## Also in the deck
+
+- **Rates panel:** toggle 5y/10y TIPS (`DFII5`/`DFII10`), 5y breakeven (`T5YIE`), 5y5y (`T5YIFR`), 5y/10y UST (`DGS5`/`DGS10`).
+- **PCE overlays** on the explorer: Headline PCE / Core PCE show-hide.
+- **Hyperscalers & neoclouds:** SEC-cited capex/commitments, ratings, CDS gaps.
+
 ## Data refresh
 
-1. Re-download FRED CSVs into `data/fred/` (see series IDs in `scripts/build-inflation-data.mjs`).
+1. Re-download FRED CSVs into `data/fred/` (inflation + rates IDs in `scripts/`).
 2. Refresh Shapiro CSVs from [SF Fed supply/demand PCE](https://www.frbsf.org/research-and-insights/data-and-indicators/supply-and-demand-driven-pce-inflation/).
-3. Run `npm run data:inflation`.
+3. Run `npm run data:all`.
 
 In-app detail: [`/methodology`](/methodology).
 

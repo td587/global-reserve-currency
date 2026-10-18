@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { inflationMeta } from "@/lib/inflation";
+import { RATE_SERIES, ratesMeta } from "@/lib/rates";
 import { SHOCKS } from "@/lib/shocks";
 
 export const metadata: Metadata = {
@@ -115,6 +116,47 @@ counterfactual(t) = CPI_y/y(t) − Σ contribution_j(t)  for j toggled OFF`}
             <strong className="text-paper">energy CPI</strong>. Forward-looking
             risk premia are uncertainty, not historical contributions.
           </p>
+          <p className="text-sm text-mist">
+            Overlay toggles for <strong className="text-paper">Headline PCE</strong>{" "}
+            and <strong className="text-paper">Core PCE</strong> show/hide FRED{" "}
+            <code className="text-paper">PCEPI</code> /{" "}
+            <code className="text-paper">PCEPILFE</code> y/y on the explorer chart
+            (they do not enter the CPI contribution counterfactual math).
+          </p>
+        </section>
+
+        <section className="mt-12 space-y-4">
+          <h2 className="font-serif text-2xl text-paper">
+            Rates & expectations (FRED)
+          </h2>
+          <p className="text-sm text-mist">
+            Monthly averages of daily observations ({ratesMeta.window.start} →{" "}
+            {ratesMeta.window.end}). Toggle show/hide on the Rates panel — these
+            are market yields/compensation, not CPI contributions.
+          </p>
+          <ul className="space-y-2 text-sm text-mist">
+            {RATE_SERIES.map((s) => (
+              <li key={s.key}>
+                <span className="text-paper">{s.label}</span> — {s.blurb}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-12 space-y-4">
+          <h2 className="font-serif text-2xl text-paper">
+            Hyperscalers & CDS gaps
+          </h2>
+          <p className="text-sm leading-relaxed text-mist">
+            Capex and commitments are taken from SEC filings (e.g. Microsoft
+            additions to PP&amp;E; Amazon contractual commitments table;
+            CoreWeave RPO / debt). Credit ratings cite S&amp;P/Fitch actions or
+            named market compilations — re-check the live agency page before
+            class. <strong className="text-paper">Single-name CDS is not on
+            FRED</strong> for these issuers; CoreWeave includes one dated press
+            snapshot only. Private neoclouds (Lambda, Crusoe) have no public
+            rating/CDS in this dataset — we do not invent numbers.
+          </p>
         </section>
 
         <section className="mt-12 space-y-4">
@@ -171,7 +213,11 @@ counterfactual(t) = CPI_y/y(t) − Σ contribution_j(t)  for j toggled OFF`}
             </li>
             <li>
               Refresh path: update CSVs in <code className="text-paper">data/</code>{" "}
-              then <code className="text-paper">npm run data:inflation</code>.
+              then <code className="text-paper">npm run data:all</code>.
+            </li>
+            <li>
+              Breakevens / 5y5y embed inflation risk and liquidity premia — not
+              identical to survey inflation expectations.
             </li>
           </ol>
         </section>

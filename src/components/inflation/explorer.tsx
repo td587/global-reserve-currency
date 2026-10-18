@@ -22,6 +22,8 @@ import { cn } from "@/lib/utils";
 export function InflationExplorer() {
   const [state, setState] = useState<ShockState>(DEFAULT_SHOCK_STATE);
   const [mode, setMode] = useState<"cpi" | "pce">("cpi");
+  const [showHeadlinePce, setShowHeadlinePce] = useState(false);
+  const [showCorePce, setShowCorePce] = useState(true);
   const [, startTransition] = useTransition();
 
   const chartData = useMemo(
@@ -116,13 +118,58 @@ export function InflationExplorer() {
                 data={chartData}
                 showCounterfactual={showCf}
                 mode={mode}
+                showHeadlinePce={showHeadlinePce}
+                showCorePce={showCorePce}
               />
             </div>
           </div>
 
+          <div className="mt-4 flex flex-wrap gap-2">
+            <p className="mr-2 self-center text-[0.65rem] tracking-wider text-mist uppercase">
+              Overlay series
+            </p>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={showHeadlinePce}
+              disabled={mode === "pce"}
+              onClick={() =>
+                startTransition(() => setShowHeadlinePce((v) => !v))
+              }
+              className={cn(
+                "rounded-lg border px-3 py-1.5 text-xs transition-colors",
+                mode === "pce" && "cursor-not-allowed opacity-40",
+                showHeadlinePce && mode === "cpi"
+                  ? "border-teal/40 bg-teal/15 text-teal-soft"
+                  : "border-white/10 text-mist hover:border-white/25"
+              )}
+              title={
+                mode === "pce"
+                  ? "Headline PCE is the actual line in PCE mode"
+                  : undefined
+              }
+            >
+              Headline PCE {showHeadlinePce && mode === "cpi" ? "· on" : "· off"}
+            </button>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={showCorePce}
+              onClick={() => startTransition(() => setShowCorePce((v) => !v))}
+              className={cn(
+                "rounded-lg border px-3 py-1.5 text-xs transition-colors",
+                showCorePce
+                  ? "border-[#6a9bb8]/50 bg-[#6a9bb8]/15 text-paper"
+                  : "border-white/10 text-mist hover:border-white/25"
+              )}
+            >
+              Core PCE {showCorePce ? "· on" : "· off"}
+            </button>
+          </div>
+
           <p
             className={cn(
-              "mt-4 min-h-[2.5rem] text-sm transition-opacity",
+              "mt-3 min-h-[2.5rem] text-sm transition-opacity",
               showCf ? "text-ember/90 opacity-100" : "opacity-50 text-mist"
             )}
             aria-live="polite"

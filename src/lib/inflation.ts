@@ -14,6 +14,8 @@ export type ChartPoint = {
   actual: number;
   counterfactual: number | null;
   removedPp: number;
+  headlinePce?: number | null;
+  corePce?: number | null;
 };
 
 export const inflationMeta = series.meta;
@@ -67,6 +69,8 @@ export function buildChartSeries(
             actual: NaN,
             counterfactual: null,
             removedPp: 0,
+            headlinePce: o.pceYoy,
+            corePce: o.corePceYoy,
           };
         }
         let removed = 0;
@@ -80,6 +84,8 @@ export function buildChartSeries(
           actual,
           counterfactual: Math.round((actual - removed) * 10) / 10,
           removedPp: Math.round(removed * 10) / 10,
+          headlinePce: o.pceYoy,
+          corePce: o.corePceYoy,
         };
       }
 
@@ -94,6 +100,8 @@ export function buildChartSeries(
         actual,
         counterfactual: Math.round((actual - removed) * 10) / 10,
         removedPp: Math.round(removed * 10) / 10,
+        headlinePce: o.pceYoy,
+        corePce: o.corePceYoy,
       };
     })
     .filter((p) => Number.isFinite(p.actual));
