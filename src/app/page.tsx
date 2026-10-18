@@ -1,5 +1,5 @@
-import { SlideDeck } from "@/components/slide-deck";
+import { InflationPresentation } from "@/components/inflation/presentation";
 
 export default function Home() {
-  return <SlideDeck />;
+  return <InflationPresentation />;
 }

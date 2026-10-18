@@ -1,0 +1,2658 @@
+{
+  "meta": {
+    "builtAt": "2026-10-18",
+    "window": {
+      "start": "2019-01",
+      "end": "2026-09"
+    },
+    "methodology": "Approximate CPI y/y contribution = (BLS Dec relative importance at start of window / 100) × component y/y. Shapiro demand/supply are SF Fed PCE y/y contributions.",
+    "sources": [
+      {
+        "name": "FRED / BLS CPI",
+        "series": [
+          "CPIAUCSL",
+          "CPIUFDSL",
+          "CPIENGSL",
+          "CUSR0000SAH1",
+          "CUSR0000SETA02",
+          "CUSR0000SETG01",
+          "CUSR0000SACL1E",
+          "CUSR0000SASLE",
+          "CPILFESL",
+          "PCEPI",
+          "PCEPILFE"
+        ],
+        "url": "https://fred.stlouisfed.org/"
+      },
+      {
+        "name": "BLS Relative Importance",
+        "url": "https://www.bls.gov/cpi/tables/relative-importance/"
+      },
+      {
+        "name": "SF Fed Shapiro supply/demand PCE",
+        "url": "https://www.frbsf.org/research-and-insights/data-and-indicators/supply-and-demand-driven-pce-inflation/"
+      }
+    ],
+    "seriesIds": {
+      "headline": "CPIAUCSL",
+      "food": "CPIUFDSL",
+      "energy": "CPIENGSL",
+      "shelter": "CUSR0000SAH1",
+      "usedVehicles": "CUSR0000SETA02",
+      "airfares": "CUSR0000SETG01",
+      "coreGoods": "CUSR0000SACL1E",
+      "servicesExEnergy": "CUSR0000SASLE",
+      "coreCpi": "CPILFESL",
+      "pce": "PCEPI",
+      "corePce": "PCEPILFE"
+    },
+    "relativeImportanceByDec": {
+      "2018": {
+        "food": 13.384,
+        "energy": 7.129,
+        "shelter": 32.843,
+        "usedVehicles": 2.213,
+        "airfares": 0.759,
+        "servicesExEnergy": 58.5,
+        "coreGoods": 20.3
+      },
+      "2019": {
+        "food": 13.869,
+        "energy": 6.706,
+        "shelter": 33.311,
+        "usedVehicles": 2.341,
+        "airfares": 0.726,
+        "servicesExEnergy": 59,
+        "coreGoods": 20.5
+      },
+      "2020": {
+        "food": 14.094,
+        "energy": 6.043,
+        "shelter": 33.532,
+        "usedVehicles": 2.787,
+        "airfares": 0.553,
+        "servicesExEnergy": 60,
+        "coreGoods": 21
+      },
+      "2021": {
+        "food": 13.355,
+        "energy": 7.348,
+        "shelter": 32.943,
+        "usedVehicles": 3.513,
+        "airfares": 0.603,
+        "servicesExEnergy": 57.5,
+        "coreGoods": 21.5
+      },
+      "2022": {
+        "food": 13.528,
+        "energy": 6.979,
+        "shelter": 34.412,
+        "usedVehicles": 2.752,
+        "airfares": 0.68,
+        "servicesExEnergy": 57,
+        "coreGoods": 21
+      },
+      "2023": {
+        "food": 13.384,
+        "energy": 6.689,
+        "shelter": 36.212,
+        "usedVehicles": 2.425,
+        "airfares": 0.655,
+        "servicesExEnergy": 58,
+        "coreGoods": 20
+      },
+      "2024": {
+        "food": 13.3,
+        "energy": 6.5,
+        "shelter": 36.5,
+        "usedVehicles": 2.3,
+        "airfares": 0.65,
+        "servicesExEnergy": 58.5,
+        "coreGoods": 19.5
+      }
+    },
+    "update": "Refresh CSVs in data/fred and data/shapiro-*.csv, then run npm run data:inflation"
+  },
+  "observations": [
+    {
+      "date": "2019-01",
+      "headlineYoy": 1.5,
+      "coreCpiYoy": 2.2,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.8,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.4,
+        "shelter": 1.1,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 1.6,
+        "energy": -5.8,
+        "shelter": 3.2,
+        "usedVehicles": 2.6,
+        "airfares": -1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-02",
+      "headlineYoy": 1.5,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.4,
+        "shelter": 1.1,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 2,
+        "energy": -5.4,
+        "shelter": 3.4,
+        "usedVehicles": 2.6,
+        "airfares": -0.5
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-03",
+      "headlineYoy": 1.9,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 2.1,
+        "energy": -0.4,
+        "shelter": 3.4,
+        "usedVehicles": 2.2,
+        "airfares": -2
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-04",
+      "headlineYoy": 2,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.6,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.2,
+        "energy": 0.1,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": 1.5,
+        "shelter": 3.4,
+        "usedVehicles": 1.5,
+        "airfares": -2.4
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-05",
+      "headlineYoy": 1.8,
+      "coreCpiYoy": 2,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 2,
+        "energy": -0.2,
+        "shelter": 3.3,
+        "usedVehicles": 0,
+        "airfares": -0.8
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-06",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.2,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 1.9,
+        "energy": -2.7,
+        "shelter": 3.5,
+        "usedVehicles": 0.2,
+        "airfares": -0.3
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-07",
+      "headlineYoy": 1.8,
+      "coreCpiYoy": 2.2,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.1,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": -1.5,
+        "shelter": 3.5,
+        "usedVehicles": 0.4,
+        "airfares": 0.1
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-08",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 1.7,
+        "energy": -4,
+        "shelter": 3.4,
+        "usedVehicles": 0.4,
+        "airfares": 1.3
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-09",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.3,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": -4.9,
+        "shelter": 3.5,
+        "usedVehicles": 1.3,
+        "airfares": 2.2
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-10",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.1,
+        "energy": -4.8,
+        "shelter": 3.4,
+        "usedVehicles": 1.1,
+        "airfares": 2.9
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-11",
+      "headlineYoy": 2.1,
+      "coreCpiYoy": 2.4,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2,
+        "energy": -0.5,
+        "shelter": 3.3,
+        "usedVehicles": -0.1,
+        "airfares": 2.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-12",
+      "headlineYoy": 2.3,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.6,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.2,
+        "energy": 0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": 3.5,
+        "shelter": 3.2,
+        "usedVehicles": -0.1,
+        "airfares": 3
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2020-01",
+      "headlineYoy": 2.6,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.8,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.5,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 1.9,
+        "energy": 7.7,
+        "shelter": 3.4,
+        "usedVehicles": -2,
+        "airfares": 2.6
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-02",
+      "headlineYoy": 2.3,
+      "coreCpiYoy": 2.4,
+      "pceYoy": 1.7,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.2,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": 3,
+        "shelter": 3.3,
+        "usedVehicles": -1.2,
+        "airfares": 2.1
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-03",
+      "headlineYoy": 1.5,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.4,
+        "shelter": 1,
+        "usedVehicles": 0,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 1.9,
+        "energy": -6.2,
+        "shelter": 3,
+        "usedVehicles": 0.3,
+        "airfares": -11.2
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-04",
+      "headlineYoy": 0.3,
+      "coreCpiYoy": 1.4,
+      "pceYoy": 0.5,
+      "corePceYoy": 1,
+      "contributions": {
+        "food": 0.5,
+        "energy": -1.2,
+        "shelter": 0.9,
+        "usedVehicles": 0,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 3.5,
+        "energy": -17.9,
+        "shelter": 2.6,
+        "usedVehicles": -0.7,
+        "airfares": -24.3
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-05",
+      "headlineYoy": 0.2,
+      "coreCpiYoy": 1.2,
+      "pceYoy": 0.5,
+      "corePceYoy": 1,
+      "contributions": {
+        "food": 0.6,
+        "energy": -1.2,
+        "shelter": 0.8,
+        "usedVehicles": 0,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.2,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 4,
+        "energy": -18.4,
+        "shelter": 2.5,
+        "usedVehicles": -0.5,
+        "airfares": -28.6
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-06",
+      "headlineYoy": 0.7,
+      "coreCpiYoy": 1.2,
+      "pceYoy": 0.8,
+      "corePceYoy": 1,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.8,
+        "shelter": 0.8,
+        "usedVehicles": -0.1,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.2,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 4.5,
+        "energy": -12.2,
+        "shelter": 2.4,
+        "usedVehicles": -3,
+        "airfares": -26.7
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-07",
+      "headlineYoy": 1,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 0.9,
+      "corePceYoy": 1.2,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.8,
+        "shelter": 0.8,
+        "usedVehicles": 0,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 4.1,
+        "energy": -11.4,
+        "shelter": 2.3,
+        "usedVehicles": -1,
+        "airfares": -22.9
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-08",
+      "headlineYoy": 1.3,
+      "coreCpiYoy": 1.7,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.4,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.6,
+        "shelter": 0.8,
+        "usedVehicles": 0.1,
+        "airfares": -0.2,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 4.1,
+        "energy": -9.6,
+        "shelter": 2.3,
+        "usedVehicles": 3.9,
+        "airfares": -22.7
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-09",
+      "headlineYoy": 1.4,
+      "coreCpiYoy": 1.7,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.5,
+        "shelter": 0.7,
+        "usedVehicles": 0.2,
+        "airfares": -0.2,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 3.9,
+        "energy": -7.7,
+        "shelter": 2.1,
+        "usedVehicles": 10.3,
+        "airfares": -24.5
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-10",
+      "headlineYoy": 1.2,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.4,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.6,
+        "shelter": 0.7,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 3.9,
+        "energy": -8.9,
+        "shelter": 2,
+        "usedVehicles": 11.6,
+        "airfares": -20.3
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-11",
+      "headlineYoy": 1.2,
+      "coreCpiYoy": 1.7,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.6,
+        "shelter": 0.6,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 3.7,
+        "energy": -9.4,
+        "shelter": 1.9,
+        "usedVehicles": 10.9,
+        "airfares": -17.6
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-12",
+      "headlineYoy": 1.3,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.5,
+        "shelter": 0.6,
+        "usedVehicles": 0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 4,
+        "energy": -7,
+        "shelter": 1.9,
+        "usedVehicles": 10.1,
+        "airfares": -19.1
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2021-01",
+      "headlineYoy": 1.4,
+      "coreCpiYoy": 1.4,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.2,
+        "shelter": 0.5,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.2
+      },
+      "componentYoy": {
+        "food": 3.8,
+        "energy": -3.5,
+        "shelter": 1.6,
+        "usedVehicles": 10,
+        "airfares": -22
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-02",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 1.3,
+      "pceYoy": 1.8,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.5,
+        "energy": 0.1,
+        "shelter": 0.5,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 3.6,
+        "energy": 2.3,
+        "shelter": 1.4,
+        "usedVehicles": 9.3,
+        "airfares": -25.9
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-03",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.1,
+      "contributions": {
+        "food": 0.5,
+        "energy": 0.8,
+        "shelter": 0.6,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 3.4,
+        "energy": 13.9,
+        "shelter": 1.7,
+        "usedVehicles": 9.4,
+        "airfares": -15
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-04",
+      "headlineYoy": 4.1,
+      "coreCpiYoy": 3,
+      "pceYoy": 3.6,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.5,
+        "shelter": 0.7,
+        "usedVehicles": 0.6,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": 24.5,
+        "shelter": 2.1,
+        "usedVehicles": 21,
+        "airfares": 10.2
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-05",
+      "headlineYoy": 4.9,
+      "coreCpiYoy": 3.8,
+      "pceYoy": 4,
+      "corePceYoy": 3.4,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.7,
+        "shelter": 0.7,
+        "usedVehicles": 0.8,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.5,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 27.7,
+        "shelter": 2.2,
+        "usedVehicles": 29.7,
+        "airfares": 24.9
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-06",
+      "headlineYoy": 5.3,
+      "coreCpiYoy": 4.4,
+      "pceYoy": 4.2,
+      "corePceYoy": 3.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.4,
+        "shelter": 0.9,
+        "usedVehicles": 1.3,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.5,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": 23.8,
+        "shelter": 2.6,
+        "usedVehicles": 45.2,
+        "airfares": 25.8
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-07",
+      "headlineYoy": 5.2,
+      "coreCpiYoy": 4.2,
+      "pceYoy": 4.4,
+      "corePceYoy": 3.8,
+      "contributions": {
+        "food": 0.5,
+        "energy": 1.4,
+        "shelter": 0.9,
+        "usedVehicles": 1.2,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.5,
+        "energy": 23.2,
+        "shelter": 2.8,
+        "usedVehicles": 41.6,
+        "airfares": 19.6
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-08",
+      "headlineYoy": 5.2,
+      "coreCpiYoy": 3.9,
+      "pceYoy": 4.5,
+      "corePceYoy": 3.9,
+      "contributions": {
+        "food": 0.5,
+        "energy": 1.5,
+        "shelter": 0.9,
+        "usedVehicles": 0.9,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.7,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3.7,
+        "energy": 24.5,
+        "shelter": 2.8,
+        "usedVehicles": 31.9,
+        "airfares": 6.5
+      },
+      "shapiro": {
+        "demand": 1.9,
+        "supply": 1.7,
+        "ambiguous": 1
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-09",
+      "headlineYoy": 5.4,
+      "coreCpiYoy": 4,
+      "pceYoy": 4.7,
+      "corePceYoy": 3.9,
+      "contributions": {
+        "food": 0.6,
+        "energy": 1.5,
+        "shelter": 1.1,
+        "usedVehicles": 0.7,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.8,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 4.6,
+        "energy": 24.7,
+        "shelter": 3.2,
+        "usedVehicles": 24.4,
+        "airfares": 0.4
+      },
+      "shapiro": {
+        "demand": 1.8,
+        "supply": 1.8,
+        "ambiguous": 1.1
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-10",
+      "headlineYoy": 6.2,
+      "coreCpiYoy": 4.6,
+      "pceYoy": 5.3,
+      "corePceYoy": 4.4,
+      "contributions": {
+        "food": 0.7,
+        "energy": 1.8,
+        "shelter": 1.2,
+        "usedVehicles": 0.7,
+        "airfares": 0,
+        "coreGoodsExUsed": 1,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 5.3,
+        "energy": 29.9,
+        "shelter": 3.5,
+        "usedVehicles": 26.4,
+        "airfares": -4.8
+      },
+      "shapiro": {
+        "demand": 2.1,
+        "supply": 1.9,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-11",
+      "headlineYoy": 6.9,
+      "coreCpiYoy": 5,
+      "pceYoy": 5.9,
+      "corePceYoy": 4.8,
+      "contributions": {
+        "food": 0.9,
+        "energy": 2,
+        "shelter": 1.3,
+        "usedVehicles": 0.9,
+        "airfares": 0,
+        "coreGoodsExUsed": 1.1,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 6.1,
+        "energy": 33.9,
+        "shelter": 3.9,
+        "usedVehicles": 31.4,
+        "airfares": -3.9
+      },
+      "shapiro": {
+        "demand": 2.5,
+        "supply": 2.2,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-12",
+      "headlineYoy": 7.2,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 6,
+      "corePceYoy": 5.1,
+      "contributions": {
+        "food": 0.9,
+        "energy": 1.8,
+        "shelter": 1.4,
+        "usedVehicles": 1,
+        "airfares": 0,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 6.3,
+        "energy": 30.3,
+        "shelter": 4.2,
+        "usedVehicles": 37.3,
+        "airfares": 0.6
+      },
+      "shapiro": {
+        "demand": 2.4,
+        "supply": 2.4,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2022-01",
+      "headlineYoy": 7.6,
+      "coreCpiYoy": 6.1,
+      "pceYoy": 6.2,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 0.9,
+        "energy": 2,
+        "shelter": 1.4,
+        "usedVehicles": 1.4,
+        "airfares": 0,
+        "coreGoodsExUsed": 1.1,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 7,
+        "energy": 27.2,
+        "shelter": 4.4,
+        "usedVehicles": 40.5,
+        "airfares": 4.5
+      },
+      "shapiro": {
+        "demand": 2.2,
+        "supply": 2.9,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-02",
+      "headlineYoy": 7.9,
+      "coreCpiYoy": 6.5,
+      "pceYoy": 6.5,
+      "corePceYoy": 5.6,
+      "contributions": {
+        "food": 1.1,
+        "energy": 1.9,
+        "shelter": 1.6,
+        "usedVehicles": 1.4,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 7.9,
+        "energy": 25.6,
+        "shelter": 4.7,
+        "usedVehicles": 41.2,
+        "airfares": 12.4
+      },
+      "shapiro": {
+        "demand": 2.4,
+        "supply": 3.1,
+        "ambiguous": 1
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-03",
+      "headlineYoy": 8.6,
+      "coreCpiYoy": 6.5,
+      "pceYoy": 6.9,
+      "corePceYoy": 5.6,
+      "contributions": {
+        "food": 1.2,
+        "energy": 2.4,
+        "shelter": 1.6,
+        "usedVehicles": 1.2,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 8.8,
+        "energy": 32,
+        "shelter": 5,
+        "usedVehicles": 35.3,
+        "airfares": 23.6
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3.3,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-04",
+      "headlineYoy": 8.2,
+      "coreCpiYoy": 6.2,
+      "pceYoy": 6.6,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 1.3,
+        "energy": 2.2,
+        "shelter": 1.7,
+        "usedVehicles": 0.8,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 9.4,
+        "energy": 30,
+        "shelter": 5.1,
+        "usedVehicles": 22.7,
+        "airfares": 33.3
+      },
+      "shapiro": {
+        "demand": 2.6,
+        "supply": 3.1,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-05",
+      "headlineYoy": 8.5,
+      "coreCpiYoy": 6,
+      "pceYoy": 6.8,
+      "corePceYoy": 5.2,
+      "contributions": {
+        "food": 1.4,
+        "energy": 2.5,
+        "shelter": 1.8,
+        "usedVehicles": 0.6,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1.2
+      },
+      "componentYoy": {
+        "food": 10.2,
+        "energy": 34.5,
+        "shelter": 5.4,
+        "usedVehicles": 16.1,
+        "airfares": 37.9
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3.2,
+        "ambiguous": 0.8
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-06",
+      "headlineYoy": 9,
+      "coreCpiYoy": 5.9,
+      "pceYoy": 7.2,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 1.4,
+        "energy": 3,
+        "shelter": 1.9,
+        "usedVehicles": 0.2,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1.3
+      },
+      "componentYoy": {
+        "food": 10.4,
+        "energy": 41.5,
+        "shelter": 5.6,
+        "usedVehicles": 7.1,
+        "airfares": 34.4
+      },
+      "shapiro": {
+        "demand": 2.8,
+        "supply": 3.4,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-07",
+      "headlineYoy": 8.5,
+      "coreCpiYoy": 5.9,
+      "pceYoy": 6.9,
+      "corePceYoy": 5.2,
+      "contributions": {
+        "food": 1.5,
+        "energy": 2.4,
+        "shelter": 1.9,
+        "usedVehicles": 0.2,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1.3
+      },
+      "componentYoy": {
+        "food": 10.9,
+        "energy": 32.9,
+        "shelter": 5.7,
+        "usedVehicles": 6.6,
+        "airfares": 28
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3.3,
+        "ambiguous": 0.8
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-08",
+      "headlineYoy": 8.2,
+      "coreCpiYoy": 6.3,
+      "pceYoy": 6.7,
+      "corePceYoy": 5.4,
+      "contributions": {
+        "food": 1.5,
+        "energy": 1.8,
+        "shelter": 2.1,
+        "usedVehicles": 0.3,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1.4
+      },
+      "componentYoy": {
+        "food": 11.4,
+        "energy": 23.9,
+        "shelter": 6.3,
+        "usedVehicles": 7.8,
+        "airfares": 33.4
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-09",
+      "headlineYoy": 8.2,
+      "coreCpiYoy": 6.6,
+      "pceYoy": 6.7,
+      "corePceYoy": 5.6,
+      "contributions": {
+        "food": 1.5,
+        "energy": 1.5,
+        "shelter": 2.2,
+        "usedVehicles": 0.3,
+        "airfares": 0.3,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1.7
+      },
+      "componentYoy": {
+        "food": 11.2,
+        "energy": 19.9,
+        "shelter": 6.6,
+        "usedVehicles": 7.2,
+        "airfares": 42.8
+      },
+      "shapiro": {
+        "demand": 2.8,
+        "supply": 3.1,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-10",
+      "headlineYoy": 7.8,
+      "coreCpiYoy": 6.3,
+      "pceYoy": 6.5,
+      "corePceYoy": 5.5,
+      "contributions": {
+        "food": 1.5,
+        "energy": 1.3,
+        "shelter": 2.3,
+        "usedVehicles": 0.1,
+        "airfares": 0.3,
+        "coreGoodsExUsed": 1,
+        "servicesExShelter": 1.6
+      },
+      "componentYoy": {
+        "food": 10.9,
+        "energy": 17.7,
+        "shelter": 6.9,
+        "usedVehicles": 2,
+        "airfares": 43
+      },
+      "shapiro": {
+        "demand": 2.9,
+        "supply": 2.9,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-11",
+      "headlineYoy": 7.1,
+      "coreCpiYoy": 6,
+      "pceYoy": 6.1,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 1.4,
+        "energy": 1,
+        "shelter": 2.3,
+        "usedVehicles": -0.1,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.9,
+        "servicesExShelter": 1.6
+      },
+      "componentYoy": {
+        "food": 10.6,
+        "energy": 13,
+        "shelter": 7.1,
+        "usedVehicles": -3.4,
+        "airfares": 36.2
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 2.8,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-12",
+      "headlineYoy": 6.4,
+      "coreCpiYoy": 5.7,
+      "pceYoy": 5.6,
+      "corePceYoy": 5.1,
+      "contributions": {
+        "food": 1.4,
+        "energy": 0.5,
+        "shelter": 2.5,
+        "usedVehicles": -0.3,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.8,
+        "servicesExShelter": 1.6
+      },
+      "componentYoy": {
+        "food": 10.4,
+        "energy": 6.9,
+        "shelter": 7.5,
+        "usedVehicles": -8.8,
+        "airfares": 28.3
+      },
+      "shapiro": {
+        "demand": 2.4,
+        "supply": 2.7,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2023-01",
+      "headlineYoy": 6.3,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 5.6,
+      "corePceYoy": 5,
+      "contributions": {
+        "food": 1.4,
+        "energy": 0.6,
+        "shelter": 2.7,
+        "usedVehicles": -0.3,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.4
+      },
+      "componentYoy": {
+        "food": 10.1,
+        "energy": 8.3,
+        "shelter": 7.9,
+        "usedVehicles": -11.6,
+        "airfares": 25.1
+      },
+      "shapiro": {
+        "demand": 2.6,
+        "supply": 2.6,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-02",
+      "headlineYoy": 6,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 5.2,
+      "corePceYoy": 4.9,
+      "contributions": {
+        "food": 1.3,
+        "energy": 0.3,
+        "shelter": 2.8,
+        "usedVehicles": -0.4,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.4
+      },
+      "componentYoy": {
+        "food": 9.4,
+        "energy": 4.9,
+        "shelter": 8.1,
+        "usedVehicles": -13.4,
+        "airfares": 26.4
+      },
+      "shapiro": {
+        "demand": 2.5,
+        "supply": 2.3,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-03",
+      "headlineYoy": 4.9,
+      "coreCpiYoy": 5.6,
+      "pceYoy": 4.5,
+      "corePceYoy": 4.9,
+      "contributions": {
+        "food": 1.1,
+        "energy": -0.5,
+        "shelter": 2.8,
+        "usedVehicles": -0.3,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.2
+      },
+      "componentYoy": {
+        "food": 8.5,
+        "energy": -6.7,
+        "shelter": 8.2,
+        "usedVehicles": -11,
+        "airfares": 17.6
+      },
+      "shapiro": {
+        "demand": 1.9,
+        "supply": 2.1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-04",
+      "headlineYoy": 5,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 4.5,
+      "corePceYoy": 4.9,
+      "contributions": {
+        "food": 1,
+        "energy": -0.3,
+        "shelter": 2.8,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 7.7,
+        "energy": -4.9,
+        "shelter": 8.1,
+        "usedVehicles": -6.6,
+        "airfares": -1
+      },
+      "shapiro": {
+        "demand": 1.9,
+        "supply": 2.1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-05",
+      "headlineYoy": 4.1,
+      "coreCpiYoy": 5.3,
+      "pceYoy": 4.1,
+      "corePceYoy": 4.8,
+      "contributions": {
+        "food": 0.9,
+        "energy": -0.8,
+        "shelter": 2.8,
+        "usedVehicles": -0.1,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.5,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 6.7,
+        "energy": -11.3,
+        "shelter": 8,
+        "usedVehicles": -4.3,
+        "airfares": -13.5
+      },
+      "shapiro": {
+        "demand": 1.6,
+        "supply": 2.1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-06",
+      "headlineYoy": 3.1,
+      "coreCpiYoy": 4.9,
+      "pceYoy": 3.3,
+      "corePceYoy": 4.4,
+      "contributions": {
+        "food": 0.8,
+        "energy": -1.2,
+        "shelter": 2.7,
+        "usedVehicles": -0.1,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.4,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 5.8,
+        "energy": -16.6,
+        "shelter": 7.8,
+        "usedVehicles": -5.3,
+        "airfares": -18.7
+      },
+      "shapiro": {
+        "demand": 1.4,
+        "supply": 1.5,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-07",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 4.7,
+      "pceYoy": 3.4,
+      "corePceYoy": 4.2,
+      "contributions": {
+        "food": 0.7,
+        "energy": -0.9,
+        "shelter": 2.6,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.4,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 4.9,
+        "energy": -12.3,
+        "shelter": 7.7,
+        "usedVehicles": -5.7,
+        "airfares": -18.4
+      },
+      "shapiro": {
+        "demand": 1.3,
+        "supply": 1.4,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-08",
+      "headlineYoy": 3.7,
+      "coreCpiYoy": 4.4,
+      "pceYoy": 3.4,
+      "corePceYoy": 3.8,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.3,
+        "shelter": 2.5,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 4.3,
+        "energy": -3.7,
+        "shelter": 7.3,
+        "usedVehicles": -6.7,
+        "airfares": -13.1
+      },
+      "shapiro": {
+        "demand": 1.4,
+        "supply": 1.5,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-09",
+      "headlineYoy": 3.7,
+      "coreCpiYoy": 4.1,
+      "pceYoy": 3.5,
+      "corePceYoy": 3.7,
+      "contributions": {
+        "food": 0.5,
+        "energy": 0,
+        "shelter": 2.5,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.7,
+        "energy": -0.5,
+        "shelter": 7.1,
+        "usedVehicles": -8,
+        "airfares": -13.3
+      },
+      "shapiro": {
+        "demand": 1.3,
+        "supply": 1.4,
+        "ambiguous": 0.8
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-10",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 4,
+      "pceYoy": 3.1,
+      "corePceYoy": 3.6,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.3,
+        "shelter": 2.3,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.3,
+        "energy": -4.4,
+        "shelter": 6.7,
+        "usedVehicles": -7.1,
+        "airfares": -13.1
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.4,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-11",
+      "headlineYoy": 3.1,
+      "coreCpiYoy": 4,
+      "pceYoy": 2.9,
+      "corePceYoy": 3.4,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.4,
+        "shelter": 2.2,
+        "usedVehicles": -0.1,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -5.4,
+        "shelter": 6.5,
+        "usedVehicles": -3.7,
+        "airfares": -12.1
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.4,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-12",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 3.9,
+      "pceYoy": 2.9,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.1,
+        "shelter": 2.1,
+        "usedVehicles": 0,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.7,
+        "energy": -1.9,
+        "shelter": 6.2,
+        "usedVehicles": -1.3,
+        "airfares": -9.6
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.3,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2024-01",
+      "headlineYoy": 3.1,
+      "coreCpiYoy": 3.9,
+      "pceYoy": 2.7,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 2.2,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.5,
+        "energy": -4.3,
+        "shelter": 6.1,
+        "usedVehicles": -3.8,
+        "airfares": -6.7
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-02",
+      "headlineYoy": 3.2,
+      "coreCpiYoy": 3.8,
+      "pceYoy": 2.8,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.1,
+        "shelter": 2.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": -1.9,
+        "shelter": 5.8,
+        "usedVehicles": -1.3,
+        "airfares": -6.2
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.4,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-03",
+      "headlineYoy": 3.5,
+      "coreCpiYoy": 3.8,
+      "pceYoy": 3,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.3,
+        "energy": 2.1,
+        "shelter": 5.6,
+        "usedVehicles": -1.1,
+        "airfares": -7.2
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.4,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-04",
+      "headlineYoy": 3.4,
+      "coreCpiYoy": 3.6,
+      "pceYoy": 2.8,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.2,
+        "shelter": 2,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.3,
+        "energy": 2.4,
+        "shelter": 5.5,
+        "usedVehicles": -5.5,
+        "airfares": -5.9
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.3,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-05",
+      "headlineYoy": 3.2,
+      "coreCpiYoy": 3.4,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.2,
+        "shelter": 2,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 3.6,
+        "shelter": 5.4,
+        "usedVehicles": -9.2,
+        "airfares": -5.9
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.2,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-06",
+      "headlineYoy": 3,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 1.9,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 0.9,
+        "shelter": 5.1,
+        "usedVehicles": -9.9,
+        "airfares": -4.9
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.2,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-07",
+      "headlineYoy": 2.9,
+      "coreCpiYoy": 3.2,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 1.8,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 1,
+        "shelter": 5,
+        "usedVehicles": -10,
+        "airfares": -2.5
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.3,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-08",
+      "headlineYoy": 2.6,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.4,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 1.9,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.1,
+        "energy": -4,
+        "shelter": 5.2,
+        "usedVehicles": -8.6,
+        "airfares": -1.2
+      },
+      "shapiro": {
+        "demand": 0.7,
+        "supply": 1.2,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-09",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.3,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.5,
+        "shelter": 1.8,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.3,
+        "energy": -6.8,
+        "shelter": 4.8,
+        "usedVehicles": -6.3,
+        "airfares": 1.6
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1,
+        "ambiguous": 0.3
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-10",
+      "headlineYoy": 2.6,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.4,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 1.8,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": -4.8,
+        "shelter": 4.9,
+        "usedVehicles": -4.9,
+        "airfares": 4.2
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-11",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.5,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.2,
+        "shelter": 1.7,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": -3.1,
+        "shelter": 4.8,
+        "usedVehicles": -5,
+        "airfares": 4.8
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 0.9,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-12",
+      "headlineYoy": 2.9,
+      "coreCpiYoy": 3.2,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.7,
+        "usedVehicles": -0.1,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.5,
+        "energy": -0.3,
+        "shelter": 4.6,
+        "usedVehicles": -4.7,
+        "airfares": 7.7
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 0.8,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2025-01",
+      "headlineYoy": 3,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 1.6,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": 0.8,
+        "shelter": 4.4,
+        "usedVehicles": 0.9,
+        "airfares": 6.9
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-02",
+      "headlineYoy": 2.8,
+      "coreCpiYoy": 3.1,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.5,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.6,
+        "energy": -0.4,
+        "shelter": 4.2,
+        "usedVehicles": 0.7,
+        "airfares": -0.8
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 0.9,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-03",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 2.3,
+      "corePceYoy": 2.6,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.2,
+        "shelter": 1.5,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -3.4,
+        "shelter": 4,
+        "usedVehicles": 0.6,
+        "airfares": -5.4
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 0.9,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-04",
+      "headlineYoy": 2.3,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 2.3,
+      "corePceYoy": 2.7,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.2,
+        "shelter": 1.5,
+        "usedVehicles": 0,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.8,
+        "energy": -3.6,
+        "shelter": 4,
+        "usedVehicles": 1.5,
+        "airfares": -8
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-05",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 2.5,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.2,
+        "shelter": 1.4,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -3.1,
+        "shelter": 3.9,
+        "usedVehicles": 1.7,
+        "airfares": -7.4
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.2,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-06",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 2.9,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.4,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3,
+        "energy": -0.6,
+        "shelter": 3.8,
+        "usedVehicles": 2.7,
+        "airfares": -3.2
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.1,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-07",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 3.1,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.1,
+        "shelter": 1.3,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -1.2,
+        "shelter": 3.7,
+        "usedVehicles": 4.8,
+        "airfares": 1
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-08",
+      "headlineYoy": 2.9,
+      "coreCpiYoy": 3.1,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.3,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.2,
+        "energy": 0.4,
+        "shelter": 3.6,
+        "usedVehicles": 6,
+        "airfares": 3.4
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 1.1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-09",
+      "headlineYoy": 3,
+      "coreCpiYoy": 3,
+      "pceYoy": 2.8,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.2,
+        "shelter": 1.3,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3.1,
+        "energy": 2.9,
+        "shelter": 3.6,
+        "usedVehicles": 5.1,
+        "airfares": 3
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.2,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-11",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.6,
+        "energy": 4.2,
+        "shelter": 3,
+        "usedVehicles": 3.6,
+        "airfares": -5.1
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.2,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-12",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 2.8,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.1,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 3,
+        "energy": 2.1,
+        "shelter": 3.2,
+        "usedVehicles": 1.6,
+        "airfares": -3.4
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.4,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-01",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.5,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -0.3,
+        "shelter": 3,
+        "usedVehicles": -2,
+        "airfares": 2.2
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.3,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-02",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.5,
+      "pceYoy": 2.8,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 3.1,
+        "energy": 0.4,
+        "shelter": 3,
+        "usedVehicles": -3.2,
+        "airfares": 7.1
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.2,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-03",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 3.4,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.8,
+        "shelter": 1.1,
+        "usedVehicles": -0.1,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.7,
+        "energy": 12.6,
+        "shelter": 3,
+        "usedVehicles": -3.2,
+        "airfares": 14.9
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.2,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-04",
+      "headlineYoy": 3.8,
+      "coreCpiYoy": 2.7,
+      "pceYoy": 3.6,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1.1,
+        "shelter": 1.2,
+        "usedVehicles": -0.1,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3.2,
+        "energy": 17.5,
+        "shelter": 3.3,
+        "usedVehicles": -2.7,
+        "airfares": 20.7
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.1,
+        "ambiguous": 1.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-05",
+      "headlineYoy": 4.2,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 3.8,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1.5,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.1,
+        "energy": 23,
+        "shelter": 3.4,
+        "usedVehicles": -2,
+        "airfares": 26.7
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 1.2,
+        "ambiguous": 1.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-06",
+      "headlineYoy": 3.5,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 3.5,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 3,
+        "energy": 15.5,
+        "shelter": 3.3,
+        "usedVehicles": -1.8,
+        "airfares": 26.5
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 0.9,
+        "ambiguous": 1.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-07",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 2.5,
+      "pceYoy": 3.4,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.9,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": 14.4,
+        "shelter": 3.2,
+        "usedVehicles": -1.9,
+        "airfares": 25.5
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1,
+        "ambiguous": 1.3
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-08",
+      "headlineYoy": 3.4,
+      "coreCpiYoy": 2.4,
+      "pceYoy": 3.4,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1,
+        "shelter": 1.1,
+        "usedVehicles": -0.1,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.6,
+        "energy": 16,
+        "shelter": 3,
+        "usedVehicles": -2.3,
+        "airfares": 23.4
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 1,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-09",
+      "headlineYoy": 3.7,
+      "coreCpiYoy": 2.6,
+      "pceYoy": null,
+      "corePceYoy": null,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.3,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.5,
+        "energy": 20.4,
+        "shelter": 3.2,
+        "usedVehicles": -1.5,
+        "airfares": 22.4
+      },
+      "shapiro": null,
+      "riVintage": 2024
+    }
+  ]
+}

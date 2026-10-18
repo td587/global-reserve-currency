@@ -15,9 +15,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Global Reserve Currency | Educational Slide Deck",
+  title: "Inflation Shocks | MBA Macro Presentation",
   description:
-    "An interactive educational presentation on FX rates, inflation, the gold standard, Bretton Woods, and why the dollar remains the world’s reserve currency.",
+    "Interactive US inflation explorer: toggle energy, food, used vehicles, shelter, and demand contributions to see actual vs counterfactual CPI/PCE paths. FRED, BLS, and SF Fed data.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${sourceSans.variable} ${fraunces.variable} h-full`}
     >
-      <body className="min-h-full font-sans">{children}</body>
+      <body className="min-h-full font-sans antialiased">{children}</body>
     </html>
   );
 }
