@@ -1,11 +1,11 @@
 {
   "meta": {
-    "builtAt": "2026-10-18",
+    "builtAt": "2026-10-22",
     "window": {
       "start": "2019-01",
       "end": "2026-09"
     },
-    "methodology": "Approximate CPI y/y contribution = (BLS Dec relative importance at start of window / 100) × component y/y. Shapiro demand/supply are SF Fed PCE y/y contributions.",
+    "methodology": "Approximate CPI y/y contribution = (BLS Dec relative importance at start of window / 100) × component y/y. Approximate PCE contribution for durables/nondurables/services = (category current-dollar share at t−12) × category price y/y. Shapiro demand/supply are SF Fed PCE y/y contributions.",
     "sources": [
       {
         "name": "FRED / BLS CPI",
@@ -21,6 +21,32 @@
           "CPILFESL",
           "PCEPI",
           "PCEPILFE"
+        ],
+        "url": "https://fred.stlouisfed.org/"
+      },
+      {
+        "name": "FRED / BEA PCE price indexes (Table 2.4.4)",
+        "series": [
+          "DGDSRG3M086SBEA",
+          "DDURRG3M086SBEA",
+          "DNDGRG3M086SBEA",
+          "DSERRG3M086SBEA",
+          "DFXARG3M086SBEA",
+          "DNRGRG3M086SBEA",
+          "DHUTRG3Q086SBEA",
+          "DHLCRG3Q086SBEA",
+          "DMOTRG3Q086SBEA",
+          "DTRSRG3Q086SBEA"
+        ],
+        "url": "https://fred.stlouisfed.org/release/tables?eid=44067&rid=53"
+      },
+      {
+        "name": "FRED / BEA PCE current-dollar (shares)",
+        "series": [
+          "PCE",
+          "PCEDG",
+          "PCEND",
+          "PCES"
         ],
         "url": "https://fred.stlouisfed.org/"
       },
@@ -45,6 +71,24 @@
       "coreCpi": "CPILFESL",
       "pce": "PCEPI",
       "corePce": "PCEPILFE"
+    },
+    "pcePriceSeries": {
+      "goods": "DGDSRG3M086SBEA",
+      "durables": "DDURRG3M086SBEA",
+      "nondurables": "DNDGRG3M086SBEA",
+      "services": "DSERRG3M086SBEA",
+      "food": "DFXARG3M086SBEA",
+      "energy": "DNRGRG3M086SBEA",
+      "housingUtilities": "DHUTRG3Q086SBEA",
+      "healthCare": "DHLCRG3Q086SBEA",
+      "motorVehicles": "DMOTRG3Q086SBEA",
+      "transportServices": "DTRSRG3Q086SBEA"
+    },
+    "pceExpenditureSeries": {
+      "total": "PCE",
+      "durables": "PCEDG",
+      "nondurables": "PCEND",
+      "services": "PCES"
     },
     "relativeImportanceByDec": {
       "2018": {
@@ -136,6 +180,23 @@
         "usedVehicles": 2.6,
         "airfares": -1.6
       },
+      "pceCategories": {
+        "goods": -0.8,
+        "durables": -0.7,
+        "nondurables": -0.9,
+        "services": 2.5,
+        "food": 0.8,
+        "energy": -6,
+        "housingUtilities": 3,
+        "healthCare": 1.8,
+        "motorVehicles": 1.3,
+        "transportServices": 2.6
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.2,
+        "services": 1.7
+      },
       "shapiro": null,
       "riVintage": 2018
     },
@@ -160,6 +221,23 @@
         "shelter": 3.4,
         "usedVehicles": 2.6,
         "airfares": -0.5
+      },
+      "pceCategories": {
+        "goods": -0.7,
+        "durables": -0.5,
+        "nondurables": -0.8,
+        "services": 2.4,
+        "food": 1.4,
+        "energy": -5.6,
+        "housingUtilities": 3,
+        "healthCare": 1.8,
+        "motorVehicles": 1.3,
+        "transportServices": 2.6
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.2,
+        "services": 1.6
       },
       "shapiro": null,
       "riVintage": 2018
@@ -186,6 +264,23 @@
         "usedVehicles": 2.2,
         "airfares": -2
       },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -0.7,
+        "nondurables": 0.2,
+        "services": 2.3,
+        "food": 1.4,
+        "energy": -0.4,
+        "housingUtilities": 3,
+        "healthCare": 1.8,
+        "motorVehicles": 1.3,
+        "transportServices": 2.6
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
+      },
       "shapiro": null,
       "riVintage": 2018
     },
@@ -210,6 +305,23 @@
         "shelter": 3.4,
         "usedVehicles": 1.5,
         "airfares": -2.4
+      },
+      "pceCategories": {
+        "goods": -0.2,
+        "durables": -1.2,
+        "nondurables": 0.3,
+        "services": 2.4,
+        "food": 0.8,
+        "energy": 1.4,
+        "housingUtilities": 3.1,
+        "healthCare": 1.7,
+        "motorVehicles": 1,
+        "transportServices": 2.4
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.1,
+        "services": 1.6
       },
       "shapiro": null,
       "riVintage": 2018
@@ -236,6 +348,23 @@
         "usedVehicles": 0,
         "airfares": -0.8
       },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -1.1,
+        "nondurables": 0.1,
+        "services": 2.3,
+        "food": 1.3,
+        "energy": -0.2,
+        "housingUtilities": 3.1,
+        "healthCare": 1.7,
+        "motorVehicles": 1,
+        "transportServices": 2.4
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
+      },
       "shapiro": null,
       "riVintage": 2018
     },
@@ -260,6 +389,23 @@
         "shelter": 3.5,
         "usedVehicles": 0.2,
         "airfares": -0.3
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -0.4,
+        "nondurables": -0.5,
+        "services": 2.3,
+        "food": 1.1,
+        "energy": -2.8,
+        "housingUtilities": 3.1,
+        "healthCare": 1.7,
+        "motorVehicles": 1,
+        "transportServices": 2.4
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 1.6
       },
       "shapiro": null,
       "riVintage": 2018
@@ -286,6 +432,23 @@
         "usedVehicles": 0.4,
         "airfares": 0.1
       },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -1.2,
+        "nondurables": 0,
+        "services": 2.3,
+        "food": 0.9,
+        "energy": -1.5,
+        "housingUtilities": 3.1,
+        "healthCare": 1.8,
+        "motorVehicles": 0.5,
+        "transportServices": 1.7
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
+      },
       "shapiro": null,
       "riVintage": 2018
     },
@@ -310,6 +473,23 @@
         "shelter": 3.4,
         "usedVehicles": 0.4,
         "airfares": 1.3
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -1.1,
+        "nondurables": -0.1,
+        "services": 2.3,
+        "food": 0.9,
+        "energy": -4,
+        "housingUtilities": 3.1,
+        "healthCare": 1.8,
+        "motorVehicles": 0.5,
+        "transportServices": 1.7
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
       },
       "shapiro": null,
       "riVintage": 2018
@@ -336,6 +516,23 @@
         "usedVehicles": 1.3,
         "airfares": 2.2
       },
+      "pceCategories": {
+        "goods": -0.7,
+        "durables": -0.8,
+        "nondurables": -0.6,
+        "services": 2.2,
+        "food": 0.8,
+        "energy": -4.9,
+        "housingUtilities": 3.1,
+        "healthCare": 1.8,
+        "motorVehicles": 0.5,
+        "transportServices": 1.7
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.1,
+        "services": 1.5
+      },
       "shapiro": null,
       "riVintage": 2018
     },
@@ -360,6 +557,23 @@
         "shelter": 3.4,
         "usedVehicles": 1.1,
         "airfares": 2.9
+      },
+      "pceCategories": {
+        "goods": -0.7,
+        "durables": -0.9,
+        "nondurables": -0.6,
+        "services": 2.2,
+        "food": 1.1,
+        "energy": -4.9,
+        "housingUtilities": 3,
+        "healthCare": 1.9,
+        "motorVehicles": 0.5,
+        "transportServices": 1.4
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.1,
+        "services": 1.5
       },
       "shapiro": null,
       "riVintage": 2018
@@ -386,6 +600,23 @@
         "usedVehicles": -0.1,
         "airfares": 2.6
       },
+      "pceCategories": {
+        "goods": -0.2,
+        "durables": -1.3,
+        "nondurables": 0.3,
+        "services": 2.1,
+        "food": 0.9,
+        "energy": -0.6,
+        "housingUtilities": 3,
+        "healthCare": 1.9,
+        "motorVehicles": 0.5,
+        "transportServices": 1.4
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.1,
+        "services": 1.4
+      },
       "shapiro": null,
       "riVintage": 2018
     },
@@ -410,6 +641,23 @@
         "shelter": 3.2,
         "usedVehicles": -0.1,
         "airfares": 3
+      },
+      "pceCategories": {
+        "goods": 0.4,
+        "durables": -1.7,
+        "nondurables": 1.5,
+        "services": 2.1,
+        "food": 0.7,
+        "energy": 3.8,
+        "housingUtilities": 3,
+        "healthCare": 1.9,
+        "motorVehicles": 0.5,
+        "transportServices": 1.4
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.3,
+        "services": 1.5
       },
       "shapiro": null,
       "riVintage": 2018
@@ -436,6 +684,23 @@
         "usedVehicles": -2,
         "airfares": 2.6
       },
+      "pceCategories": {
+        "goods": 0.7,
+        "durables": -2,
+        "nondurables": 2.1,
+        "services": 2.3,
+        "food": 0.9,
+        "energy": 8.3,
+        "housingUtilities": 3,
+        "healthCare": 2,
+        "motorVehicles": 0.2,
+        "transportServices": 1.2
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.4,
+        "services": 1.6
+      },
       "shapiro": null,
       "riVintage": 2019
     },
@@ -460,6 +725,23 @@
         "shelter": 3.3,
         "usedVehicles": -1.2,
         "airfares": 2.1
+      },
+      "pceCategories": {
+        "goods": 0.3,
+        "durables": -1.6,
+        "nondurables": 1.2,
+        "services": 2.4,
+        "food": 0.9,
+        "energy": 3.3,
+        "housingUtilities": 3,
+        "healthCare": 2,
+        "motorVehicles": 0.2,
+        "transportServices": 1.2
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.3,
+        "services": 1.6
       },
       "shapiro": null,
       "riVintage": 2019
@@ -486,6 +768,23 @@
         "usedVehicles": 0.3,
         "airfares": -11.2
       },
+      "pceCategories": {
+        "goods": -1,
+        "durables": -1.5,
+        "nondurables": -0.7,
+        "services": 2.2,
+        "food": 1.2,
+        "energy": -6.4,
+        "housingUtilities": 3,
+        "healthCare": 2,
+        "motorVehicles": 0.2,
+        "transportServices": 1.2
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.1,
+        "services": 1.5
+      },
       "shapiro": null,
       "riVintage": 2019
     },
@@ -510,6 +809,23 @@
         "shelter": 2.6,
         "usedVehicles": -0.7,
         "airfares": -24.3
+      },
+      "pceCategories": {
+        "goods": -2.1,
+        "durables": -1.9,
+        "nondurables": -2.2,
+        "services": 1.7,
+        "food": 3.9,
+        "energy": -17.7,
+        "housingUtilities": 2.8,
+        "healthCare": 2.6,
+        "motorVehicles": -0.1,
+        "transportServices": -1.5
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.5,
+        "services": 1.2
       },
       "shapiro": null,
       "riVintage": 2019
@@ -536,6 +852,23 @@
         "usedVehicles": -0.5,
         "airfares": -28.6
       },
+      "pceCategories": {
+        "goods": -2.2,
+        "durables": -1.9,
+        "nondurables": -2.4,
+        "services": 1.8,
+        "food": 4.5,
+        "energy": -18.3,
+        "housingUtilities": 2.8,
+        "healthCare": 2.6,
+        "motorVehicles": -0.1,
+        "transportServices": -1.5
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.5,
+        "services": 1.2
+      },
       "shapiro": null,
       "riVintage": 2019
     },
@@ -560,6 +893,23 @@
         "shelter": 2.4,
         "usedVehicles": -3,
         "airfares": -26.7
+      },
+      "pceCategories": {
+        "goods": -1.5,
+        "durables": -2.5,
+        "nondurables": -0.9,
+        "services": 1.8,
+        "food": 5,
+        "energy": -12.4,
+        "housingUtilities": 2.8,
+        "healthCare": 2.6,
+        "motorVehicles": -0.1,
+        "transportServices": -1.5
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": -0.2,
+        "services": 1.3
       },
       "shapiro": null,
       "riVintage": 2019
@@ -586,6 +936,23 @@
         "usedVehicles": -1,
         "airfares": -22.9
       },
+      "pceCategories": {
+        "goods": -1.1,
+        "durables": -1.2,
+        "nondurables": -1,
+        "services": 1.9,
+        "food": 4.1,
+        "energy": -11.7,
+        "housingUtilities": 2.5,
+        "healthCare": 2.9,
+        "motorVehicles": 2.1,
+        "transportServices": -1.8
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.2,
+        "services": 1.3
+      },
       "shapiro": null,
       "riVintage": 2019
     },
@@ -610,6 +977,23 @@
         "shelter": 2.3,
         "usedVehicles": 3.9,
         "airfares": -22.7
+      },
+      "pceCategories": {
+        "goods": -0.5,
+        "durables": -0.1,
+        "nondurables": -0.7,
+        "services": 2,
+        "food": 4.1,
+        "energy": -9.8,
+        "housingUtilities": 2.5,
+        "healthCare": 2.9,
+        "motorVehicles": 2.1,
+        "transportServices": -1.8
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 1.3
       },
       "shapiro": null,
       "riVintage": 2019
@@ -636,6 +1020,23 @@
         "usedVehicles": 10.3,
         "airfares": -24.5
       },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -0.1,
+        "nondurables": -0.6,
+        "services": 2.1,
+        "food": 3.7,
+        "energy": -8,
+        "housingUtilities": 2.5,
+        "healthCare": 2.9,
+        "motorVehicles": 2.1,
+        "transportServices": -1.8
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 1.5
+      },
       "shapiro": null,
       "riVintage": 2019
     },
@@ -660,6 +1061,23 @@
         "shelter": 2,
         "usedVehicles": 11.6,
         "airfares": -20.3
+      },
+      "pceCategories": {
+        "goods": -0.6,
+        "durables": 0.2,
+        "nondurables": -1,
+        "services": 2.1,
+        "food": 3.8,
+        "energy": -9.2,
+        "housingUtilities": 2.4,
+        "healthCare": 2.6,
+        "motorVehicles": 4.3,
+        "transportServices": -1.4
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.2,
+        "services": 1.4
       },
       "shapiro": null,
       "riVintage": 2019
@@ -686,6 +1104,23 @@
         "usedVehicles": 10.9,
         "airfares": -17.6
       },
+      "pceCategories": {
+        "goods": -0.5,
+        "durables": 0.6,
+        "nondurables": -1.1,
+        "services": 2,
+        "food": 3.7,
+        "energy": -9.7,
+        "housingUtilities": 2.4,
+        "healthCare": 2.6,
+        "motorVehicles": 4.3,
+        "transportServices": -1.4
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": -0.2,
+        "services": 1.4
+      },
       "shapiro": null,
       "riVintage": 2019
     },
@@ -710,6 +1145,23 @@
         "shelter": 1.9,
         "usedVehicles": 10.1,
         "airfares": -19.1
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": 1.4,
+        "nondurables": -0.8,
+        "services": 2,
+        "food": 4,
+        "energy": -7.5,
+        "housingUtilities": 2.4,
+        "healthCare": 2.6,
+        "motorVehicles": 4.3,
+        "transportServices": -1.4
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": -0.2,
+        "services": 1.4
       },
       "shapiro": null,
       "riVintage": 2019
@@ -736,6 +1188,23 @@
         "usedVehicles": 10,
         "airfares": -22
       },
+      "pceCategories": {
+        "goods": 0.5,
+        "durables": 1.3,
+        "nondurables": 0.1,
+        "services": 2,
+        "food": 3.5,
+        "energy": -4.2,
+        "housingUtilities": 2.1,
+        "healthCare": 3.6,
+        "motorVehicles": 3.5,
+        "transportServices": -0.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0,
+        "services": 1.4
+      },
       "shapiro": null,
       "riVintage": 2020
     },
@@ -760,6 +1229,23 @@
         "shelter": 1.4,
         "usedVehicles": 9.3,
         "airfares": -25.9
+      },
+      "pceCategories": {
+        "goods": 0.9,
+        "durables": 1,
+        "nondurables": 0.9,
+        "services": 2.2,
+        "food": 3.3,
+        "energy": 1.9,
+        "housingUtilities": 2.1,
+        "healthCare": 3.6,
+        "motorVehicles": 3.5,
+        "transportServices": -0.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.2,
+        "services": 1.5
       },
       "shapiro": null,
       "riVintage": 2020
@@ -786,6 +1272,23 @@
         "usedVehicles": 9.4,
         "airfares": -15
       },
+      "pceCategories": {
+        "goods": 2.5,
+        "durables": 1.6,
+        "nondurables": 3,
+        "services": 2.7,
+        "food": 3,
+        "energy": 14,
+        "housingUtilities": 2.1,
+        "healthCare": 3.6,
+        "motorVehicles": 3.5,
+        "transportServices": -0.8
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.7,
+        "services": 1.8
+      },
       "shapiro": null,
       "riVintage": 2020
     },
@@ -810,6 +1313,23 @@
         "shelter": 2.1,
         "usedVehicles": 21,
         "airfares": 10.2
+      },
+      "pceCategories": {
+        "goods": 4.1,
+        "durables": 3.9,
+        "nondurables": 4.2,
+        "services": 3.3,
+        "food": 1.1,
+        "energy": 23.8,
+        "housingUtilities": 2.5,
+        "healthCare": 3,
+        "motorVehicles": 11,
+        "transportServices": 5.7
+      },
+      "pceContributions": {
+        "durables": 0.4,
+        "nondurables": 0.9,
+        "services": 2.3
       },
       "shapiro": null,
       "riVintage": 2020
@@ -836,6 +1356,23 @@
         "usedVehicles": 29.7,
         "airfares": 24.9
       },
+      "pceCategories": {
+        "goods": 5.1,
+        "durables": 5.6,
+        "nondurables": 4.8,
+        "services": 3.4,
+        "food": 0.7,
+        "energy": 27.2,
+        "housingUtilities": 2.5,
+        "healthCare": 3,
+        "motorVehicles": 11,
+        "transportServices": 5.7
+      },
+      "pceContributions": {
+        "durables": 0.6,
+        "nondurables": 1.1,
+        "services": 2.3
+      },
       "shapiro": null,
       "riVintage": 2020
     },
@@ -860,6 +1397,23 @@
         "shelter": 2.6,
         "usedVehicles": 45.2,
         "airfares": 25.8
+      },
+      "pceCategories": {
+        "goods": 5.4,
+        "durables": 7.3,
+        "nondurables": 4.3,
+        "services": 3.7,
+        "food": 1,
+        "energy": 23.8,
+        "housingUtilities": 2.5,
+        "healthCare": 3,
+        "motorVehicles": 11,
+        "transportServices": 5.7
+      },
+      "pceContributions": {
+        "durables": 0.9,
+        "nondurables": 0.9,
+        "services": 2.4
       },
       "shapiro": null,
       "riVintage": 2020
@@ -886,6 +1440,23 @@
         "usedVehicles": 41.6,
         "airfares": 19.6
       },
+      "pceCategories": {
+        "goods": 5.4,
+        "durables": 7,
+        "nondurables": 4.6,
+        "services": 3.9,
+        "food": 2.4,
+        "energy": 23.2,
+        "housingUtilities": 3.1,
+        "healthCare": 2.5,
+        "motorVehicles": 14.2,
+        "transportServices": 7.5
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 1,
+        "services": 2.5
+      },
       "shapiro": null,
       "riVintage": 2020
     },
@@ -910,6 +1481,23 @@
         "shelter": 2.8,
         "usedVehicles": 31.9,
         "airfares": 6.5
+      },
+      "pceCategories": {
+        "goods": 5.5,
+        "durables": 6.8,
+        "nondurables": 4.8,
+        "services": 4,
+        "food": 2.8,
+        "energy": 24.6,
+        "housingUtilities": 3.1,
+        "healthCare": 2.5,
+        "motorVehicles": 14.2,
+        "transportServices": 7.5
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 1,
+        "services": 2.7
       },
       "shapiro": {
         "demand": 1.9,
@@ -940,6 +1528,23 @@
         "usedVehicles": 24.4,
         "airfares": 0.4
       },
+      "pceCategories": {
+        "goods": 6.1,
+        "durables": 6.8,
+        "nondurables": 5.6,
+        "services": 3.9,
+        "food": 4,
+        "energy": 24.9,
+        "housingUtilities": 3.1,
+        "healthCare": 2.5,
+        "motorVehicles": 14.2,
+        "transportServices": 7.5
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 1.2,
+        "services": 2.6
+      },
       "shapiro": {
         "demand": 1.8,
         "supply": 1.8,
@@ -968,6 +1573,23 @@
         "shelter": 3.5,
         "usedVehicles": 26.4,
         "airfares": -4.8
+      },
+      "pceCategories": {
+        "goods": 7.3,
+        "durables": 7.8,
+        "nondurables": 7.1,
+        "services": 4.3,
+        "food": 4.6,
+        "energy": 30.2,
+        "housingUtilities": 4.1,
+        "healthCare": 2.5,
+        "motorVehicles": 16.9,
+        "transportServices": 6.5
+      },
+      "pceContributions": {
+        "durables": 0.9,
+        "nondurables": 1.5,
+        "services": 2.8
       },
       "shapiro": {
         "demand": 2.1,
@@ -998,6 +1620,23 @@
         "usedVehicles": 31.4,
         "airfares": -3.9
       },
+      "pceCategories": {
+        "goods": 8.3,
+        "durables": 8.4,
+        "nondurables": 8.2,
+        "services": 4.6,
+        "food": 5.5,
+        "energy": 34.5,
+        "housingUtilities": 4.1,
+        "healthCare": 2.5,
+        "motorVehicles": 16.9,
+        "transportServices": 6.5
+      },
+      "pceContributions": {
+        "durables": 1,
+        "nondurables": 1.8,
+        "services": 3.1
+      },
       "shapiro": {
         "demand": 2.5,
         "supply": 2.2,
@@ -1026,6 +1665,23 @@
         "shelter": 4.2,
         "usedVehicles": 37.3,
         "airfares": 0.6
+      },
+      "pceCategories": {
+        "goods": 8.5,
+        "durables": 9.1,
+        "nondurables": 8.1,
+        "services": 4.8,
+        "food": 5.6,
+        "energy": 30.8,
+        "housingUtilities": 4.1,
+        "healthCare": 2.5,
+        "motorVehicles": 16.9,
+        "transportServices": 6.5
+      },
+      "pceContributions": {
+        "durables": 1.1,
+        "nondurables": 1.8,
+        "services": 3.2
       },
       "shapiro": {
         "demand": 2.4,
@@ -1056,6 +1712,23 @@
         "usedVehicles": 40.5,
         "airfares": 4.5
       },
+      "pceCategories": {
+        "goods": 8.9,
+        "durables": 10.8,
+        "nondurables": 7.8,
+        "services": 4.9,
+        "food": 6.4,
+        "energy": 27.9,
+        "housingUtilities": 5.1,
+        "healthCare": 2.2,
+        "motorVehicles": 20.8,
+        "transportServices": 8.7
+      },
+      "pceContributions": {
+        "durables": 1.3,
+        "nondurables": 1.7,
+        "services": 3.2
+      },
       "shapiro": {
         "demand": 2.2,
         "supply": 2.9,
@@ -1084,6 +1757,23 @@
         "shelter": 4.7,
         "usedVehicles": 41.2,
         "airfares": 12.4
+      },
+      "pceCategories": {
+        "goods": 9.6,
+        "durables": 11.1,
+        "nondurables": 8.9,
+        "services": 4.9,
+        "food": 7.6,
+        "energy": 26.3,
+        "housingUtilities": 5.1,
+        "healthCare": 2.2,
+        "motorVehicles": 20.8,
+        "transportServices": 8.7
+      },
+      "pceContributions": {
+        "durables": 1.3,
+        "nondurables": 1.9,
+        "services": 3.3
       },
       "shapiro": {
         "demand": 2.4,
@@ -1114,6 +1804,23 @@
         "usedVehicles": 35.3,
         "airfares": 23.6
       },
+      "pceCategories": {
+        "goods": 10.8,
+        "durables": 10.5,
+        "nondurables": 10.9,
+        "services": 5,
+        "food": 8.9,
+        "energy": 33.6,
+        "housingUtilities": 5.1,
+        "healthCare": 2.2,
+        "motorVehicles": 20.8,
+        "transportServices": 8.7
+      },
+      "pceContributions": {
+        "durables": 1.4,
+        "nondurables": 2.4,
+        "services": 3.2
+      },
       "shapiro": {
         "demand": 2.7,
         "supply": 3.3,
@@ -1142,6 +1849,23 @@
         "shelter": 5.1,
         "usedVehicles": 22.7,
         "airfares": 33.3
+      },
+      "pceCategories": {
+        "goods": 9.8,
+        "durables": 8.8,
+        "nondurables": 10.3,
+        "services": 5.1,
+        "food": 9.6,
+        "energy": 31.4,
+        "housingUtilities": 6.2,
+        "healthCare": 2.1,
+        "motorVehicles": 13.7,
+        "transportServices": 11
+      },
+      "pceContributions": {
+        "durables": 1.2,
+        "nondurables": 2.2,
+        "services": 3.3
       },
       "shapiro": {
         "demand": 2.6,
@@ -1172,6 +1896,23 @@
         "usedVehicles": 16.1,
         "airfares": 37.9
       },
+      "pceCategories": {
+        "goods": 9.9,
+        "durables": 7.2,
+        "nondurables": 11.4,
+        "services": 5.2,
+        "food": 10.6,
+        "energy": 35.9,
+        "housingUtilities": 6.2,
+        "healthCare": 2.1,
+        "motorVehicles": 13.7,
+        "transportServices": 11
+      },
+      "pceContributions": {
+        "durables": 0.9,
+        "nondurables": 2.5,
+        "services": 3.4
+      },
       "shapiro": {
         "demand": 2.7,
         "supply": 3.2,
@@ -1200,6 +1941,23 @@
         "shelter": 5.6,
         "usedVehicles": 7.1,
         "airfares": 34.4
+      },
+      "pceCategories": {
+        "goods": 10.7,
+        "durables": 6.4,
+        "nondurables": 13.1,
+        "services": 5.5,
+        "food": 11,
+        "energy": 43,
+        "housingUtilities": 6.2,
+        "healthCare": 2.1,
+        "motorVehicles": 13.7,
+        "transportServices": 11
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 2.9,
+        "services": 3.6
       },
       "shapiro": {
         "demand": 2.8,
@@ -1230,6 +1988,23 @@
         "usedVehicles": 6.6,
         "airfares": 28
       },
+      "pceCategories": {
+        "goods": 9.8,
+        "durables": 6,
+        "nondurables": 11.9,
+        "services": 5.4,
+        "food": 11.8,
+        "energy": 33.9,
+        "housingUtilities": 7.6,
+        "healthCare": 2.7,
+        "motorVehicles": 9.5,
+        "transportServices": 11.5
+      },
+      "pceContributions": {
+        "durables": 0.7,
+        "nondurables": 2.6,
+        "services": 3.6
+      },
       "shapiro": {
         "demand": 2.7,
         "supply": 3.3,
@@ -1258,6 +2033,23 @@
         "shelter": 6.3,
         "usedVehicles": 7.8,
         "airfares": 33.4
+      },
+      "pceCategories": {
+        "goods": 8.8,
+        "durables": 5.6,
+        "nondurables": 10.5,
+        "services": 5.6,
+        "food": 12.2,
+        "energy": 24.2,
+        "housingUtilities": 7.6,
+        "healthCare": 2.7,
+        "motorVehicles": 9.5,
+        "transportServices": 11.5
+      },
+      "pceContributions": {
+        "durables": 0.7,
+        "nondurables": 2.3,
+        "services": 3.7
       },
       "shapiro": {
         "demand": 2.7,
@@ -1288,6 +2080,23 @@
         "usedVehicles": 7.2,
         "airfares": 42.8
       },
+      "pceCategories": {
+        "goods": 8.2,
+        "durables": 5.8,
+        "nondurables": 9.5,
+        "services": 5.9,
+        "food": 11.7,
+        "energy": 19.9,
+        "housingUtilities": 7.6,
+        "healthCare": 2.7,
+        "motorVehicles": 9.5,
+        "transportServices": 11.5
+      },
+      "pceContributions": {
+        "durables": 0.7,
+        "nondurables": 2.1,
+        "services": 3.9
+      },
       "shapiro": {
         "demand": 2.8,
         "supply": 3.1,
@@ -1316,6 +2125,23 @@
         "shelter": 6.9,
         "usedVehicles": 2,
         "airfares": 43
+      },
+      "pceCategories": {
+        "goods": 7.5,
+        "durables": 4.4,
+        "nondurables": 9.3,
+        "services": 6,
+        "food": 11.5,
+        "energy": 18.3,
+        "housingUtilities": 8,
+        "healthCare": 2.8,
+        "motorVehicles": 4.3,
+        "transportServices": 13
+      },
+      "pceContributions": {
+        "durables": 0.5,
+        "nondurables": 2,
+        "services": 4
       },
       "shapiro": {
         "demand": 2.9,
@@ -1346,6 +2172,23 @@
         "usedVehicles": -3.4,
         "airfares": 36.2
       },
+      "pceCategories": {
+        "goods": 6.4,
+        "durables": 3,
+        "nondurables": 8.2,
+        "services": 5.9,
+        "food": 11.1,
+        "energy": 13.4,
+        "housingUtilities": 8,
+        "healthCare": 2.8,
+        "motorVehicles": 4.3,
+        "transportServices": 13
+      },
+      "pceContributions": {
+        "durables": 0.4,
+        "nondurables": 1.8,
+        "services": 3.9
+      },
       "shapiro": {
         "demand": 2.7,
         "supply": 2.8,
@@ -1374,6 +2217,23 @@
         "shelter": 7.5,
         "usedVehicles": -8.8,
         "airfares": 28.3
+      },
+      "pceCategories": {
+        "goods": 5,
+        "durables": 2.1,
+        "nondurables": 6.6,
+        "services": 5.9,
+        "food": 11.1,
+        "energy": 6.6,
+        "housingUtilities": 8,
+        "healthCare": 2.8,
+        "motorVehicles": 4.3,
+        "transportServices": 13
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 1.4,
+        "services": 3.9
       },
       "shapiro": {
         "demand": 2.4,
@@ -1404,6 +2264,23 @@
         "usedVehicles": -11.6,
         "airfares": 25.1
       },
+      "pceCategories": {
+        "goods": 4.6,
+        "durables": 0.8,
+        "nondurables": 6.7,
+        "services": 6,
+        "food": 10.6,
+        "energy": 7.6,
+        "housingUtilities": 8.4,
+        "healthCare": 2,
+        "motorVehicles": 0.1,
+        "transportServices": 12.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 1.5,
+        "services": 4
+      },
       "shapiro": {
         "demand": 2.6,
         "supply": 2.6,
@@ -1432,6 +2309,23 @@
         "shelter": 8.1,
         "usedVehicles": -13.4,
         "airfares": 26.4
+      },
+      "pceCategories": {
+        "goods": 3.7,
+        "durables": 0.4,
+        "nondurables": 5.5,
+        "services": 6,
+        "food": 9.5,
+        "energy": 4.1,
+        "housingUtilities": 8.4,
+        "healthCare": 2,
+        "motorVehicles": 0.1,
+        "transportServices": 12.8
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": 1.2,
+        "services": 3.9
       },
       "shapiro": {
         "demand": 2.5,
@@ -1462,6 +2356,23 @@
         "usedVehicles": -11,
         "airfares": 17.6
       },
+      "pceCategories": {
+        "goods": 2,
+        "durables": 0.5,
+        "nondurables": 2.7,
+        "services": 5.8,
+        "food": 8,
+        "energy": -7.9,
+        "housingUtilities": 8.4,
+        "healthCare": 2,
+        "motorVehicles": 0.1,
+        "transportServices": 12.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.6,
+        "services": 3.8
+      },
       "shapiro": {
         "demand": 1.9,
         "supply": 2.1,
@@ -1490,6 +2401,23 @@
         "shelter": 8.1,
         "usedVehicles": -6.6,
         "airfares": -1
+      },
+      "pceCategories": {
+        "goods": 2.3,
+        "durables": 0.7,
+        "nondurables": 3.1,
+        "services": 5.7,
+        "food": 7.1,
+        "energy": -5.7,
+        "housingUtilities": 7.5,
+        "healthCare": 2.6,
+        "motorVehicles": 1.5,
+        "transportServices": 6.4
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.7,
+        "services": 3.8
       },
       "shapiro": {
         "demand": 1.9,
@@ -1520,6 +2448,23 @@
         "usedVehicles": -4.3,
         "airfares": -13.5
       },
+      "pceCategories": {
+        "goods": 1.3,
+        "durables": 0.5,
+        "nondurables": 1.6,
+        "services": 5.5,
+        "food": 6,
+        "energy": -12.2,
+        "housingUtilities": 7.5,
+        "healthCare": 2.6,
+        "motorVehicles": 1.5,
+        "transportServices": 6.4
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.4,
+        "services": 3.7
+      },
       "shapiro": {
         "demand": 1.6,
         "supply": 2.1,
@@ -1548,6 +2493,23 @@
         "shelter": 7.8,
         "usedVehicles": -5.3,
         "airfares": -18.7
+      },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -0.2,
+        "nondurables": -0.3,
+        "services": 5.2,
+        "food": 4.8,
+        "energy": -17.6,
+        "housingUtilities": 7.5,
+        "healthCare": 2.6,
+        "motorVehicles": 1.5,
+        "transportServices": 6.4
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 3.4
       },
       "shapiro": {
         "demand": 1.4,
@@ -1578,6 +2540,23 @@
         "usedVehicles": -5.7,
         "airfares": -18.4
       },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -0.7,
+        "nondurables": 0.2,
+        "services": 5.1,
+        "food": 3.8,
+        "energy": -13.1,
+        "housingUtilities": 6.4,
+        "healthCare": 2.3,
+        "motorVehicles": -0.4,
+        "transportServices": 5.7
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.1,
+        "services": 3.4
+      },
       "shapiro": {
         "demand": 1.3,
         "supply": 1.4,
@@ -1606,6 +2585,23 @@
         "shelter": 7.3,
         "usedVehicles": -6.7,
         "airfares": -13.1
+      },
+      "pceCategories": {
+        "goods": 0.9,
+        "durables": -1.4,
+        "nondurables": 2.1,
+        "services": 4.7,
+        "food": 3.2,
+        "energy": -3.6,
+        "housingUtilities": 6.4,
+        "healthCare": 2.3,
+        "motorVehicles": -0.4,
+        "transportServices": 5.7
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.5,
+        "services": 3.1
       },
       "shapiro": {
         "demand": 1.4,
@@ -1636,6 +2632,23 @@
         "usedVehicles": -8,
         "airfares": -13.3
       },
+      "pceCategories": {
+        "goods": 1.1,
+        "durables": -1.7,
+        "nondurables": 2.7,
+        "services": 4.7,
+        "food": 2.8,
+        "energy": 0,
+        "housingUtilities": 6.4,
+        "healthCare": 2.3,
+        "motorVehicles": -0.4,
+        "transportServices": 5.7
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.6,
+        "services": 3.1
+      },
       "shapiro": {
         "demand": 1.3,
         "supply": 1.4,
@@ -1664,6 +2677,23 @@
         "shelter": 6.7,
         "usedVehicles": -7.1,
         "airfares": -13.1
+      },
+      "pceCategories": {
+        "goods": 0.5,
+        "durables": -1.5,
+        "nondurables": 1.6,
+        "services": 4.4,
+        "food": 2.5,
+        "energy": -4.6,
+        "housingUtilities": 5.9,
+        "healthCare": 2.4,
+        "motorVehicles": -0.7,
+        "transportServices": 4.6
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.4,
+        "services": 2.9
       },
       "shapiro": {
         "demand": 1,
@@ -1694,6 +2724,23 @@
         "usedVehicles": -3.7,
         "airfares": -12.1
       },
+      "pceCategories": {
+        "goods": 0,
+        "durables": -1.3,
+        "nondurables": 0.7,
+        "services": 4.3,
+        "food": 1.8,
+        "energy": -5.9,
+        "housingUtilities": 5.9,
+        "healthCare": 2.4,
+        "motorVehicles": -0.7,
+        "transportServices": 4.6
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.2,
+        "services": 2.9
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 1.4,
@@ -1722,6 +2769,23 @@
         "shelter": 6.2,
         "usedVehicles": -1.3,
         "airfares": -9.6
+      },
+      "pceCategories": {
+        "goods": 0.3,
+        "durables": -1.6,
+        "nondurables": 1.3,
+        "services": 4.1,
+        "food": 1.5,
+        "energy": -2.1,
+        "housingUtilities": 5.9,
+        "healthCare": 2.4,
+        "motorVehicles": -0.7,
+        "transportServices": 4.6
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.3,
+        "services": 2.8
       },
       "shapiro": {
         "demand": 1,
@@ -1752,6 +2816,23 @@
         "usedVehicles": -3.8,
         "airfares": -6.7
       },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -1.7,
+        "nondurables": 0.4,
+        "services": 4.3,
+        "food": 1.5,
+        "energy": -4.7,
+        "housingUtilities": 5.4,
+        "healthCare": 3,
+        "motorVehicles": -0.5,
+        "transportServices": 2.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.1,
+        "services": 2.9
+      },
       "shapiro": {
         "demand": 1,
         "supply": 1.1,
@@ -1780,6 +2861,23 @@
         "shelter": 5.8,
         "usedVehicles": -1.3,
         "airfares": -6.2
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -1.6,
+        "nondurables": 0.7,
+        "services": 4.2,
+        "food": 1.4,
+        "energy": -2.3,
+        "housingUtilities": 5.4,
+        "healthCare": 3,
+        "motorVehicles": -0.5,
+        "transportServices": 2.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.1,
+        "services": 2.8
       },
       "shapiro": {
         "demand": 0.9,
@@ -1810,6 +2908,23 @@
         "usedVehicles": -1.1,
         "airfares": -7.2
       },
+      "pceCategories": {
+        "goods": 0.2,
+        "durables": -1.5,
+        "nondurables": 1.1,
+        "services": 4.3,
+        "food": 1.5,
+        "energy": 1.6,
+        "housingUtilities": 5.4,
+        "healthCare": 3,
+        "motorVehicles": -0.5,
+        "transportServices": 2.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.2,
+        "services": 2.9
+      },
       "shapiro": {
         "demand": 1.1,
         "supply": 1.4,
@@ -1838,6 +2953,23 @@
         "shelter": 5.5,
         "usedVehicles": -5.5,
         "airfares": -5.9
+      },
+      "pceCategories": {
+        "goods": 0.1,
+        "durables": -1.7,
+        "nondurables": 1.2,
+        "services": 4.2,
+        "food": 1.3,
+        "energy": 1.8,
+        "housingUtilities": 5.3,
+        "healthCare": 2.6,
+        "motorVehicles": -3,
+        "transportServices": 2.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.2,
+        "services": 2.8
       },
       "shapiro": {
         "demand": 1,
@@ -1868,6 +3000,23 @@
         "usedVehicles": -9.2,
         "airfares": -5.9
       },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -2.6,
+        "nondurables": 1.3,
+        "services": 4.1,
+        "food": 1.2,
+        "energy": 3.1,
+        "housingUtilities": 5.3,
+        "healthCare": 2.6,
+        "motorVehicles": -3,
+        "transportServices": 2.8
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": 0.3,
+        "services": 2.7
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 1.2,
@@ -1896,6 +3045,23 @@
         "shelter": 5.1,
         "usedVehicles": -9.9,
         "airfares": -4.9
+      },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -2.5,
+        "nondurables": 0.9,
+        "services": 4,
+        "food": 1.3,
+        "energy": 0.3,
+        "housingUtilities": 5.3,
+        "healthCare": 2.6,
+        "motorVehicles": -3,
+        "transportServices": 2.8
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": 0.2,
+        "services": 2.7
       },
       "shapiro": {
         "demand": 0.9,
@@ -1926,6 +3092,23 @@
         "usedVehicles": -10,
         "airfares": -2.5
       },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -2.2,
+        "nondurables": 1.1,
+        "services": 3.9,
+        "food": 1.2,
+        "energy": 0.4,
+        "housingUtilities": 5,
+        "healthCare": 2.6,
+        "motorVehicles": -2.9,
+        "transportServices": 1.6
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": 0.2,
+        "services": 2.6
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 1.3,
@@ -1954,6 +3137,23 @@
         "shelter": 5.2,
         "usedVehicles": -8.6,
         "airfares": -1.2
+      },
+      "pceCategories": {
+        "goods": -0.8,
+        "durables": -2,
+        "nondurables": -0.2,
+        "services": 4,
+        "food": 1.1,
+        "energy": -5,
+        "housingUtilities": 5,
+        "healthCare": 2.6,
+        "motorVehicles": -2.9,
+        "transportServices": 1.6
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0,
+        "services": 2.7
       },
       "shapiro": {
         "demand": 0.7,
@@ -1984,6 +3184,23 @@
         "usedVehicles": -6.3,
         "airfares": 1.6
       },
+      "pceCategories": {
+        "goods": -1.1,
+        "durables": -1.8,
+        "nondurables": -0.8,
+        "services": 3.9,
+        "food": 1.2,
+        "energy": -8.1,
+        "housingUtilities": 5,
+        "healthCare": 2.6,
+        "motorVehicles": -2.9,
+        "transportServices": 1.6
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.2,
+        "services": 2.6
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 1,
@@ -2012,6 +3229,23 @@
         "shelter": 4.9,
         "usedVehicles": -4.9,
         "airfares": 4.2
+      },
+      "pceCategories": {
+        "goods": -1,
+        "durables": -1.8,
+        "nondurables": -0.6,
+        "services": 4.1,
+        "food": 1,
+        "energy": -5.9,
+        "housingUtilities": 4.7,
+        "healthCare": 2.8,
+        "motorVehicles": -1.5,
+        "transportServices": 2.9
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.1,
+        "services": 2.7
       },
       "shapiro": {
         "demand": 0.9,
@@ -2042,6 +3276,23 @@
         "usedVehicles": -5,
         "airfares": 4.8
       },
+      "pceCategories": {
+        "goods": -0.5,
+        "durables": -1.5,
+        "nondurables": 0,
+        "services": 3.9,
+        "food": 1.4,
+        "energy": -4,
+        "housingUtilities": 4.7,
+        "healthCare": 2.8,
+        "motorVehicles": -1.5,
+        "transportServices": 2.9
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0,
+        "services": 2.7
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 0.9,
@@ -2070,6 +3321,23 @@
         "shelter": 4.6,
         "usedVehicles": -4.7,
         "airfares": 7.7
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -1.5,
+        "nondurables": 0.6,
+        "services": 4,
+        "food": 1.6,
+        "energy": -1.1,
+        "housingUtilities": 4.7,
+        "healthCare": 2.8,
+        "motorVehicles": -1.5,
+        "transportServices": 2.9
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.1,
+        "services": 2.7
       },
       "shapiro": {
         "demand": 1.1,
@@ -2100,6 +3368,23 @@
         "usedVehicles": 0.9,
         "airfares": 6.9
       },
+      "pceCategories": {
+        "goods": 0.4,
+        "durables": -1.3,
+        "nondurables": 1.4,
+        "services": 3.7,
+        "food": 1.5,
+        "energy": 0.7,
+        "housingUtilities": 4.3,
+        "healthCare": 2.4,
+        "motorVehicles": 0.2,
+        "transportServices": 3
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.3,
+        "services": 2.5
+      },
       "shapiro": {
         "demand": 1,
         "supply": 1,
@@ -2128,6 +3413,23 @@
         "shelter": 4.2,
         "usedVehicles": 0.7,
         "airfares": -0.8
+      },
+      "pceCategories": {
+        "goods": 0.3,
+        "durables": -1.1,
+        "nondurables": 1,
+        "services": 3.6,
+        "food": 1.3,
+        "energy": -0.7,
+        "housingUtilities": 4.3,
+        "healthCare": 2.4,
+        "motorVehicles": 0.2,
+        "transportServices": 3
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.2,
+        "services": 2.5
       },
       "shapiro": {
         "demand": 1,
@@ -2158,6 +3460,23 @@
         "usedVehicles": 0.6,
         "airfares": -5.4
       },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -1.1,
+        "nondurables": 0.2,
+        "services": 3.4,
+        "food": 1.9,
+        "energy": -3.9,
+        "housingUtilities": 4.3,
+        "healthCare": 2.4,
+        "motorVehicles": 0.2,
+        "transportServices": 3
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 2.3
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 0.9,
@@ -2186,6 +3505,23 @@
         "shelter": 4,
         "usedVehicles": 1.5,
         "airfares": -8
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -0.7,
+        "nondurables": -0.2,
+        "services": 3.6,
+        "food": 1.7,
+        "energy": -4.3,
+        "housingUtilities": 4.4,
+        "healthCare": 2.7,
+        "motorVehicles": 1,
+        "transportServices": 2.5
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 2.5
       },
       "shapiro": {
         "demand": 0.9,
@@ -2216,6 +3552,23 @@
         "usedVehicles": 1.7,
         "airfares": -7.4
       },
+      "pceCategories": {
+        "goods": 0,
+        "durables": 0.3,
+        "nondurables": -0.1,
+        "services": 3.6,
+        "food": 1.8,
+        "energy": -3.7,
+        "housingUtilities": 4.4,
+        "healthCare": 2.7,
+        "motorVehicles": 1,
+        "transportServices": 2.5
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": 0,
+        "services": 2.5
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 1.2,
@@ -2244,6 +3597,23 @@
         "shelter": 3.8,
         "usedVehicles": 2.7,
         "airfares": -3.2
+      },
+      "pceCategories": {
+        "goods": 0.6,
+        "durables": 0.9,
+        "nondurables": 0.5,
+        "services": 3.5,
+        "food": 2,
+        "energy": -1.2,
+        "housingUtilities": 4.4,
+        "healthCare": 2.7,
+        "motorVehicles": 1,
+        "transportServices": 2.5
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.1,
+        "services": 2.4
       },
       "shapiro": {
         "demand": 1,
@@ -2274,6 +3644,23 @@
         "usedVehicles": 4.8,
         "airfares": 1
       },
+      "pceCategories": {
+        "goods": 0.6,
+        "durables": 1.2,
+        "nondurables": 0.3,
+        "services": 3.5,
+        "food": 1.8,
+        "energy": -1.8,
+        "housingUtilities": 4.2,
+        "healthCare": 2.8,
+        "motorVehicles": 2.3,
+        "transportServices": 3.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.1,
+        "services": 2.4
+      },
       "shapiro": {
         "demand": 1,
         "supply": 1.1,
@@ -2302,6 +3689,23 @@
         "shelter": 3.6,
         "usedVehicles": 6,
         "airfares": 3.4
+      },
+      "pceCategories": {
+        "goods": 0.9,
+        "durables": 1.3,
+        "nondurables": 0.7,
+        "services": 3.5,
+        "food": 2.2,
+        "energy": -0.1,
+        "housingUtilities": 4.2,
+        "healthCare": 2.8,
+        "motorVehicles": 2.3,
+        "transportServices": 3.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.1,
+        "services": 2.4
       },
       "shapiro": {
         "demand": 1.2,
@@ -2332,6 +3736,23 @@
         "usedVehicles": 5.1,
         "airfares": 3
       },
+      "pceCategories": {
+        "goods": 1.5,
+        "durables": 1.1,
+        "nondurables": 1.7,
+        "services": 3.4,
+        "food": 2.4,
+        "energy": 2.7,
+        "housingUtilities": 4.2,
+        "healthCare": 2.8,
+        "motorVehicles": 2.3,
+        "transportServices": 3.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.3,
+        "services": 2.3
+      },
       "shapiro": {
         "demand": 1.1,
         "supply": 1.2,
@@ -2360,6 +3781,23 @@
         "shelter": 3,
         "usedVehicles": 3.6,
         "airfares": -5.1
+      },
+      "pceCategories": {
+        "goods": 1.5,
+        "durables": 1.2,
+        "nondurables": 1.6,
+        "services": 3.3,
+        "food": 1.9,
+        "energy": 4.1,
+        "housingUtilities": 3.7,
+        "healthCare": 2.7,
+        "motorVehicles": 1.8,
+        "transportServices": 3.3
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.3,
+        "services": 2.2
       },
       "shapiro": {
         "demand": 1.1,
@@ -2390,6 +3828,23 @@
         "usedVehicles": 1.6,
         "airfares": -3.4
       },
+      "pceCategories": {
+        "goods": 1.7,
+        "durables": 1.9,
+        "nondurables": 1.5,
+        "services": 3.3,
+        "food": 2.1,
+        "energy": 1.9,
+        "housingUtilities": 3.7,
+        "healthCare": 2.7,
+        "motorVehicles": 1.8,
+        "transportServices": 3.3
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.3,
+        "services": 2.2
+      },
       "shapiro": {
         "demand": 0.9,
         "supply": 1.4,
@@ -2418,6 +3873,23 @@
         "shelter": 3,
         "usedVehicles": -2,
         "airfares": 2.2
+      },
+      "pceCategories": {
+        "goods": 1.2,
+        "durables": 2,
+        "nondurables": 0.8,
+        "services": 3.4,
+        "food": 2.1,
+        "energy": -1,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 4.6
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.2,
+        "services": 2.4
       },
       "shapiro": {
         "demand": 1,
@@ -2448,6 +3920,23 @@
         "usedVehicles": -3.2,
         "airfares": 7.1
       },
+      "pceCategories": {
+        "goods": 1.6,
+        "durables": 2.4,
+        "nondurables": 1.3,
+        "services": 3.3,
+        "food": 2.3,
+        "energy": -0.1,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 4.6
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.3,
+        "services": 2.3
+      },
       "shapiro": {
         "demand": 1,
         "supply": 1.2,
@@ -2476,6 +3965,23 @@
         "shelter": 3,
         "usedVehicles": -3.2,
         "airfares": 14.9
+      },
+      "pceCategories": {
+        "goods": 3.4,
+        "durables": 2.7,
+        "nondurables": 3.7,
+        "services": 3.4,
+        "food": 1.8,
+        "energy": 13,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 4.6
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.8,
+        "services": 2.3
       },
       "shapiro": {
         "demand": 1,
@@ -2506,6 +4012,23 @@
         "usedVehicles": -2.7,
         "airfares": 20.7
       },
+      "pceCategories": {
+        "goods": 4.1,
+        "durables": 2.7,
+        "nondurables": 4.8,
+        "services": 3.3,
+        "food": 2.4,
+        "energy": 18.2,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 7.4
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 1,
+        "services": 2.3
+      },
       "shapiro": {
         "demand": 1.1,
         "supply": 1.1,
@@ -2534,6 +4057,23 @@
         "shelter": 3.4,
         "usedVehicles": -2,
         "airfares": 26.7
+      },
+      "pceCategories": {
+        "goods": 4.4,
+        "durables": 2.7,
+        "nondurables": 5.4,
+        "services": 3.5,
+        "food": 2.3,
+        "energy": 23.7,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 7.4
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 1.1,
+        "services": 2.4
       },
       "shapiro": {
         "demand": 1.2,
@@ -2564,6 +4104,23 @@
         "usedVehicles": -1.8,
         "airfares": 26.5
       },
+      "pceCategories": {
+        "goods": 3.4,
+        "durables": 2.2,
+        "nondurables": 4.1,
+        "services": 3.5,
+        "food": 2.3,
+        "energy": 16.1,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 7.4
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.8,
+        "services": 2.4
+      },
       "shapiro": {
         "demand": 1.2,
         "supply": 0.9,
@@ -2592,6 +4149,23 @@
         "shelter": 3.2,
         "usedVehicles": -1.9,
         "airfares": 25.5
+      },
+      "pceCategories": {
+        "goods": 3.3,
+        "durables": 2.5,
+        "nondurables": 3.8,
+        "services": 3.4,
+        "food": 2.3,
+        "energy": 15.1,
+        "housingUtilities": null,
+        "healthCare": null,
+        "motorVehicles": null,
+        "transportServices": null
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.8,
+        "services": 2.3
       },
       "shapiro": {
         "demand": 1.1,
@@ -2622,6 +4196,23 @@
         "usedVehicles": -2.3,
         "airfares": 23.4
       },
+      "pceCategories": {
+        "goods": 3.6,
+        "durables": 2.6,
+        "nondurables": 4.1,
+        "services": 3.4,
+        "food": 1.9,
+        "energy": 16.8,
+        "housingUtilities": null,
+        "healthCare": null,
+        "motorVehicles": null,
+        "transportServices": null
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.8,
+        "services": 2.3
+      },
       "shapiro": {
         "demand": 1.2,
         "supply": 1,
@@ -2650,6 +4241,23 @@
         "shelter": 3.2,
         "usedVehicles": -1.5,
         "airfares": 22.4
+      },
+      "pceCategories": {
+        "goods": null,
+        "durables": null,
+        "nondurables": null,
+        "services": null,
+        "food": null,
+        "energy": null,
+        "housingUtilities": null,
+        "healthCare": null,
+        "motorVehicles": null,
+        "transportServices": null
+      },
+      "pceContributions": {
+        "durables": null,
+        "nondurables": null,
+        "services": null
       },
       "shapiro": null,
       "riVintage": 2024

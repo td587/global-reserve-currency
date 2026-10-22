@@ -140,10 +140,18 @@ counterfactual(t) = CPI_y/y(t) − Σ contribution_j(t)  for j toggled OFF`}
           </p>
           <p className="text-sm text-mist">
             Overlay toggles for <strong className="text-paper">Headline PCE</strong>{" "}
-            and <strong className="text-paper">Core PCE</strong> show/hide FRED{" "}
-            <code className="text-paper">PCEPI</code> /{" "}
-            <code className="text-paper">PCEPILFE</code> y/y on the explorer chart
-            (they do not enter the CPI contribution counterfactual math).
+            (<code className="text-paper">PCEPI</code>) and{" "}
+            <strong className="text-paper">Core PCE</strong> (
+            <code className="text-paper">PCEPILFE</code>) show/hide those y/y
+            series. In PCE mode, headline is the main solid line; core remains a
+            dedicated on/off overlay. Neither enters CPI contribution math.
+          </p>
+          <p className="text-sm text-mist">
+            Additional BEA Table 2.4.4 category price indexes (goods, durables,
+            nondurables, services, food, energy, housing &amp; utilities, health
+            care, motor vehicles, transportation services) are toggleable in PCE
+            mode. Contribution-remove applies only to durables / nondurables /
+            services via current-dollar share × price y/y.
           </p>
         </section>
 

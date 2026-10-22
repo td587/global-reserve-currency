@@ -11,27 +11,27 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { ChartPoint } from "@/lib/inflation";
-
-export type OverlayPoint = ChartPoint & {
-  headlinePce?: number | null;
-  corePce?: number | null;
-};
+import { PCE_CATEGORY_DEFS, type PceOverlayState } from "@/lib/pce-categories";
 
 type Props = {
-  data: OverlayPoint[];
+  data: Array<Record<string, unknown>>;
   showCounterfactual: boolean;
   mode: "cpi" | "pce";
   showHeadlinePce: boolean;
   showCorePce: boolean;
+  pceOverlayState?: PceOverlayState;
 };
 
 const NAME: Record<string, string> = {
   actual: "Actual",
   counterfactual: "Counterfactual",
-  headlinePce: "Headline PCE y/y",
-  corePce: "Core PCE y/y",
+  headlinePce: "Headline PCE y/y (PCEPI)",
+  corePce: "Core PCE y/y (PCEPILFE)",
 };
+
+for (const d of PCE_CATEGORY_DEFS) {
+  NAME[`pce_${d.id}`] = `${d.label} y/y`;
+}
 
 function CustomTooltip({
   active,
@@ -44,18 +44,20 @@ function CustomTooltip({
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-lg border border-white/15 bg-ink/95 px-3 py-2 text-xs shadow-xl backdrop-blur">
+    <div className="max-h-64 overflow-y-auto rounded-lg border border-white/15 bg-ink/95 px-3 py-2 text-xs shadow-xl backdrop-blur">
       <p className="mb-1.5 font-medium text-paper">{label}</p>
-      {payload.map((p) => (
-        <p key={p.dataKey} className="flex justify-between gap-6 text-mist">
-          <span style={{ color: p.color }}>
-            {NAME[p.dataKey] ?? p.dataKey}
-          </span>
-          <span className="tabular-nums text-paper">
-            {Number(p.value).toFixed(1)}%
-          </span>
-        </p>
-      ))}
+      {payload.map((p) =>
+        p.value == null || Number.isNaN(Number(p.value)) ? null : (
+          <p key={p.dataKey} className="flex justify-between gap-6 text-mist">
+            <span style={{ color: p.color }}>
+              {NAME[p.dataKey] ?? p.dataKey}
+            </span>
+            <span className="tabular-nums text-paper">
+              {Number(p.value).toFixed(1)}%
+            </span>
+          </p>
+        )
+      )}
     </div>
   );
 }
@@ -66,7 +68,12 @@ export function InflationChart({
   mode,
   showHeadlinePce,
   showCorePce,
+  pceOverlayState,
 }: Props) {
+  const activeCats = PCE_CATEGORY_DEFS.filter(
+    (d) => pceOverlayState?.[d.id] && mode === "pce"
+  );
+
   return (
     <div className="h-full min-h-[280px] w-full animate-fade-rise">
       <ResponsiveContainer width="100%" height="100%">
@@ -100,7 +107,7 @@ export function InflationChart({
             verticalAlign="top"
             align="right"
             iconType="plainline"
-            wrapperStyle={{ fontSize: 12, color: "#9aabba", paddingBottom: 8 }}
+            wrapperStyle={{ fontSize: 11, color: "#9aabba", paddingBottom: 8 }}
           />
           <ReferenceLine
             y={2}
@@ -116,7 +123,7 @@ export function InflationChart({
           <Line
             type="monotone"
             dataKey="actual"
-            name={mode === "cpi" ? "Actual CPI y/y" : "Actual PCE y/y"}
+            name={mode === "cpi" ? "Actual CPI y/y" : "Headline PCE y/y"}
             stroke="#e8eef4"
             strokeWidth={2.5}
             dot={false}
@@ -140,9 +147,9 @@ export function InflationChart({
             <Line
               type="monotone"
               dataKey="headlinePce"
-              name="Headline PCE y/y"
+              name="Headline PCE y/y (PCEPI)"
               stroke="#5eb7a5"
-              strokeWidth={1.75}
+              strokeWidth={2}
               dot={false}
               connectNulls
               isAnimationActive
@@ -153,9 +160,9 @@ export function InflationChart({
             <Line
               type="monotone"
               dataKey="corePce"
-              name="Core PCE y/y"
+              name="Core PCE y/y (PCEPILFE)"
               stroke="#6a9bb8"
-              strokeWidth={1.75}
+              strokeWidth={2}
               strokeDasharray={mode === "pce" ? undefined : "4 3"}
               dot={false}
               connectNulls
@@ -163,6 +170,21 @@ export function InflationChart({
               animationDuration={700}
             />
           )}
+          {activeCats.map((d) => (
+            <Line
+              key={d.id}
+              type="monotone"
+              dataKey={`pce_${d.id}`}
+              name={`${d.shortLabel}${d.frequency === "quarterly" ? " (Q)" : ""}`}
+              stroke={d.color}
+              strokeWidth={1.5}
+              strokeDasharray={d.frequency === "quarterly" ? "2 3" : undefined}
+              dot={false}
+              connectNulls
+              isAnimationActive
+              animationDuration={500}
+            />
+          ))}
         </LineChart>
       </ResponsiveContainer>
     </div>

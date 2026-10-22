@@ -92,6 +92,31 @@ const SERIES = {
   corePce: "PCEPILFE",
 };
 
+/** BEA Table 2.4.4 chain-type price indexes on FRED */
+const PCE_PRICE_MONTHLY = {
+  goods: "DGDSRG3M086SBEA",
+  durables: "DDURRG3M086SBEA",
+  nondurables: "DNDGRG3M086SBEA",
+  services: "DSERRG3M086SBEA",
+  food: "DFXARG3M086SBEA",
+  energy: "DNRGRG3M086SBEA",
+};
+
+const PCE_PRICE_QUARTERLY = {
+  housingUtilities: "DHUTRG3Q086SBEA",
+  healthCare: "DHLCRG3Q086SBEA",
+  motorVehicles: "DMOTRG3Q086SBEA",
+  transportServices: "DTRSRG3Q086SBEA",
+};
+
+/** Current-dollar PCE for share × y/y contribution approximation */
+const PCE_EXPENDITURE = {
+  total: "PCE",
+  durables: "PCEDG",
+  nondurables: "PCEND",
+  services: "PCES",
+};
+
 function parseFredCsv(filePath) {
   const text = fs.readFileSync(filePath, "utf8").trim();
   const lines = text.split(/\r?\n/).slice(1);
@@ -104,6 +129,23 @@ function parseFredCsv(filePath) {
     map.set(date.slice(0, 7), v); // YYYY-MM
   }
   return map;
+}
+
+/** Expand quarterly FRED (dated at quarter start) across the three months of that quarter. */
+function parseFredQuarterlyToMonthly(filePath) {
+  const raw = parseFredCsv(filePath);
+  const out = new Map();
+  for (const [ym, v] of raw) {
+    const [y, m] = ym.split("-").map(Number);
+    // Quarter start months are 1,4,7,10
+    const qStart = m;
+    for (let i = 0; i < 3; i++) {
+      const mm = qStart + i;
+      if (mm > 12) break;
+      out.set(`${y}-${String(mm).padStart(2, "0")}`, v);
+    }
+  }
+  return out;
 }
 
 function yoy(map, ym) {
@@ -162,12 +204,46 @@ function round1(n) {
   return Math.round(n * 10) / 10;
 }
 
+function lagYm(ym, monthsBack) {
+  const [y, m] = ym.split("-").map(Number);
+  const d = new Date(Date.UTC(y, m - 1 - monthsBack, 1));
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+function pceShareContrib(expMap, totalMap, priceMap, ym) {
+  const baseYm = lagYm(ym, 12);
+  const exp = expMap.get(baseYm);
+  const tot = totalMap.get(baseYm);
+  const py = yoy(priceMap, ym);
+  if (exp == null || tot == null || tot === 0 || py == null) return null;
+  return (exp / tot) * py;
+}
+
 function main() {
   const maps = {};
   for (const [key, id] of Object.entries(SERIES)) {
     const fp = path.join(fredDir, `${id}.csv`);
     if (!fs.existsSync(fp)) throw new Error(`Missing ${fp}`);
     maps[key] = parseFredCsv(fp);
+  }
+
+  const pcePrice = {};
+  for (const [key, id] of Object.entries(PCE_PRICE_MONTHLY)) {
+    const fp = path.join(fredDir, `${id}.csv`);
+    if (!fs.existsSync(fp)) throw new Error(`Missing ${fp}`);
+    pcePrice[key] = parseFredCsv(fp);
+  }
+  for (const [key, id] of Object.entries(PCE_PRICE_QUARTERLY)) {
+    const fp = path.join(fredDir, `${id}.csv`);
+    if (!fs.existsSync(fp)) throw new Error(`Missing ${fp}`);
+    pcePrice[key] = parseFredQuarterlyToMonthly(fp);
+  }
+
+  const pceExp = {};
+  for (const [key, id] of Object.entries(PCE_EXPENDITURE)) {
+    const fp = path.join(fredDir, `${id}.csv`);
+    if (!fs.existsSync(fp)) throw new Error(`Missing ${fp}`);
+    pceExp[key] = parseFredCsv(fp);
   }
 
   const shapiro = parseShapiroYoy(
@@ -212,6 +288,31 @@ function main() {
     const corePceYoy = yoy(maps.corePce, ym);
     const coreCpiYoy = yoy(maps.coreCpi, ym);
 
+    const pceCategories = {};
+    for (const key of Object.keys(pcePrice)) {
+      const v = yoy(pcePrice[key], ym);
+      pceCategories[key] = v == null ? null : round1(v);
+    }
+
+    const cDur = pceShareContrib(
+      pceExp.durables,
+      pceExp.total,
+      pcePrice.durables,
+      ym
+    );
+    const cNd = pceShareContrib(
+      pceExp.nondurables,
+      pceExp.total,
+      pcePrice.nondurables,
+      ym
+    );
+    const cSvcPce = pceShareContrib(
+      pceExp.services,
+      pceExp.total,
+      pcePrice.services,
+      ym
+    );
+
     observations.push({
       date: ym,
       headlineYoy: round1(headlineYoy),
@@ -235,6 +336,12 @@ function main() {
         usedVehicles: usedYoy == null ? null : round1(usedYoy),
         airfares: airYoy == null ? null : round1(airYoy),
       },
+      pceCategories,
+      pceContributions: {
+        durables: cDur == null ? null : round1(cDur),
+        nondurables: cNd == null ? null : round1(cNd),
+        services: cSvcPce == null ? null : round1(cSvcPce),
+      },
       shapiro: shap
         ? {
             demand: shap.demand == null ? null : round1(shap.demand),
@@ -256,11 +363,24 @@ function main() {
       builtAt: new Date().toISOString().slice(0, 10),
       window: { start: observations[0]?.date, end: observations.at(-1)?.date },
       methodology:
-        "Approximate CPI y/y contribution = (BLS Dec relative importance at start of window / 100) × component y/y. Shapiro demand/supply are SF Fed PCE y/y contributions.",
+        "Approximate CPI y/y contribution = (BLS Dec relative importance at start of window / 100) × component y/y. Approximate PCE contribution for durables/nondurables/services = (category current-dollar share at t−12) × category price y/y. Shapiro demand/supply are SF Fed PCE y/y contributions.",
       sources: [
         {
           name: "FRED / BLS CPI",
           series: Object.values(SERIES),
+          url: "https://fred.stlouisfed.org/",
+        },
+        {
+          name: "FRED / BEA PCE price indexes (Table 2.4.4)",
+          series: [
+            ...Object.values(PCE_PRICE_MONTHLY),
+            ...Object.values(PCE_PRICE_QUARTERLY),
+          ],
+          url: "https://fred.stlouisfed.org/release/tables?eid=44067&rid=53",
+        },
+        {
+          name: "FRED / BEA PCE current-dollar (shares)",
+          series: Object.values(PCE_EXPENDITURE),
           url: "https://fred.stlouisfed.org/",
         },
         {
@@ -273,6 +393,8 @@ function main() {
         },
       ],
       seriesIds: SERIES,
+      pcePriceSeries: { ...PCE_PRICE_MONTHLY, ...PCE_PRICE_QUARTERLY },
+      pceExpenditureSeries: PCE_EXPENDITURE,
       relativeImportanceByDec: RI_BY_DEC,
       update:
         "Refresh CSVs in data/fred and data/shapiro-*.csv, then run npm run data:inflation",

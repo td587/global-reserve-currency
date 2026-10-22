@@ -4,6 +4,9 @@ import {
   buildRatesObservations,
   fredCsvUrl,
   INFLATION_SERIES_IDS,
+  PCE_EXPENDITURE_IDS,
+  PCE_PRICE_MONTHLY_IDS,
+  PCE_PRICE_QUARTERLY_IDS,
   RATES_SERIES_IDS,
   type ShapiroMap,
 } from "@/lib/fred-pipeline";
@@ -77,7 +80,42 @@ export async function POST() {
     ) as Record<keyof typeof INFLATION_SERIES_IDS, string>;
 
     const shapiro = shapiroFromEmbedded();
-    const observations = buildInflationObservations(inflationCsv, shapiro);
+
+    async function fetchGroup<T extends Record<string, string>>(ids: T) {
+      const entries = await Promise.all(
+        (Object.keys(ids) as Array<keyof T>).map(async (key) => {
+          const id = ids[key] as string;
+          try {
+            return [key, await fetchFredCsv(id)] as const;
+          } catch (e) {
+            errors.push(`${id}: ${e instanceof Error ? e.message : String(e)}`);
+            return null;
+          }
+        })
+      );
+      if (entries.some((e) => e == null)) return null;
+      return Object.fromEntries(entries.filter(Boolean) as Array<[string, string]>) as {
+        [K in keyof T]: string;
+      };
+    }
+
+    const pceMonthly = await fetchGroup(PCE_PRICE_MONTHLY_IDS);
+    const pceQuarterly = await fetchGroup(PCE_PRICE_QUARTERLY_IDS);
+    const pceExp = await fetchGroup(PCE_EXPENDITURE_IDS);
+    const pceCsv =
+      pceMonthly && pceQuarterly && pceExp
+        ? {
+            monthly: pceMonthly,
+            quarterly: pceQuarterly,
+            expenditure: pceExp,
+          }
+        : null;
+
+    const observations = buildInflationObservations(
+      inflationCsv,
+      shapiro,
+      pceCsv
+    );
 
     const ratesEntries = await Promise.all(
       (

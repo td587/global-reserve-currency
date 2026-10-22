@@ -1,4 +1,9 @@
 import series from "@/data/inflation-series.json";
+import type {
+  PceContributionId,
+  PceContributionState,
+  PceOverlayState,
+} from "@/lib/pce-categories";
 import {
   CPI_SHOCK_IDS,
   type CpiShockId,
@@ -16,6 +21,8 @@ export type ChartPoint = {
   removedPp: number;
   headlinePce?: number | null;
   corePce?: number | null;
+  /** PCE category y/y overlays keyed by category id */
+  pceCat?: Record<string, number | null>;
 };
 
 export const inflationMeta = series.meta;
@@ -45,9 +52,15 @@ function contributionFor(obs: Observation, id: CpiShockId): number {
   return v == null ? 0 : v;
 }
 
+function pceContribFor(obs: Observation, id: PceContributionId): number {
+  const v = obs.pceContributions?.[id];
+  return v == null ? 0 : v;
+}
+
 /**
- * CPI mode: counterfactual = headline − Σ(OFF contributions).
- * PCE + demand OFF: counterfactual = PCE y/y − Shapiro demand contribution.
+ * CPI mode: counterfactual = headline − Σ(OFF CPI contributions).
+ * PCE mode: counterfactual = PCE y/y − Σ(OFF PCE durables/ND/services contrib)
+ *           − Shapiro demand if demand OFF.
  */
 export function buildChartSeries(
   state: ShockState,
@@ -55,16 +68,20 @@ export function buildChartSeries(
     start?: string;
     mode?: "cpi" | "pce";
     observations?: Observation[];
+    pceContribState?: PceContributionState;
   }
 ): ChartPoint[] {
   const start = opts?.start ?? "2020-01";
   const mode = opts?.mode ?? "cpi";
   const rows = opts?.observations ?? observations;
   const removedCpi = CPI_SHOCK_IDS.filter((id) => !state[id]);
+  const pceContribState = opts?.pceContribState;
 
   return rows
     .filter((o) => o.date >= start)
     .map((o) => {
+      const pceCat = o.pceCategories ?? undefined;
+
       if (mode === "pce") {
         const actual = o.pceYoy;
         if (actual == null) {
@@ -76,11 +93,17 @@ export function buildChartSeries(
             removedPp: 0,
             headlinePce: o.pceYoy,
             corePce: o.corePceYoy,
+            pceCat,
           };
         }
         let removed = 0;
         if (!state.demandPce && o.shapiro?.demand != null) {
           removed += o.shapiro.demand;
+        }
+        if (pceContribState) {
+          for (const id of ["durables", "nondurables", "services"] as const) {
+            if (!pceContribState[id]) removed += pceContribFor(o, id);
+          }
         }
         return {
           date: o.date,
@@ -90,6 +113,7 @@ export function buildChartSeries(
           removedPp: Math.round(removed * 10) / 10,
           headlinePce: o.pceYoy,
           corePce: o.corePceYoy,
+          pceCat,
         };
       }
 
@@ -106,6 +130,7 @@ export function buildChartSeries(
         removedPp: Math.round(removed * 10) / 10,
         headlinePce: o.pceYoy,
         corePce: o.corePceYoy,
+        pceCat,
       };
     })
     .filter((p) => Number.isFinite(p.actual));
@@ -114,12 +139,14 @@ export function buildChartSeries(
 export function latestSnapshot(
   state: ShockState,
   mode: "cpi" | "pce",
-  obs?: Observation[]
+  obs?: Observation[],
+  pceContribState?: PceContributionState
 ) {
   const pts = buildChartSeries(state, {
     mode,
     start: "2020-01",
     observations: obs,
+    pceContribState,
   });
   const last = pts.at(-1);
   const peak = pts.reduce(
@@ -129,14 +156,53 @@ export function latestSnapshot(
   return { last, peak };
 }
 
-export function anyRemoved(state: ShockState, mode: "cpi" | "pce") {
-  if (mode === "pce") return !state.demandPce;
+export function anyRemoved(
+  state: ShockState,
+  mode: "cpi" | "pce",
+  pceContribState?: PceContributionState
+) {
+  if (mode === "pce") {
+    const demandOff = !state.demandPce;
+    const partOff =
+      pceContribState != null &&
+      (["durables", "nondurables", "services"] as const).some(
+        (id) => !pceContribState[id]
+      );
+    return demandOff || partOff;
+  }
   return CPI_SHOCK_IDS.some((id) => !state[id]);
 }
 
-export function removedLabels(state: ShockState, mode: "cpi" | "pce") {
+export function removedLabels(
+  state: ShockState,
+  mode: "cpi" | "pce",
+  pceContribState?: PceContributionState
+) {
   if (mode === "pce") {
-    return state.demandPce ? [] : (["demandPce"] as ShockId[]);
+    const labels: string[] = [];
+    if (!state.demandPce) labels.push("demandPce");
+    if (pceContribState) {
+      for (const id of ["durables", "nondurables", "services"] as const) {
+        if (!pceContribState[id]) labels.push(id);
+      }
+    }
+    return labels as ShockId[];
   }
   return CPI_SHOCK_IDS.filter((id) => !state[id]);
+}
+
+/** Flatten category overlays onto chart rows for Recharts dataKeys */
+export function withPceOverlayKeys(
+  points: ChartPoint[],
+  overlayState: PceOverlayState
+): Array<Record<string, unknown>> {
+  return points.map((p) => {
+    const row: Record<string, unknown> = { ...p };
+    if (p.pceCat) {
+      for (const [id, on] of Object.entries(overlayState)) {
+        if (on) row[`pce_${id}`] = p.pceCat[id] ?? null;
+      }
+    }
+    return row;
+  });
 }

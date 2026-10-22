@@ -17,6 +17,32 @@ export const INFLATION_SERIES_IDS = {
   corePce: "PCEPILFE",
 } as const;
 
+/** Monthly BEA/FRED PCE chain-type price indexes */
+export const PCE_PRICE_MONTHLY_IDS = {
+  goods: "DGDSRG3M086SBEA",
+  durables: "DDURRG3M086SBEA",
+  nondurables: "DNDGRG3M086SBEA",
+  services: "DSERRG3M086SBEA",
+  food: "DFXARG3M086SBEA",
+  energy: "DNRGRG3M086SBEA",
+} as const;
+
+/** Quarterly BEA/FRED PCE chain-type price indexes (expanded to months) */
+export const PCE_PRICE_QUARTERLY_IDS = {
+  housingUtilities: "DHUTRG3Q086SBEA",
+  healthCare: "DHLCRG3Q086SBEA",
+  motorVehicles: "DMOTRG3Q086SBEA",
+  transportServices: "DTRSRG3Q086SBEA",
+} as const;
+
+/** Current-dollar PCE for share-based contribution approximation */
+export const PCE_EXPENDITURE_IDS = {
+  total: "PCE",
+  durables: "PCEDG",
+  nondurables: "PCEND",
+  services: "PCES",
+} as const;
+
 export const RATES_SERIES_IDS = {
   tips5y: "DFII5",
   tips10y: "DFII10",
@@ -125,6 +151,27 @@ export function parseFredCsvText(text: string): Map<string, number> {
   return map;
 }
 
+/** Expand quarterly FRED (dated at quarter start) across three months. */
+export function parseFredQuarterlyTextToMonthly(text: string): Map<string, number> {
+  const raw = parseFredCsvText(text);
+  const out = new Map<string, number>();
+  for (const [ym, v] of raw) {
+    const [y, m] = ym.split("-").map(Number);
+    for (let i = 0; i < 3; i++) {
+      const mm = m + i;
+      if (mm > 12) break;
+      out.set(`${y}-${String(mm).padStart(2, "0")}`, v);
+    }
+  }
+  return out;
+}
+
+function lagYm(ym: string, monthsBack: number) {
+  const [y, m] = ym.split("-").map(Number);
+  const d = new Date(Date.UTC(y, m - 1 - monthsBack, 1));
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
 /** Daily FRED → monthly average */
 export function parseFredDailyToMonthly(text: string): Map<string, number> {
   const lines = text.trim().split(/\r?\n/).slice(1);
@@ -223,6 +270,12 @@ export type BuiltObservation = {
     usedVehicles: number | null;
     airfares: number | null;
   };
+  pceCategories?: Record<string, number | null>;
+  pceContributions?: {
+    durables: number | null;
+    nondurables: number | null;
+    services: number | null;
+  };
   shapiro: {
     demand: number | null;
     supply: number | null;
@@ -231,9 +284,30 @@ export type BuiltObservation = {
   riVintage: number | undefined;
 };
 
+export type PceCsvBundle = {
+  monthly: Record<keyof typeof PCE_PRICE_MONTHLY_IDS, string>;
+  quarterly: Record<keyof typeof PCE_PRICE_QUARTERLY_IDS, string>;
+  expenditure: Record<keyof typeof PCE_EXPENDITURE_IDS, string>;
+};
+
+function pceShareContrib(
+  expMap: Map<string, number>,
+  totalMap: Map<string, number>,
+  priceMap: Map<string, number>,
+  ym: string
+) {
+  const baseYm = lagYm(ym, 12);
+  const exp = expMap.get(baseYm);
+  const tot = totalMap.get(baseYm);
+  const py = yoy(priceMap, ym);
+  if (exp == null || tot == null || tot === 0 || py == null) return null;
+  return (exp / tot) * py;
+}
+
 export function buildInflationObservations(
   csvByKey: Record<keyof typeof INFLATION_SERIES_IDS, string>,
-  shapiro: ShapiroMap | null
+  shapiro: ShapiroMap | null,
+  pceCsv?: PceCsvBundle | null
 ): BuiltObservation[] {
   const maps = {} as Record<
     keyof typeof INFLATION_SERIES_IDS,
@@ -243,6 +317,26 @@ export function buildInflationObservations(
     keyof typeof INFLATION_SERIES_IDS
   >) {
     maps[key] = parseFredCsvText(csvByKey[key]);
+  }
+
+  const pcePrice: Record<string, Map<string, number>> = {};
+  const pceExp: Record<string, Map<string, number>> = {};
+  if (pceCsv) {
+    for (const key of Object.keys(PCE_PRICE_MONTHLY_IDS) as Array<
+      keyof typeof PCE_PRICE_MONTHLY_IDS
+    >) {
+      pcePrice[key] = parseFredCsvText(pceCsv.monthly[key]);
+    }
+    for (const key of Object.keys(PCE_PRICE_QUARTERLY_IDS) as Array<
+      keyof typeof PCE_PRICE_QUARTERLY_IDS
+    >) {
+      pcePrice[key] = parseFredQuarterlyTextToMonthly(pceCsv.quarterly[key]);
+    }
+    for (const key of Object.keys(PCE_EXPENDITURE_IDS) as Array<
+      keyof typeof PCE_EXPENDITURE_IDS
+    >) {
+      pceExp[key] = parseFredCsvText(pceCsv.expenditure[key]);
+    }
   }
 
   const months = [...maps.headline.keys()]
@@ -280,6 +374,45 @@ export function buildInflationObservations(
     const corePceYoy = yoy(maps.corePce, ym);
     const coreCpiYoy = yoy(maps.coreCpi, ym);
 
+    const pceCategories: Record<string, number | null> = {};
+    for (const key of Object.keys(pcePrice)) {
+      const v = yoy(pcePrice[key], ym);
+      pceCategories[key] = v == null ? null : round1(v);
+    }
+
+    let pceContributions:
+      | {
+          durables: number | null;
+          nondurables: number | null;
+          services: number | null;
+        }
+      | undefined;
+    if (pceCsv && pceExp.total) {
+      const cDur = pceShareContrib(
+        pceExp.durables,
+        pceExp.total,
+        pcePrice.durables,
+        ym
+      );
+      const cNd = pceShareContrib(
+        pceExp.nondurables,
+        pceExp.total,
+        pcePrice.nondurables,
+        ym
+      );
+      const cSvcPce = pceShareContrib(
+        pceExp.services,
+        pceExp.total,
+        pcePrice.services,
+        ym
+      );
+      pceContributions = {
+        durables: cDur == null ? null : round1(cDur),
+        nondurables: cNd == null ? null : round1(cNd),
+        services: cSvcPce == null ? null : round1(cSvcPce),
+      };
+    }
+
     observations.push({
       date: ym,
       headlineYoy: round1(headlineYoy),
@@ -303,6 +436,10 @@ export function buildInflationObservations(
         usedVehicles: usedYoy == null ? null : round1(usedYoy),
         airfares: airYoy == null ? null : round1(airYoy),
       },
+      pceCategories: Object.keys(pceCategories).length
+        ? pceCategories
+        : undefined,
+      pceContributions,
       shapiro: shap
         ? {
             demand: shap.demand == null ? null : round1(shap.demand),
