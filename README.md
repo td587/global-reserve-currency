@@ -31,7 +31,7 @@ Each factor starts **ON** (included). Flip **OFF** to **remove that component’
 ## Also in the deck
 
 - **Rates panel:** toggle 5y/10y TIPS (`DFII5`/`DFII10`), 5y breakeven (`T5YIE`), 5y5y (`T5YIFR`), 5y/10y UST (`DGS5`/`DGS10`).
-- **PCE overlays** on the explorer: Headline PCE / Core PCE show-hide.
+- **PCE overlays** on the explorer: Headline PCE (`PCEPI`) / Core PCE (`PCEPILFE`) show-hide, plus BEA Table 2.4.4 category toggles (goods, durables, nondurables, services, food, energy, housing, health, vehicles, transport).
 - **Hyperscalers & neoclouds:** SEC-cited capex/commitments, ratings, CDS gaps.
 
 ## Data refresh
