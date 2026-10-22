@@ -1,0 +1,358 @@
+{
+  "meta": {
+    "asOf": "2026-10",
+    "disclaimer": "Figures are from public SEC filings, rating-agency press, or named news sources. CDS is not available as a free FRED series for these names — press snapshots are labeled point-in-time and may be stale.",
+    "cdsGap": "No public FRED single-name CDS for MSFT/AMZN/GOOGL/META/ORCL/CRWV. Where press cites a CDS level, we show it as a dated snapshot only."
+  },
+  "hyperscalers": [
+    {
+      "id": "msft",
+      "name": "Microsoft",
+      "ticker": "MSFT",
+      "role": "Hyperscaler",
+      "capex": [
+        {
+          "period": "FY2024 (ye Jun 2024)",
+          "valueUsdB": 44.5,
+          "metric": "Additions to property and equipment (cash flow)",
+          "source": "Microsoft Form 10-K FY2025 cash-flow comparative",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        },
+        {
+          "period": "FY2025 (ye Jun 2025)",
+          "valueUsdB": 64.6,
+          "metric": "Additions to property and equipment (cash flow)",
+          "source": "Microsoft Form 10-K FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        }
+      ],
+      "commitments": [
+        {
+          "label": "Construction commitments (buildings / improvements)",
+          "valueUsdB": 32.1,
+          "asOf": "2025-06-30",
+          "source": "Microsoft Form 10-K FY2025 — PP&E notes",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+        }
+      ],
+      "rating": {
+        "agency": "S&P",
+        "rating": "AAA",
+        "note": "Widely reported IG rating for Microsoft senior unsecured; confirm current outlook in S&P before presenting.",
+        "source": "S&P Global Ratings / market compilations (e.g. SEI IG note citing S&P as of Nov 2025)",
+        "url": "https://www.seic.com/sites/default/files/2025-12/SEI_big_techs_ai_debt_US_2025.pdf"
+      },
+      "cds": {
+        "available": false,
+        "note": "No free public time series on FRED for MSFT CDS."
+      }
+    },
+    {
+      "id": "amzn",
+      "name": "Amazon",
+      "ticker": "AMZN",
+      "role": "Hyperscaler",
+      "capex": [
+        {
+          "period": "CY2024",
+          "valueUsdB": 83.0,
+          "metric": "Purchases of property and equipment (cash flow / company disclosures)",
+          "source": "Amazon filings / earnings commentary compiled in primary-source capex trackers; verify in latest 10-K cash flow",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001018724&type=10-K"
+        }
+      ],
+      "commitments": [
+        {
+          "label": "Total principal contractual commitments",
+          "valueUsdB": 333.0,
+          "asOf": "2024-12-31",
+          "source": "Amazon Form 10-K YE2024 — Commitments and Contingencies",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/R31.htm"
+        },
+        {
+          "label": "Leases not yet commenced",
+          "valueUsdB": 61.6,
+          "asOf": "2024-12-31",
+          "source": "Amazon Form 10-K YE2024 commitments table",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/R31.htm"
+        },
+        {
+          "label": "Unconditional purchase obligations",
+          "valueUsdB": 50.4,
+          "asOf": "2024-12-31",
+          "source": "Amazon Form 10-K YE2024 commitments table",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/R31.htm"
+        }
+      ],
+      "rating": {
+        "agency": "S&P",
+        "rating": "AA",
+        "note": "As cited in market IG compilations (Nov 2025); confirm live S&P page before class.",
+        "source": "SEI / FactSet–Goldman compilation citing S&P",
+        "url": "https://www.seic.com/sites/default/files/2025-12/SEI_big_techs_ai_debt_US_2025.pdf"
+      },
+      "cds": {
+        "available": false,
+        "note": "No free public FRED CDS series."
+      }
+    },
+    {
+      "id": "googl",
+      "name": "Alphabet",
+      "ticker": "GOOGL",
+      "role": "Hyperscaler",
+      "capex": [
+        {
+          "period": "CY2024",
+          "valueUsdB": 52.5,
+          "metric": "Purchases of property and equipment",
+          "source": "Alphabet cash-flow disclosures (10-K / earnings)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001652044&type=10-K"
+        },
+        {
+          "period": "CY2025",
+          "valueUsdB": 91.4,
+          "metric": "Purchases of property and equipment (company Q4 2025 release / cash flow)",
+          "source": "Alphabet Q4 2025 earnings materials — verify in 10-K when filed",
+          "url": "https://abc.xyz/investor/"
+        }
+      ],
+      "commitments": [],
+      "rating": {
+        "agency": "S&P",
+        "rating": "AA+",
+        "note": "As cited in market IG compilations (Nov 2025).",
+        "source": "SEI / FactSet–Goldman compilation citing S&P",
+        "url": "https://www.seic.com/sites/default/files/2025-12/SEI_big_techs_ai_debt_US_2025.pdf"
+      },
+      "cds": {
+        "available": false,
+        "note": "No free public FRED CDS series."
+      }
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "ticker": "META",
+      "role": "Hyperscaler",
+      "capex": [
+        {
+          "period": "CY2024",
+          "valueUsdB": 37.3,
+          "metric": "Capex incl. finance-lease principal (Meta definition)",
+          "source": "Meta earnings / 10-K — note Meta’s definition differs from peers",
+          "url": "https://investor.atmeta.com/"
+        },
+        {
+          "period": "CY2025",
+          "valueUsdB": 72.2,
+          "metric": "Capex incl. finance-lease principal (Meta definition)",
+          "source": "Meta Q4 2025 release (SEC Ex 99.1) — verify before presenting",
+          "url": "https://investor.atmeta.com/"
+        }
+      ],
+      "commitments": [],
+      "rating": {
+        "agency": "S&P",
+        "rating": "AA-",
+        "note": "As cited in market IG compilations (Nov 2025).",
+        "source": "SEI / FactSet–Goldman compilation citing S&P",
+        "url": "https://www.seic.com/sites/default/files/2025-12/SEI_big_techs_ai_debt_US_2025.pdf"
+      },
+      "cds": {
+        "available": false,
+        "note": "No free public FRED CDS series."
+      }
+    },
+    {
+      "id": "orcl",
+      "name": "Oracle",
+      "ticker": "ORCL",
+      "role": "Hyperscaler (cloud / AI infra)",
+      "capex": [
+        {
+          "period": "FY2025 run-rate (company disclosures)",
+          "valueUsdB": null,
+          "metric": "Elevated AI/cloud capex — cite latest Oracle earnings for the class date",
+          "source": "Oracle investor releases (fiscal year ends May)",
+          "url": "https://investor.oracle.com/"
+        }
+      ],
+      "commitments": [],
+      "rating": {
+        "agency": "S&P",
+        "rating": "BBB",
+        "note": "Lower IG than mega-cap peers; leverage higher (market compilations Nov 2025).",
+        "source": "SEI / FactSet–Goldman compilation citing S&P",
+        "url": "https://www.seic.com/sites/default/files/2025-12/SEI_big_techs_ai_debt_US_2025.pdf"
+      },
+      "cds": {
+        "available": false,
+        "note": "No free public FRED CDS series."
+      }
+    }
+  ],
+  "neoclouds": [
+    {
+      "id": "crwv",
+      "name": "CoreWeave",
+      "ticker": "CRWV",
+      "role": "Neocloud (GPU cloud)",
+      "metrics": [
+        {
+          "label": "Remaining performance obligations (RPO)",
+          "value": "$60.7B",
+          "asOf": "2025-12-31",
+          "source": "CoreWeave Form 10-K YE2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm"
+        },
+        {
+          "label": "RPO prior year",
+          "value": "$15.1B",
+          "asOf": "2024-12-31",
+          "source": "CoreWeave Form 10-K YE2025 comparative",
+          "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm"
+        },
+        {
+          "label": "Active power",
+          "value": ">850 MW (43 data centers)",
+          "asOf": "2025-12-31",
+          "source": "CoreWeave Form 10-K YE2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm"
+        },
+        {
+          "label": "Contracted power capacity",
+          "value": "~3.1 GW",
+          "asOf": "2025-12-31",
+          "source": "CoreWeave Form 10-K YE2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm"
+        },
+        {
+          "label": "Total indebtedness",
+          "value": "$21.6B",
+          "asOf": "2025-12-31",
+          "source": "CoreWeave Form 10-K YE2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm"
+        },
+        {
+          "label": "Operating lease liabilities",
+          "value": "$8.2B",
+          "asOf": "2025-12-31",
+          "source": "CoreWeave Form 10-K YE2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm"
+        },
+        {
+          "label": "Top customer concentration",
+          "value": "~67% of 2025 revenue from Microsoft",
+          "asOf": "2025",
+          "source": "CoreWeave Form 10-K YE2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm"
+        }
+      ],
+      "rating": {
+        "agency": "S&P / Fitch",
+        "rating": "S&P B+ (issuer); Fitch BB- IDR (May 2025 first-time)",
+        "note": "High-yield / speculative grade — far below hyperscaler IG.",
+        "source": "S&P and Fitch rating actions reported May 19, 2025",
+        "url": "https://www.investing.com/news/stock-market-news/coreweave-receives-b-issuer-credit-rating-at-sp-15-billion-debt-rated-b-93CH-4053492"
+      },
+      "cds": {
+        "available": "press-snapshot",
+        "snapshot": "~1,038 bps 5y CDS (nearly); traded above ~1,140 bps intraday",
+        "asOf": "2026-10-15",
+        "note": "Not a FRED series — CNBC market report. Treat as a teaching snapshot of stress, not a live feed.",
+        "source": "CNBC, Oct 15, 2026",
+        "url": "https://www.cnbc.com/2026/10/15/coreweave-credit-default-swaps-hit-distress-levels-as-investors-sour-on-ai-debt.html"
+      }
+    },
+    {
+      "id": "lambda",
+      "name": "Lambda",
+      "ticker": "Private",
+      "role": "Neocloud (GPU cloud)",
+      "metrics": [
+        {
+          "label": "Public SEC / rating coverage",
+          "value": "Limited — private company",
+          "asOf": "2026-10",
+          "source": "No comparable 10-K commitments table in this build",
+          "url": "https://lambdalabs.com/"
+        }
+      ],
+      "rating": {
+        "agency": "—",
+        "rating": "Not publicly rated (in this dataset)",
+        "note": "Omit fabricated ratings.",
+        "source": "n/a",
+        "url": ""
+      },
+      "cds": {
+        "available": false,
+        "note": "No public CDS."
+      }
+    },
+    {
+      "id": "crusoe",
+      "name": "Crusoe",
+      "ticker": "Private",
+      "role": "Neocloud / energy-linked compute",
+      "metrics": [
+        {
+          "label": "Public SEC / rating coverage",
+          "value": "Limited — private company",
+          "asOf": "2026-10",
+          "source": "No comparable public IG rating in this build",
+          "url": "https://www.crusoe.ai/"
+        }
+      ],
+      "rating": {
+        "agency": "—",
+        "rating": "Not publicly rated (in this dataset)",
+        "note": "Omit fabricated ratings.",
+        "source": "n/a",
+        "url": ""
+      },
+      "cds": {
+        "available": false,
+        "note": "No public CDS."
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2023–24",
+      "title": "Hyperscaler AI capex re-acceleration",
+      "detail": "MSFT/AMZN/GOOGL/META step up datacenter and GPU-related PP&E after the generative-AI demand shock."
+    },
+    {
+      "date": "2024-12-31",
+      "title": "Amazon discloses $333B contractual commitments",
+      "detail": "Includes leases not yet commenced (~$62B) and purchase obligations (~$50B) — balance-sheet-adjacent spend visibility."
+    },
+    {
+      "date": "2025-03",
+      "title": "CoreWeave IPO window",
+      "detail": "Public listing brings RPO, debt, and customer concentration into SEC disclosures."
+    },
+    {
+      "date": "2025-05",
+      "title": "CoreWeave first-time ratings",
+      "detail": "S&P B+ issuer / Fitch BB- IDR around $1.5B notes — speculative-grade funding model."
+    },
+    {
+      "date": "2025-06-30",
+      "title": "Microsoft FY2025 PP&E additions $64.6B",
+      "detail": "Cash-flow ‘Additions to property and equipment’; +$32.1B construction commitments noted."
+    },
+    {
+      "date": "2025-12-31",
+      "title": "CoreWeave RPO $60.7B; >850 MW active",
+      "detail": "Take-or-pay backlog and power footprint in YE2025 10-K; ~67% revenue from Microsoft."
+    },
+    {
+      "date": "2026-10",
+      "title": "Neocloud CDS stress (press)",
+      "detail": "CoreWeave 5y CDS reported near distress thresholds — illustrates credit-market feedback on AI debt (not a FRED series)."
+    }
+  ]
+}

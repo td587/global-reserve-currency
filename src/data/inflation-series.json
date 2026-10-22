@@ -1,0 +1,5388 @@
+{
+  "meta": {
+    "builtAt": "2026-10-22",
+    "window": {
+      "start": "2019-01",
+      "end": "2026-09"
+    },
+    "methodology": "Approximate CPI y/y contribution = (BLS Dec relative importance at start of window / 100) × component y/y. Approximate PCE contribution for durables/nondurables/services = (category current-dollar share at t−12) × category price y/y. Shapiro demand/supply are SF Fed PCE y/y contributions.",
+    "sources": [
+      {
+        "name": "FRED / BLS CPI",
+        "series": [
+          "CPIAUCSL",
+          "CPIUFDSL",
+          "CPIENGSL",
+          "CUSR0000SAH1",
+          "CUSR0000SETA02",
+          "CUSR0000SETG01",
+          "CUSR0000SACL1E",
+          "CUSR0000SASLE",
+          "CPILFESL",
+          "PCEPI",
+          "PCEPILFE"
+        ],
+        "url": "https://fred.stlouisfed.org/"
+      },
+      {
+        "name": "FRED / BEA PCE price indexes (Table 2.4.4)",
+        "series": [
+          "DGDSRG3M086SBEA",
+          "DDURRG3M086SBEA",
+          "DNDGRG3M086SBEA",
+          "DSERRG3M086SBEA",
+          "DFXARG3M086SBEA",
+          "DNRGRG3M086SBEA",
+          "DHUTRG3Q086SBEA",
+          "DHLCRG3Q086SBEA",
+          "DMOTRG3Q086SBEA",
+          "DTRSRG3Q086SBEA",
+          "DCLORG3Q086SBEA",
+          "DREQRG3Q086SBEA",
+          "DRCARG3Q086SBEA",
+          "DFSARG3Q086SBEA",
+          "DIFSRG3Q086SBEA",
+          "DOTSRG3Q086SBEA"
+        ],
+        "url": "https://fred.stlouisfed.org/release/tables?eid=44067&rid=53"
+      },
+      {
+        "name": "FRED / BEA PCE current-dollar (shares)",
+        "series": [
+          "PCE",
+          "PCEDG",
+          "PCEND",
+          "PCES"
+        ],
+        "url": "https://fred.stlouisfed.org/"
+      },
+      {
+        "name": "BLS Relative Importance",
+        "url": "https://www.bls.gov/cpi/tables/relative-importance/"
+      },
+      {
+        "name": "SF Fed Shapiro supply/demand PCE",
+        "url": "https://www.frbsf.org/research-and-insights/data-and-indicators/supply-and-demand-driven-pce-inflation/"
+      }
+    ],
+    "seriesIds": {
+      "headline": "CPIAUCSL",
+      "food": "CPIUFDSL",
+      "energy": "CPIENGSL",
+      "shelter": "CUSR0000SAH1",
+      "usedVehicles": "CUSR0000SETA02",
+      "airfares": "CUSR0000SETG01",
+      "coreGoods": "CUSR0000SACL1E",
+      "servicesExEnergy": "CUSR0000SASLE",
+      "coreCpi": "CPILFESL",
+      "pce": "PCEPI",
+      "corePce": "PCEPILFE"
+    },
+    "pcePriceSeries": {
+      "goods": "DGDSRG3M086SBEA",
+      "durables": "DDURRG3M086SBEA",
+      "nondurables": "DNDGRG3M086SBEA",
+      "services": "DSERRG3M086SBEA",
+      "food": "DFXARG3M086SBEA",
+      "energy": "DNRGRG3M086SBEA",
+      "housingUtilities": "DHUTRG3Q086SBEA",
+      "healthCare": "DHLCRG3Q086SBEA",
+      "motorVehicles": "DMOTRG3Q086SBEA",
+      "transportServices": "DTRSRG3Q086SBEA",
+      "apparel": "DCLORG3Q086SBEA",
+      "recreationGoods": "DREQRG3Q086SBEA",
+      "recreationServices": "DRCARG3Q086SBEA",
+      "foodServices": "DFSARG3Q086SBEA",
+      "financialServices": "DIFSRG3Q086SBEA",
+      "otherServices": "DOTSRG3Q086SBEA"
+    },
+    "techOverlaySeries": {
+      "cpiComputers": "CUSR0000SEEE01",
+      "cpiItHardware": "CUSR0000SEEE",
+      "ppiSemiconductors": "PCU334413334413",
+      "ppiElectronicComponents": "WPU1178"
+    },
+    "pceExpenditureSeries": {
+      "total": "PCE",
+      "durables": "PCEDG",
+      "nondurables": "PCEND",
+      "services": "PCES"
+    },
+    "relativeImportanceByDec": {
+      "2018": {
+        "food": 13.384,
+        "energy": 7.129,
+        "shelter": 32.843,
+        "usedVehicles": 2.213,
+        "airfares": 0.759,
+        "servicesExEnergy": 58.5,
+        "coreGoods": 20.3
+      },
+      "2019": {
+        "food": 13.869,
+        "energy": 6.706,
+        "shelter": 33.311,
+        "usedVehicles": 2.341,
+        "airfares": 0.726,
+        "servicesExEnergy": 59,
+        "coreGoods": 20.5
+      },
+      "2020": {
+        "food": 14.094,
+        "energy": 6.043,
+        "shelter": 33.532,
+        "usedVehicles": 2.787,
+        "airfares": 0.553,
+        "servicesExEnergy": 60,
+        "coreGoods": 21
+      },
+      "2021": {
+        "food": 13.355,
+        "energy": 7.348,
+        "shelter": 32.943,
+        "usedVehicles": 3.513,
+        "airfares": 0.603,
+        "servicesExEnergy": 57.5,
+        "coreGoods": 21.5
+      },
+      "2022": {
+        "food": 13.528,
+        "energy": 6.979,
+        "shelter": 34.412,
+        "usedVehicles": 2.752,
+        "airfares": 0.68,
+        "servicesExEnergy": 57,
+        "coreGoods": 21
+      },
+      "2023": {
+        "food": 13.384,
+        "energy": 6.689,
+        "shelter": 36.212,
+        "usedVehicles": 2.425,
+        "airfares": 0.655,
+        "servicesExEnergy": 58,
+        "coreGoods": 20
+      },
+      "2024": {
+        "food": 13.3,
+        "energy": 6.5,
+        "shelter": 36.5,
+        "usedVehicles": 2.3,
+        "airfares": 0.65,
+        "servicesExEnergy": 58.5,
+        "coreGoods": 19.5
+      }
+    },
+    "update": "Refresh CSVs in data/fred and data/shapiro-*.csv, then run npm run data:inflation"
+  },
+  "observations": [
+    {
+      "date": "2019-01",
+      "headlineYoy": 1.5,
+      "coreCpiYoy": 2.2,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.8,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.4,
+        "shelter": 1.1,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 1.6,
+        "energy": -5.8,
+        "shelter": 3.2,
+        "usedVehicles": 2.6,
+        "airfares": -1.6
+      },
+      "pceCategories": {
+        "goods": -0.8,
+        "durables": -0.7,
+        "nondurables": -0.9,
+        "services": 2.5,
+        "food": 0.8,
+        "energy": -6,
+        "housingUtilities": 3,
+        "healthCare": 1.8,
+        "motorVehicles": 1.3,
+        "transportServices": 2.6,
+        "apparel": -1,
+        "recreationGoods": -3.1,
+        "recreationServices": 2,
+        "foodServices": 2.7,
+        "financialServices": 2.8,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.4,
+        "cpiItHardware": -1,
+        "ppiSemiconductors": -6.3,
+        "ppiElectronicComponents": -1.5
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.2,
+        "services": 1.7
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-02",
+      "headlineYoy": 1.5,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.4,
+        "shelter": 1.1,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 2,
+        "energy": -5.4,
+        "shelter": 3.4,
+        "usedVehicles": 2.6,
+        "airfares": -0.5
+      },
+      "pceCategories": {
+        "goods": -0.7,
+        "durables": -0.5,
+        "nondurables": -0.8,
+        "services": 2.4,
+        "food": 1.4,
+        "energy": -5.6,
+        "housingUtilities": 3,
+        "healthCare": 1.8,
+        "motorVehicles": 1.3,
+        "transportServices": 2.6,
+        "apparel": -1,
+        "recreationGoods": -3.1,
+        "recreationServices": 2,
+        "foodServices": 2.7,
+        "financialServices": 2.8,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.9,
+        "cpiItHardware": -0.5,
+        "ppiSemiconductors": -7.1,
+        "ppiElectronicComponents": -1.7
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.2,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-03",
+      "headlineYoy": 1.9,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 2.1,
+        "energy": -0.4,
+        "shelter": 3.4,
+        "usedVehicles": 2.2,
+        "airfares": -2
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -0.7,
+        "nondurables": 0.2,
+        "services": 2.3,
+        "food": 1.4,
+        "energy": -0.4,
+        "housingUtilities": 3,
+        "healthCare": 1.8,
+        "motorVehicles": 1.3,
+        "transportServices": 2.6,
+        "apparel": -1,
+        "recreationGoods": -3.1,
+        "recreationServices": 2,
+        "foodServices": 2.7,
+        "financialServices": 2.8,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.3,
+        "cpiItHardware": -0.7,
+        "ppiSemiconductors": -6.9,
+        "ppiElectronicComponents": -1.8
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-04",
+      "headlineYoy": 2,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.6,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.2,
+        "energy": 0.1,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": 1.5,
+        "shelter": 3.4,
+        "usedVehicles": 1.5,
+        "airfares": -2.4
+      },
+      "pceCategories": {
+        "goods": -0.2,
+        "durables": -1.2,
+        "nondurables": 0.3,
+        "services": 2.4,
+        "food": 0.8,
+        "energy": 1.4,
+        "housingUtilities": 3.1,
+        "healthCare": 1.7,
+        "motorVehicles": 1,
+        "transportServices": 2.4,
+        "apparel": -2.5,
+        "recreationGoods": -3.7,
+        "recreationServices": 2.1,
+        "foodServices": 2.8,
+        "financialServices": 3,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -4.4,
+        "cpiItHardware": -0.3,
+        "ppiSemiconductors": -6.6,
+        "ppiElectronicComponents": -1.7
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.1,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-05",
+      "headlineYoy": 1.8,
+      "coreCpiYoy": 2,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 2,
+        "energy": -0.2,
+        "shelter": 3.3,
+        "usedVehicles": 0,
+        "airfares": -0.8
+      },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -1.1,
+        "nondurables": 0.1,
+        "services": 2.3,
+        "food": 1.3,
+        "energy": -0.2,
+        "housingUtilities": 3.1,
+        "healthCare": 1.7,
+        "motorVehicles": 1,
+        "transportServices": 2.4,
+        "apparel": -2.5,
+        "recreationGoods": -3.7,
+        "recreationServices": 2.1,
+        "foodServices": 2.8,
+        "financialServices": 3,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -4.9,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -6.6,
+        "ppiElectronicComponents": -1.5
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-06",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.2,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 1.9,
+        "energy": -2.7,
+        "shelter": 3.5,
+        "usedVehicles": 0.2,
+        "airfares": -0.3
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -0.4,
+        "nondurables": -0.5,
+        "services": 2.3,
+        "food": 1.1,
+        "energy": -2.8,
+        "housingUtilities": 3.1,
+        "healthCare": 1.7,
+        "motorVehicles": 1,
+        "transportServices": 2.4,
+        "apparel": -2.5,
+        "recreationGoods": -3.7,
+        "recreationServices": 2.1,
+        "foodServices": 2.8,
+        "financialServices": 3,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.9,
+        "cpiItHardware": -1.7,
+        "ppiSemiconductors": -6.3,
+        "ppiElectronicComponents": -1.1
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-07",
+      "headlineYoy": 1.8,
+      "coreCpiYoy": 2.2,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.1,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": -1.5,
+        "shelter": 3.5,
+        "usedVehicles": 0.4,
+        "airfares": 0.1
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -1.2,
+        "nondurables": 0,
+        "services": 2.3,
+        "food": 0.9,
+        "energy": -1.5,
+        "housingUtilities": 3.1,
+        "healthCare": 1.8,
+        "motorVehicles": 0.5,
+        "transportServices": 1.7,
+        "apparel": -0.1,
+        "recreationGoods": -4.4,
+        "recreationServices": 1.7,
+        "foodServices": 3,
+        "financialServices": 2.5,
+        "otherServices": 0.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.2,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -4.7,
+        "ppiElectronicComponents": -0.5
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-08",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 1.7,
+        "energy": -4,
+        "shelter": 3.4,
+        "usedVehicles": 0.4,
+        "airfares": 1.3
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -1.1,
+        "nondurables": -0.1,
+        "services": 2.3,
+        "food": 0.9,
+        "energy": -4,
+        "housingUtilities": 3.1,
+        "healthCare": 1.8,
+        "motorVehicles": 0.5,
+        "transportServices": 1.7,
+        "apparel": -0.1,
+        "recreationGoods": -4.4,
+        "recreationServices": 1.7,
+        "foodServices": 3,
+        "financialServices": 2.5,
+        "otherServices": 0.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.3,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -3,
+        "ppiElectronicComponents": 0.3
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-09",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.2,
+        "energy": -0.3,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": -4.9,
+        "shelter": 3.5,
+        "usedVehicles": 1.3,
+        "airfares": 2.2
+      },
+      "pceCategories": {
+        "goods": -0.7,
+        "durables": -0.8,
+        "nondurables": -0.6,
+        "services": 2.2,
+        "food": 0.8,
+        "energy": -4.9,
+        "housingUtilities": 3.1,
+        "healthCare": 1.8,
+        "motorVehicles": 0.5,
+        "transportServices": 1.7,
+        "apparel": -0.1,
+        "recreationGoods": -4.4,
+        "recreationServices": 1.7,
+        "foodServices": 3,
+        "financialServices": 2.5,
+        "otherServices": 0.9
+      },
+      "techCategories": {
+        "cpiComputers": -3.3,
+        "cpiItHardware": -1.9,
+        "ppiSemiconductors": -2.4,
+        "ppiElectronicComponents": -0.2
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.1,
+        "services": 1.5
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-10",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.1,
+        "energy": -4.8,
+        "shelter": 3.4,
+        "usedVehicles": 1.1,
+        "airfares": 2.9
+      },
+      "pceCategories": {
+        "goods": -0.7,
+        "durables": -0.9,
+        "nondurables": -0.6,
+        "services": 2.2,
+        "food": 1.1,
+        "energy": -4.9,
+        "housingUtilities": 3,
+        "healthCare": 1.9,
+        "motorVehicles": 0.5,
+        "transportServices": 1.4,
+        "apparel": -1.7,
+        "recreationGoods": -4.7,
+        "recreationServices": 2.3,
+        "foodServices": 2.7,
+        "financialServices": 1.6,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -4,
+        "cpiItHardware": -1.8,
+        "ppiSemiconductors": -2.4,
+        "ppiElectronicComponents": 0
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.1,
+        "services": 1.5
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-11",
+      "headlineYoy": 2.1,
+      "coreCpiYoy": 2.4,
+      "pceYoy": 1.4,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2,
+        "energy": -0.5,
+        "shelter": 3.3,
+        "usedVehicles": -0.1,
+        "airfares": 2.6
+      },
+      "pceCategories": {
+        "goods": -0.2,
+        "durables": -1.3,
+        "nondurables": 0.3,
+        "services": 2.1,
+        "food": 0.9,
+        "energy": -0.6,
+        "housingUtilities": 3,
+        "healthCare": 1.9,
+        "motorVehicles": 0.5,
+        "transportServices": 1.4,
+        "apparel": -1.7,
+        "recreationGoods": -4.7,
+        "recreationServices": 2.3,
+        "foodServices": 2.7,
+        "financialServices": 1.6,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -2.4,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -2.4,
+        "ppiElectronicComponents": -0.2
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.1,
+        "services": 1.4
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2019-12",
+      "headlineYoy": 2.3,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.6,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.2,
+        "energy": 0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": 3.5,
+        "shelter": 3.2,
+        "usedVehicles": -0.1,
+        "airfares": 3
+      },
+      "pceCategories": {
+        "goods": 0.4,
+        "durables": -1.7,
+        "nondurables": 1.5,
+        "services": 2.1,
+        "food": 0.7,
+        "energy": 3.8,
+        "housingUtilities": 3,
+        "healthCare": 1.9,
+        "motorVehicles": 0.5,
+        "transportServices": 1.4,
+        "apparel": -1.7,
+        "recreationGoods": -4.7,
+        "recreationServices": 2.3,
+        "foodServices": 2.7,
+        "financialServices": 1.6,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.3,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": -1.8,
+        "ppiElectronicComponents": 0.2
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.3,
+        "services": 1.5
+      },
+      "shapiro": null,
+      "riVintage": 2018
+    },
+    {
+      "date": "2020-01",
+      "headlineYoy": 2.6,
+      "coreCpiYoy": 2.3,
+      "pceYoy": 1.8,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.5,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 1.9,
+        "energy": 7.7,
+        "shelter": 3.4,
+        "usedVehicles": -2,
+        "airfares": 2.6
+      },
+      "pceCategories": {
+        "goods": 0.7,
+        "durables": -2,
+        "nondurables": 2.1,
+        "services": 2.3,
+        "food": 0.9,
+        "energy": 8.3,
+        "housingUtilities": 3,
+        "healthCare": 2,
+        "motorVehicles": 0.2,
+        "transportServices": 1.2,
+        "apparel": -1.7,
+        "recreationGoods": -5.2,
+        "recreationServices": 2.4,
+        "foodServices": 2.3,
+        "financialServices": 2.5,
+        "otherServices": 1.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.8,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -0.9,
+        "ppiElectronicComponents": 0.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.4,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-02",
+      "headlineYoy": 2.3,
+      "coreCpiYoy": 2.4,
+      "pceYoy": 1.7,
+      "corePceYoy": 1.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.2,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 1.8,
+        "energy": 3,
+        "shelter": 3.3,
+        "usedVehicles": -1.2,
+        "airfares": 2.1
+      },
+      "pceCategories": {
+        "goods": 0.3,
+        "durables": -1.6,
+        "nondurables": 1.2,
+        "services": 2.4,
+        "food": 0.9,
+        "energy": 3.3,
+        "housingUtilities": 3,
+        "healthCare": 2,
+        "motorVehicles": 0.2,
+        "transportServices": 1.2,
+        "apparel": -1.7,
+        "recreationGoods": -5.2,
+        "recreationServices": 2.4,
+        "foodServices": 2.3,
+        "financialServices": 2.5,
+        "otherServices": 1.6
+      },
+      "techCategories": {
+        "cpiComputers": -3.5,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -0.3,
+        "ppiElectronicComponents": 0.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.3,
+        "services": 1.6
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-03",
+      "headlineYoy": 1.5,
+      "coreCpiYoy": 2.1,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.4,
+        "shelter": 1,
+        "usedVehicles": 0,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 1.9,
+        "energy": -6.2,
+        "shelter": 3,
+        "usedVehicles": 0.3,
+        "airfares": -11.2
+      },
+      "pceCategories": {
+        "goods": -1,
+        "durables": -1.5,
+        "nondurables": -0.7,
+        "services": 2.2,
+        "food": 1.2,
+        "energy": -6.4,
+        "housingUtilities": 3,
+        "healthCare": 2,
+        "motorVehicles": 0.2,
+        "transportServices": 1.2,
+        "apparel": -1.7,
+        "recreationGoods": -5.2,
+        "recreationServices": 2.4,
+        "foodServices": 2.3,
+        "financialServices": 2.5,
+        "otherServices": 1.6
+      },
+      "techCategories": {
+        "cpiComputers": -3,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": 0,
+        "ppiElectronicComponents": 0.9
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.1,
+        "services": 1.5
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-04",
+      "headlineYoy": 0.3,
+      "coreCpiYoy": 1.4,
+      "pceYoy": 0.5,
+      "corePceYoy": 1,
+      "contributions": {
+        "food": 0.5,
+        "energy": -1.2,
+        "shelter": 0.9,
+        "usedVehicles": 0,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 3.5,
+        "energy": -17.9,
+        "shelter": 2.6,
+        "usedVehicles": -0.7,
+        "airfares": -24.3
+      },
+      "pceCategories": {
+        "goods": -2.1,
+        "durables": -1.9,
+        "nondurables": -2.2,
+        "services": 1.7,
+        "food": 3.9,
+        "energy": -17.7,
+        "housingUtilities": 2.8,
+        "healthCare": 2.6,
+        "motorVehicles": -0.1,
+        "transportServices": -1.5,
+        "apparel": -7.1,
+        "recreationGoods": -5.3,
+        "recreationServices": 2.3,
+        "foodServices": 1.1,
+        "financialServices": -0.2,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.5,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": -3.1,
+        "ppiElectronicComponents": -0.5
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.5,
+        "services": 1.2
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-05",
+      "headlineYoy": 0.2,
+      "coreCpiYoy": 1.2,
+      "pceYoy": 0.5,
+      "corePceYoy": 1,
+      "contributions": {
+        "food": 0.6,
+        "energy": -1.2,
+        "shelter": 0.8,
+        "usedVehicles": 0,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.2,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 4,
+        "energy": -18.4,
+        "shelter": 2.5,
+        "usedVehicles": -0.5,
+        "airfares": -28.6
+      },
+      "pceCategories": {
+        "goods": -2.2,
+        "durables": -1.9,
+        "nondurables": -2.4,
+        "services": 1.8,
+        "food": 4.5,
+        "energy": -18.3,
+        "housingUtilities": 2.8,
+        "healthCare": 2.6,
+        "motorVehicles": -0.1,
+        "transportServices": -1.5,
+        "apparel": -7.1,
+        "recreationGoods": -5.3,
+        "recreationServices": 2.3,
+        "foodServices": 1.1,
+        "financialServices": -0.2,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.8,
+        "cpiItHardware": -0.2,
+        "ppiSemiconductors": -2.8,
+        "ppiElectronicComponents": -0.2
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.5,
+        "services": 1.2
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-06",
+      "headlineYoy": 0.7,
+      "coreCpiYoy": 1.2,
+      "pceYoy": 0.8,
+      "corePceYoy": 1,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.8,
+        "shelter": 0.8,
+        "usedVehicles": -0.1,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.2,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 4.5,
+        "energy": -12.2,
+        "shelter": 2.4,
+        "usedVehicles": -3,
+        "airfares": -26.7
+      },
+      "pceCategories": {
+        "goods": -1.5,
+        "durables": -2.5,
+        "nondurables": -0.9,
+        "services": 1.8,
+        "food": 5,
+        "energy": -12.4,
+        "housingUtilities": 2.8,
+        "healthCare": 2.6,
+        "motorVehicles": -0.1,
+        "transportServices": -1.5,
+        "apparel": -7.1,
+        "recreationGoods": -5.3,
+        "recreationServices": 2.3,
+        "foodServices": 1.1,
+        "financialServices": -0.2,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": 0.5,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": -3.1,
+        "ppiElectronicComponents": -0.6
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": -0.2,
+        "services": 1.3
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-07",
+      "headlineYoy": 1,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 0.9,
+      "corePceYoy": 1.2,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.8,
+        "shelter": 0.8,
+        "usedVehicles": 0,
+        "airfares": -0.2,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 4.1,
+        "energy": -11.4,
+        "shelter": 2.3,
+        "usedVehicles": -1,
+        "airfares": -22.9
+      },
+      "pceCategories": {
+        "goods": -1.1,
+        "durables": -1.2,
+        "nondurables": -1,
+        "services": 1.9,
+        "food": 4.1,
+        "energy": -11.7,
+        "housingUtilities": 2.5,
+        "healthCare": 2.9,
+        "motorVehicles": 2.1,
+        "transportServices": -1.8,
+        "apparel": -6.5,
+        "recreationGoods": -3.8,
+        "recreationServices": 2.1,
+        "foodServices": 1.9,
+        "financialServices": 0.9,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": -2.7,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -3.7,
+        "ppiElectronicComponents": -1.1
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": -0.2,
+        "services": 1.3
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-08",
+      "headlineYoy": 1.3,
+      "coreCpiYoy": 1.7,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.4,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.6,
+        "shelter": 0.8,
+        "usedVehicles": 0.1,
+        "airfares": -0.2,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 4.1,
+        "energy": -9.6,
+        "shelter": 2.3,
+        "usedVehicles": 3.9,
+        "airfares": -22.7
+      },
+      "pceCategories": {
+        "goods": -0.5,
+        "durables": -0.1,
+        "nondurables": -0.7,
+        "services": 2,
+        "food": 4.1,
+        "energy": -9.8,
+        "housingUtilities": 2.5,
+        "healthCare": 2.9,
+        "motorVehicles": 2.1,
+        "transportServices": -1.8,
+        "apparel": -6.5,
+        "recreationGoods": -3.8,
+        "recreationServices": 2.1,
+        "foodServices": 1.9,
+        "financialServices": 0.9,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": -3,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": -4.3,
+        "ppiElectronicComponents": -1.4
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 1.3
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-09",
+      "headlineYoy": 1.4,
+      "coreCpiYoy": 1.7,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.5,
+        "shelter": 0.7,
+        "usedVehicles": 0.2,
+        "airfares": -0.2,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.5
+      },
+      "componentYoy": {
+        "food": 3.9,
+        "energy": -7.7,
+        "shelter": 2.1,
+        "usedVehicles": 10.3,
+        "airfares": -24.5
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -0.1,
+        "nondurables": -0.6,
+        "services": 2.1,
+        "food": 3.7,
+        "energy": -8,
+        "housingUtilities": 2.5,
+        "healthCare": 2.9,
+        "motorVehicles": 2.1,
+        "transportServices": -1.8,
+        "apparel": -6.5,
+        "recreationGoods": -3.8,
+        "recreationServices": 2.1,
+        "foodServices": 1.9,
+        "financialServices": 0.9,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": -5.7,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": -4.6,
+        "ppiElectronicComponents": -1.7
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 1.5
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-10",
+      "headlineYoy": 1.2,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.4,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.6,
+        "shelter": 0.7,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 3.9,
+        "energy": -8.9,
+        "shelter": 2,
+        "usedVehicles": 11.6,
+        "airfares": -20.3
+      },
+      "pceCategories": {
+        "goods": -0.6,
+        "durables": 0.2,
+        "nondurables": -1,
+        "services": 2.1,
+        "food": 3.8,
+        "energy": -9.2,
+        "housingUtilities": 2.4,
+        "healthCare": 2.6,
+        "motorVehicles": 4.3,
+        "transportServices": -1.4,
+        "apparel": -4.9,
+        "recreationGoods": -3,
+        "recreationServices": 2.1,
+        "foodServices": 2.6,
+        "financialServices": 1.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": -4.5,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.9
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.2,
+        "services": 1.4
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-11",
+      "headlineYoy": 1.2,
+      "coreCpiYoy": 1.7,
+      "pceYoy": 1.2,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.6,
+        "shelter": 0.6,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 3.7,
+        "energy": -9.4,
+        "shelter": 1.9,
+        "usedVehicles": 10.9,
+        "airfares": -17.6
+      },
+      "pceCategories": {
+        "goods": -0.5,
+        "durables": 0.6,
+        "nondurables": -1.1,
+        "services": 2,
+        "food": 3.7,
+        "energy": -9.7,
+        "housingUtilities": 2.4,
+        "healthCare": 2.6,
+        "motorVehicles": 4.3,
+        "transportServices": -1.4,
+        "apparel": -4.9,
+        "recreationGoods": -3,
+        "recreationServices": 2.1,
+        "foodServices": 2.6,
+        "financialServices": 1.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": -2.3,
+        "cpiItHardware": -1.2,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.7
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": -0.2,
+        "services": 1.4
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2020-12",
+      "headlineYoy": 1.3,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 1.3,
+      "corePceYoy": 1.5,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.5,
+        "shelter": 0.6,
+        "usedVehicles": 0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 4,
+        "energy": -7,
+        "shelter": 1.9,
+        "usedVehicles": 10.1,
+        "airfares": -19.1
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": 1.4,
+        "nondurables": -0.8,
+        "services": 2,
+        "food": 4,
+        "energy": -7.5,
+        "housingUtilities": 2.4,
+        "healthCare": 2.6,
+        "motorVehicles": 4.3,
+        "transportServices": -1.4,
+        "apparel": -4.9,
+        "recreationGoods": -3,
+        "recreationServices": 2.1,
+        "foodServices": 2.6,
+        "financialServices": 1.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 0.8,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.3
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": -0.2,
+        "services": 1.4
+      },
+      "shapiro": null,
+      "riVintage": 2019
+    },
+    {
+      "date": "2021-01",
+      "headlineYoy": 1.4,
+      "coreCpiYoy": 1.4,
+      "pceYoy": 1.5,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.5,
+        "energy": -0.2,
+        "shelter": 0.5,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.2
+      },
+      "componentYoy": {
+        "food": 3.8,
+        "energy": -3.5,
+        "shelter": 1.6,
+        "usedVehicles": 10,
+        "airfares": -22
+      },
+      "pceCategories": {
+        "goods": 0.5,
+        "durables": 1.3,
+        "nondurables": 0.1,
+        "services": 2,
+        "food": 3.5,
+        "energy": -4.2,
+        "housingUtilities": 2.1,
+        "healthCare": 3.6,
+        "motorVehicles": 3.5,
+        "transportServices": -0.8,
+        "apparel": -3.6,
+        "recreationGoods": -0.7,
+        "recreationServices": 1.7,
+        "foodServices": 2.6,
+        "financialServices": 2.2,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": 1.6,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": -6.8,
+        "ppiElectronicComponents": -2.1
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0,
+        "services": 1.4
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-02",
+      "headlineYoy": 1.7,
+      "coreCpiYoy": 1.3,
+      "pceYoy": 1.8,
+      "corePceYoy": 1.6,
+      "contributions": {
+        "food": 0.5,
+        "energy": 0.1,
+        "shelter": 0.5,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.3
+      },
+      "componentYoy": {
+        "food": 3.6,
+        "energy": 2.3,
+        "shelter": 1.4,
+        "usedVehicles": 9.3,
+        "airfares": -25.9
+      },
+      "pceCategories": {
+        "goods": 0.9,
+        "durables": 1,
+        "nondurables": 0.9,
+        "services": 2.2,
+        "food": 3.3,
+        "energy": 1.9,
+        "housingUtilities": 2.1,
+        "healthCare": 3.6,
+        "motorVehicles": 3.5,
+        "transportServices": -0.8,
+        "apparel": -3.6,
+        "recreationGoods": -0.7,
+        "recreationServices": 1.7,
+        "foodServices": 2.6,
+        "financialServices": 2.2,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -0.1,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.1
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.2,
+        "services": 1.5
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-03",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 1.6,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.1,
+      "contributions": {
+        "food": 0.5,
+        "energy": 0.8,
+        "shelter": 0.6,
+        "usedVehicles": 0.3,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.4
+      },
+      "componentYoy": {
+        "food": 3.4,
+        "energy": 13.9,
+        "shelter": 1.7,
+        "usedVehicles": 9.4,
+        "airfares": -15
+      },
+      "pceCategories": {
+        "goods": 2.5,
+        "durables": 1.6,
+        "nondurables": 3,
+        "services": 2.7,
+        "food": 3,
+        "energy": 14,
+        "housingUtilities": 2.1,
+        "healthCare": 3.6,
+        "motorVehicles": 3.5,
+        "transportServices": -0.8,
+        "apparel": -3.6,
+        "recreationGoods": -0.7,
+        "recreationServices": 1.7,
+        "foodServices": 2.6,
+        "financialServices": 2.2,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.2,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.7,
+        "services": 1.8
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-04",
+      "headlineYoy": 4.1,
+      "coreCpiYoy": 3,
+      "pceYoy": 3.6,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.5,
+        "shelter": 0.7,
+        "usedVehicles": 0.6,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": 24.5,
+        "shelter": 2.1,
+        "usedVehicles": 21,
+        "airfares": 10.2
+      },
+      "pceCategories": {
+        "goods": 4.1,
+        "durables": 3.9,
+        "nondurables": 4.2,
+        "services": 3.3,
+        "food": 1.1,
+        "energy": 23.8,
+        "housingUtilities": 2.5,
+        "healthCare": 3,
+        "motorVehicles": 11,
+        "transportServices": 5.7,
+        "apparel": 4,
+        "recreationGoods": 2.2,
+        "recreationServices": 2.5,
+        "foodServices": 5,
+        "financialServices": 5.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 0.9,
+        "cpiItHardware": 0,
+        "ppiSemiconductors": -5.1,
+        "ppiElectronicComponents": -1.1
+      },
+      "pceContributions": {
+        "durables": 0.4,
+        "nondurables": 0.9,
+        "services": 2.3
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-05",
+      "headlineYoy": 4.9,
+      "coreCpiYoy": 3.8,
+      "pceYoy": 4,
+      "corePceYoy": 3.4,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.7,
+        "shelter": 0.7,
+        "usedVehicles": 0.8,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.5,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 27.7,
+        "shelter": 2.2,
+        "usedVehicles": 29.7,
+        "airfares": 24.9
+      },
+      "pceCategories": {
+        "goods": 5.1,
+        "durables": 5.6,
+        "nondurables": 4.8,
+        "services": 3.4,
+        "food": 0.7,
+        "energy": 27.2,
+        "housingUtilities": 2.5,
+        "healthCare": 3,
+        "motorVehicles": 11,
+        "transportServices": 5.7,
+        "apparel": 4,
+        "recreationGoods": 2.2,
+        "recreationServices": 2.5,
+        "foodServices": 5,
+        "financialServices": 5.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 2.5,
+        "cpiItHardware": 0.1,
+        "ppiSemiconductors": -4.4,
+        "ppiElectronicComponents": -0.6
+      },
+      "pceContributions": {
+        "durables": 0.6,
+        "nondurables": 1.1,
+        "services": 2.3
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-06",
+      "headlineYoy": 5.3,
+      "coreCpiYoy": 4.4,
+      "pceYoy": 4.2,
+      "corePceYoy": 3.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.4,
+        "shelter": 0.9,
+        "usedVehicles": 1.3,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.5,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": 23.8,
+        "shelter": 2.6,
+        "usedVehicles": 45.2,
+        "airfares": 25.8
+      },
+      "pceCategories": {
+        "goods": 5.4,
+        "durables": 7.3,
+        "nondurables": 4.3,
+        "services": 3.7,
+        "food": 1,
+        "energy": 23.8,
+        "housingUtilities": 2.5,
+        "healthCare": 3,
+        "motorVehicles": 11,
+        "transportServices": 5.7,
+        "apparel": 4,
+        "recreationGoods": 2.2,
+        "recreationServices": 2.5,
+        "foodServices": 5,
+        "financialServices": 5.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 2.3,
+        "cpiItHardware": 0.1,
+        "ppiSemiconductors": -4.1,
+        "ppiElectronicComponents": -0.5
+      },
+      "pceContributions": {
+        "durables": 0.9,
+        "nondurables": 0.9,
+        "services": 2.4
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-07",
+      "headlineYoy": 5.2,
+      "coreCpiYoy": 4.2,
+      "pceYoy": 4.4,
+      "corePceYoy": 3.8,
+      "contributions": {
+        "food": 0.5,
+        "energy": 1.4,
+        "shelter": 0.9,
+        "usedVehicles": 1.2,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.5,
+        "energy": 23.2,
+        "shelter": 2.8,
+        "usedVehicles": 41.6,
+        "airfares": 19.6
+      },
+      "pceCategories": {
+        "goods": 5.4,
+        "durables": 7,
+        "nondurables": 4.6,
+        "services": 3.9,
+        "food": 2.4,
+        "energy": 23.2,
+        "housingUtilities": 3.1,
+        "healthCare": 2.5,
+        "motorVehicles": 14.2,
+        "transportServices": 7.5,
+        "apparel": 3.3,
+        "recreationGoods": 2.3,
+        "recreationServices": 3.8,
+        "foodServices": 6.5,
+        "financialServices": 5.6,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": 3.7,
+        "cpiItHardware": 0.6,
+        "ppiSemiconductors": -4.7,
+        "ppiElectronicComponents": -0.3
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 1,
+        "services": 2.5
+      },
+      "shapiro": null,
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-08",
+      "headlineYoy": 5.2,
+      "coreCpiYoy": 3.9,
+      "pceYoy": 4.5,
+      "corePceYoy": 3.9,
+      "contributions": {
+        "food": 0.5,
+        "energy": 1.5,
+        "shelter": 0.9,
+        "usedVehicles": 0.9,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.7,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3.7,
+        "energy": 24.5,
+        "shelter": 2.8,
+        "usedVehicles": 31.9,
+        "airfares": 6.5
+      },
+      "pceCategories": {
+        "goods": 5.5,
+        "durables": 6.8,
+        "nondurables": 4.8,
+        "services": 4,
+        "food": 2.8,
+        "energy": 24.6,
+        "housingUtilities": 3.1,
+        "healthCare": 2.5,
+        "motorVehicles": 14.2,
+        "transportServices": 7.5,
+        "apparel": 3.3,
+        "recreationGoods": 2.3,
+        "recreationServices": 3.8,
+        "foodServices": 6.5,
+        "financialServices": 5.6,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": 3.4,
+        "cpiItHardware": 1.4,
+        "ppiSemiconductors": -3.9,
+        "ppiElectronicComponents": 0.2
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 1,
+        "services": 2.7
+      },
+      "shapiro": {
+        "demand": 1.9,
+        "supply": 1.7,
+        "ambiguous": 1
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-09",
+      "headlineYoy": 5.4,
+      "coreCpiYoy": 4,
+      "pceYoy": 4.7,
+      "corePceYoy": 3.9,
+      "contributions": {
+        "food": 0.6,
+        "energy": 1.5,
+        "shelter": 1.1,
+        "usedVehicles": 0.7,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.8,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 4.6,
+        "energy": 24.7,
+        "shelter": 3.2,
+        "usedVehicles": 24.4,
+        "airfares": 0.4
+      },
+      "pceCategories": {
+        "goods": 6.1,
+        "durables": 6.8,
+        "nondurables": 5.6,
+        "services": 3.9,
+        "food": 4,
+        "energy": 24.9,
+        "housingUtilities": 3.1,
+        "healthCare": 2.5,
+        "motorVehicles": 14.2,
+        "transportServices": 7.5,
+        "apparel": 3.3,
+        "recreationGoods": 2.3,
+        "recreationServices": 3.8,
+        "foodServices": 6.5,
+        "financialServices": 5.6,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": 8.5,
+        "cpiItHardware": 2.8,
+        "ppiSemiconductors": -3.9,
+        "ppiElectronicComponents": 0.4
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 1.2,
+        "services": 2.6
+      },
+      "shapiro": {
+        "demand": 1.8,
+        "supply": 1.8,
+        "ambiguous": 1.1
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-10",
+      "headlineYoy": 6.2,
+      "coreCpiYoy": 4.6,
+      "pceYoy": 5.3,
+      "corePceYoy": 4.4,
+      "contributions": {
+        "food": 0.7,
+        "energy": 1.8,
+        "shelter": 1.2,
+        "usedVehicles": 0.7,
+        "airfares": 0,
+        "coreGoodsExUsed": 1,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 5.3,
+        "energy": 29.9,
+        "shelter": 3.5,
+        "usedVehicles": 26.4,
+        "airfares": -4.8
+      },
+      "pceCategories": {
+        "goods": 7.3,
+        "durables": 7.8,
+        "nondurables": 7.1,
+        "services": 4.3,
+        "food": 4.6,
+        "energy": 30.2,
+        "housingUtilities": 4.1,
+        "healthCare": 2.5,
+        "motorVehicles": 16.9,
+        "transportServices": 6.5,
+        "apparel": 5,
+        "recreationGoods": 2.7,
+        "recreationServices": 4.2,
+        "foodServices": 7.7,
+        "financialServices": 6.1,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 8.4,
+        "cpiItHardware": 2.7,
+        "ppiSemiconductors": -1.1,
+        "ppiElectronicComponents": 2
+      },
+      "pceContributions": {
+        "durables": 0.9,
+        "nondurables": 1.5,
+        "services": 2.8
+      },
+      "shapiro": {
+        "demand": 2.1,
+        "supply": 1.9,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-11",
+      "headlineYoy": 6.9,
+      "coreCpiYoy": 5,
+      "pceYoy": 5.9,
+      "corePceYoy": 4.8,
+      "contributions": {
+        "food": 0.9,
+        "energy": 2,
+        "shelter": 1.3,
+        "usedVehicles": 0.9,
+        "airfares": 0,
+        "coreGoodsExUsed": 1.1,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 6.1,
+        "energy": 33.9,
+        "shelter": 3.9,
+        "usedVehicles": 31.4,
+        "airfares": -3.9
+      },
+      "pceCategories": {
+        "goods": 8.3,
+        "durables": 8.4,
+        "nondurables": 8.2,
+        "services": 4.6,
+        "food": 5.5,
+        "energy": 34.5,
+        "housingUtilities": 4.1,
+        "healthCare": 2.5,
+        "motorVehicles": 16.9,
+        "transportServices": 6.5,
+        "apparel": 5,
+        "recreationGoods": 2.7,
+        "recreationServices": 4.2,
+        "foodServices": 7.7,
+        "financialServices": 6.1,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 4.8,
+        "cpiItHardware": 1.9,
+        "ppiSemiconductors": -0.4,
+        "ppiElectronicComponents": 2.6
+      },
+      "pceContributions": {
+        "durables": 1,
+        "nondurables": 1.8,
+        "services": 3.1
+      },
+      "shapiro": {
+        "demand": 2.5,
+        "supply": 2.2,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2021-12",
+      "headlineYoy": 7.2,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 6,
+      "corePceYoy": 5.1,
+      "contributions": {
+        "food": 0.9,
+        "energy": 1.8,
+        "shelter": 1.4,
+        "usedVehicles": 1,
+        "airfares": 0,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 6.3,
+        "energy": 30.3,
+        "shelter": 4.2,
+        "usedVehicles": 37.3,
+        "airfares": 0.6
+      },
+      "pceCategories": {
+        "goods": 8.5,
+        "durables": 9.1,
+        "nondurables": 8.1,
+        "services": 4.8,
+        "food": 5.6,
+        "energy": 30.8,
+        "housingUtilities": 4.1,
+        "healthCare": 2.5,
+        "motorVehicles": 16.9,
+        "transportServices": 6.5,
+        "apparel": 5,
+        "recreationGoods": 2.7,
+        "recreationServices": 4.2,
+        "foodServices": 7.7,
+        "financialServices": 6.1,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 2.8,
+        "cpiItHardware": 1.9,
+        "ppiSemiconductors": -0.4,
+        "ppiElectronicComponents": 2.3
+      },
+      "pceContributions": {
+        "durables": 1.1,
+        "nondurables": 1.8,
+        "services": 3.2
+      },
+      "shapiro": {
+        "demand": 2.4,
+        "supply": 2.4,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2020
+    },
+    {
+      "date": "2022-01",
+      "headlineYoy": 7.6,
+      "coreCpiYoy": 6.1,
+      "pceYoy": 6.2,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 0.9,
+        "energy": 2,
+        "shelter": 1.4,
+        "usedVehicles": 1.4,
+        "airfares": 0,
+        "coreGoodsExUsed": 1.1,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 7,
+        "energy": 27.2,
+        "shelter": 4.4,
+        "usedVehicles": 40.5,
+        "airfares": 4.5
+      },
+      "pceCategories": {
+        "goods": 8.9,
+        "durables": 10.8,
+        "nondurables": 7.8,
+        "services": 4.9,
+        "food": 6.4,
+        "energy": 27.9,
+        "housingUtilities": 5.1,
+        "healthCare": 2.2,
+        "motorVehicles": 20.8,
+        "transportServices": 8.7,
+        "apparel": 6.3,
+        "recreationGoods": 3,
+        "recreationServices": 5.4,
+        "foodServices": 8.4,
+        "financialServices": 5.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": 3.5,
+        "cpiItHardware": 2,
+        "ppiSemiconductors": 0.9,
+        "ppiElectronicComponents": 3.9
+      },
+      "pceContributions": {
+        "durables": 1.3,
+        "nondurables": 1.7,
+        "services": 3.2
+      },
+      "shapiro": {
+        "demand": 2.2,
+        "supply": 2.9,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-02",
+      "headlineYoy": 7.9,
+      "coreCpiYoy": 6.5,
+      "pceYoy": 6.5,
+      "corePceYoy": 5.6,
+      "contributions": {
+        "food": 1.1,
+        "energy": 1.9,
+        "shelter": 1.6,
+        "usedVehicles": 1.4,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 7.9,
+        "energy": 25.6,
+        "shelter": 4.7,
+        "usedVehicles": 41.2,
+        "airfares": 12.4
+      },
+      "pceCategories": {
+        "goods": 9.6,
+        "durables": 11.1,
+        "nondurables": 8.9,
+        "services": 4.9,
+        "food": 7.6,
+        "energy": 26.3,
+        "housingUtilities": 5.1,
+        "healthCare": 2.2,
+        "motorVehicles": 20.8,
+        "transportServices": 8.7,
+        "apparel": 6.3,
+        "recreationGoods": 3,
+        "recreationServices": 5.4,
+        "foodServices": 8.4,
+        "financialServices": 5.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": 4.6,
+        "cpiItHardware": 2,
+        "ppiSemiconductors": 1.2,
+        "ppiElectronicComponents": 4
+      },
+      "pceContributions": {
+        "durables": 1.3,
+        "nondurables": 1.9,
+        "services": 3.3
+      },
+      "shapiro": {
+        "demand": 2.4,
+        "supply": 3.1,
+        "ambiguous": 1
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-03",
+      "headlineYoy": 8.6,
+      "coreCpiYoy": 6.5,
+      "pceYoy": 6.9,
+      "corePceYoy": 5.6,
+      "contributions": {
+        "food": 1.2,
+        "energy": 2.4,
+        "shelter": 1.6,
+        "usedVehicles": 1.2,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 8.8,
+        "energy": 32,
+        "shelter": 5,
+        "usedVehicles": 35.3,
+        "airfares": 23.6
+      },
+      "pceCategories": {
+        "goods": 10.8,
+        "durables": 10.5,
+        "nondurables": 10.9,
+        "services": 5,
+        "food": 8.9,
+        "energy": 33.6,
+        "housingUtilities": 5.1,
+        "healthCare": 2.2,
+        "motorVehicles": 20.8,
+        "transportServices": 8.7,
+        "apparel": 6.3,
+        "recreationGoods": 3,
+        "recreationServices": 5.4,
+        "foodServices": 8.4,
+        "financialServices": 5.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": 7.6,
+        "cpiItHardware": 1.9,
+        "ppiSemiconductors": 1.4,
+        "ppiElectronicComponents": 4.2
+      },
+      "pceContributions": {
+        "durables": 1.4,
+        "nondurables": 2.4,
+        "services": 3.2
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3.3,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-04",
+      "headlineYoy": 8.2,
+      "coreCpiYoy": 6.2,
+      "pceYoy": 6.6,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 1.3,
+        "energy": 2.2,
+        "shelter": 1.7,
+        "usedVehicles": 0.8,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 9.4,
+        "energy": 30,
+        "shelter": 5.1,
+        "usedVehicles": 22.7,
+        "airfares": 33.3
+      },
+      "pceCategories": {
+        "goods": 9.8,
+        "durables": 8.8,
+        "nondurables": 10.3,
+        "services": 5.1,
+        "food": 9.6,
+        "energy": 31.4,
+        "housingUtilities": 6.2,
+        "healthCare": 2.1,
+        "motorVehicles": 13.7,
+        "transportServices": 11,
+        "apparel": 5.3,
+        "recreationGoods": 1.2,
+        "recreationServices": 5.6,
+        "foodServices": 8.3,
+        "financialServices": 4.7,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": 0.2,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": 2.4,
+        "ppiElectronicComponents": 3.9
+      },
+      "pceContributions": {
+        "durables": 1.2,
+        "nondurables": 2.2,
+        "services": 3.3
+      },
+      "shapiro": {
+        "demand": 2.6,
+        "supply": 3.1,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-05",
+      "headlineYoy": 8.5,
+      "coreCpiYoy": 6,
+      "pceYoy": 6.8,
+      "corePceYoy": 5.2,
+      "contributions": {
+        "food": 1.4,
+        "energy": 2.5,
+        "shelter": 1.8,
+        "usedVehicles": 0.6,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1.2
+      },
+      "componentYoy": {
+        "food": 10.2,
+        "energy": 34.5,
+        "shelter": 5.4,
+        "usedVehicles": 16.1,
+        "airfares": 37.9
+      },
+      "pceCategories": {
+        "goods": 9.9,
+        "durables": 7.2,
+        "nondurables": 11.4,
+        "services": 5.2,
+        "food": 10.6,
+        "energy": 35.9,
+        "housingUtilities": 6.2,
+        "healthCare": 2.1,
+        "motorVehicles": 13.7,
+        "transportServices": 11,
+        "apparel": 5.3,
+        "recreationGoods": 1.2,
+        "recreationServices": 5.6,
+        "foodServices": 8.3,
+        "financialServices": 4.7,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -1.8,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": 2.5,
+        "ppiElectronicComponents": 3.9
+      },
+      "pceContributions": {
+        "durables": 0.9,
+        "nondurables": 2.5,
+        "services": 3.4
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3.2,
+        "ambiguous": 0.8
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-06",
+      "headlineYoy": 9,
+      "coreCpiYoy": 5.9,
+      "pceYoy": 7.2,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 1.4,
+        "energy": 3,
+        "shelter": 1.9,
+        "usedVehicles": 0.2,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.3,
+        "servicesExShelter": 1.3
+      },
+      "componentYoy": {
+        "food": 10.4,
+        "energy": 41.5,
+        "shelter": 5.6,
+        "usedVehicles": 7.1,
+        "airfares": 34.4
+      },
+      "pceCategories": {
+        "goods": 10.7,
+        "durables": 6.4,
+        "nondurables": 13.1,
+        "services": 5.5,
+        "food": 11,
+        "energy": 43,
+        "housingUtilities": 6.2,
+        "healthCare": 2.1,
+        "motorVehicles": 13.7,
+        "transportServices": 11,
+        "apparel": 5.3,
+        "recreationGoods": 1.2,
+        "recreationServices": 5.6,
+        "foodServices": 8.3,
+        "financialServices": 4.7,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -0.6,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": 2.8,
+        "ppiElectronicComponents": 4.4
+      },
+      "pceContributions": {
+        "durables": 0.8,
+        "nondurables": 2.9,
+        "services": 3.6
+      },
+      "shapiro": {
+        "demand": 2.8,
+        "supply": 3.4,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-07",
+      "headlineYoy": 8.5,
+      "coreCpiYoy": 5.9,
+      "pceYoy": 6.9,
+      "corePceYoy": 5.2,
+      "contributions": {
+        "food": 1.5,
+        "energy": 2.4,
+        "shelter": 1.9,
+        "usedVehicles": 0.2,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1.3
+      },
+      "componentYoy": {
+        "food": 10.9,
+        "energy": 32.9,
+        "shelter": 5.7,
+        "usedVehicles": 6.6,
+        "airfares": 28
+      },
+      "pceCategories": {
+        "goods": 9.8,
+        "durables": 6,
+        "nondurables": 11.9,
+        "services": 5.4,
+        "food": 11.8,
+        "energy": 33.9,
+        "housingUtilities": 7.6,
+        "healthCare": 2.7,
+        "motorVehicles": 9.5,
+        "transportServices": 11.5,
+        "apparel": 5.3,
+        "recreationGoods": 1,
+        "recreationServices": 5.2,
+        "foodServices": 7,
+        "financialServices": 4.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.5,
+        "cpiItHardware": -2.3,
+        "ppiSemiconductors": 4,
+        "ppiElectronicComponents": 4.5
+      },
+      "pceContributions": {
+        "durables": 0.7,
+        "nondurables": 2.6,
+        "services": 3.6
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3.3,
+        "ambiguous": 0.8
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-08",
+      "headlineYoy": 8.2,
+      "coreCpiYoy": 6.3,
+      "pceYoy": 6.7,
+      "corePceYoy": 5.4,
+      "contributions": {
+        "food": 1.5,
+        "energy": 1.8,
+        "shelter": 2.1,
+        "usedVehicles": 0.3,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1.4
+      },
+      "componentYoy": {
+        "food": 11.4,
+        "energy": 23.9,
+        "shelter": 6.3,
+        "usedVehicles": 7.8,
+        "airfares": 33.4
+      },
+      "pceCategories": {
+        "goods": 8.8,
+        "durables": 5.6,
+        "nondurables": 10.5,
+        "services": 5.6,
+        "food": 12.2,
+        "energy": 24.2,
+        "housingUtilities": 7.6,
+        "healthCare": 2.7,
+        "motorVehicles": 9.5,
+        "transportServices": 11.5,
+        "apparel": 5.3,
+        "recreationGoods": 1,
+        "recreationServices": 5.2,
+        "foodServices": 7,
+        "financialServices": 4.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -4.3,
+        "cpiItHardware": -3.4,
+        "ppiSemiconductors": 3,
+        "ppiElectronicComponents": 3.8
+      },
+      "pceContributions": {
+        "durables": 0.7,
+        "nondurables": 2.3,
+        "services": 3.7
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 3,
+        "ambiguous": 0.9
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-09",
+      "headlineYoy": 8.2,
+      "coreCpiYoy": 6.6,
+      "pceYoy": 6.7,
+      "corePceYoy": 5.6,
+      "contributions": {
+        "food": 1.5,
+        "energy": 1.5,
+        "shelter": 2.2,
+        "usedVehicles": 0.3,
+        "airfares": 0.3,
+        "coreGoodsExUsed": 1.2,
+        "servicesExShelter": 1.7
+      },
+      "componentYoy": {
+        "food": 11.2,
+        "energy": 19.9,
+        "shelter": 6.6,
+        "usedVehicles": 7.2,
+        "airfares": 42.8
+      },
+      "pceCategories": {
+        "goods": 8.2,
+        "durables": 5.8,
+        "nondurables": 9.5,
+        "services": 5.9,
+        "food": 11.7,
+        "energy": 19.9,
+        "housingUtilities": 7.6,
+        "healthCare": 2.7,
+        "motorVehicles": 9.5,
+        "transportServices": 11.5,
+        "apparel": 5.3,
+        "recreationGoods": 1,
+        "recreationServices": 5.2,
+        "foodServices": 7,
+        "financialServices": 4.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.6,
+        "cpiItHardware": -4.3,
+        "ppiSemiconductors": 3.7,
+        "ppiElectronicComponents": 4
+      },
+      "pceContributions": {
+        "durables": 0.7,
+        "nondurables": 2.1,
+        "services": 3.9
+      },
+      "shapiro": {
+        "demand": 2.8,
+        "supply": 3.1,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-10",
+      "headlineYoy": 7.8,
+      "coreCpiYoy": 6.3,
+      "pceYoy": 6.5,
+      "corePceYoy": 5.5,
+      "contributions": {
+        "food": 1.5,
+        "energy": 1.3,
+        "shelter": 2.3,
+        "usedVehicles": 0.1,
+        "airfares": 0.3,
+        "coreGoodsExUsed": 1,
+        "servicesExShelter": 1.6
+      },
+      "componentYoy": {
+        "food": 10.9,
+        "energy": 17.7,
+        "shelter": 6.9,
+        "usedVehicles": 2,
+        "airfares": 43
+      },
+      "pceCategories": {
+        "goods": 7.5,
+        "durables": 4.4,
+        "nondurables": 9.3,
+        "services": 6,
+        "food": 11.5,
+        "energy": 18.3,
+        "housingUtilities": 8,
+        "healthCare": 2.8,
+        "motorVehicles": 4.3,
+        "transportServices": 13,
+        "apparel": 3.8,
+        "recreationGoods": 0.2,
+        "recreationServices": 5.3,
+        "foodServices": 7.3,
+        "financialServices": 5,
+        "otherServices": 4
+      },
+      "techCategories": {
+        "cpiComputers": -3.1,
+        "cpiItHardware": -4.2,
+        "ppiSemiconductors": 6.6,
+        "ppiElectronicComponents": 4.8
+      },
+      "pceContributions": {
+        "durables": 0.5,
+        "nondurables": 2,
+        "services": 4
+      },
+      "shapiro": {
+        "demand": 2.9,
+        "supply": 2.9,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-11",
+      "headlineYoy": 7.1,
+      "coreCpiYoy": 6,
+      "pceYoy": 6.1,
+      "corePceYoy": 5.3,
+      "contributions": {
+        "food": 1.4,
+        "energy": 1,
+        "shelter": 2.3,
+        "usedVehicles": -0.1,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.9,
+        "servicesExShelter": 1.6
+      },
+      "componentYoy": {
+        "food": 10.6,
+        "energy": 13,
+        "shelter": 7.1,
+        "usedVehicles": -3.4,
+        "airfares": 36.2
+      },
+      "pceCategories": {
+        "goods": 6.4,
+        "durables": 3,
+        "nondurables": 8.2,
+        "services": 5.9,
+        "food": 11.1,
+        "energy": 13.4,
+        "housingUtilities": 8,
+        "healthCare": 2.8,
+        "motorVehicles": 4.3,
+        "transportServices": 13,
+        "apparel": 3.8,
+        "recreationGoods": 0.2,
+        "recreationServices": 5.3,
+        "foodServices": 7.3,
+        "financialServices": 5,
+        "otherServices": 4
+      },
+      "techCategories": {
+        "cpiComputers": -4.4,
+        "cpiItHardware": -4.1,
+        "ppiSemiconductors": 6.2,
+        "ppiElectronicComponents": 4.7
+      },
+      "pceContributions": {
+        "durables": 0.4,
+        "nondurables": 1.8,
+        "services": 3.9
+      },
+      "shapiro": {
+        "demand": 2.7,
+        "supply": 2.8,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2022-12",
+      "headlineYoy": 6.4,
+      "coreCpiYoy": 5.7,
+      "pceYoy": 5.6,
+      "corePceYoy": 5.1,
+      "contributions": {
+        "food": 1.4,
+        "energy": 0.5,
+        "shelter": 2.5,
+        "usedVehicles": -0.3,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.8,
+        "servicesExShelter": 1.6
+      },
+      "componentYoy": {
+        "food": 10.4,
+        "energy": 6.9,
+        "shelter": 7.5,
+        "usedVehicles": -8.8,
+        "airfares": 28.3
+      },
+      "pceCategories": {
+        "goods": 5,
+        "durables": 2.1,
+        "nondurables": 6.6,
+        "services": 5.9,
+        "food": 11.1,
+        "energy": 6.6,
+        "housingUtilities": 8,
+        "healthCare": 2.8,
+        "motorVehicles": 4.3,
+        "transportServices": 13,
+        "apparel": 3.8,
+        "recreationGoods": 0.2,
+        "recreationServices": 5.3,
+        "foodServices": 7.3,
+        "financialServices": 5,
+        "otherServices": 4
+      },
+      "techCategories": {
+        "cpiComputers": -5.8,
+        "cpiItHardware": -4.6,
+        "ppiSemiconductors": 5.9,
+        "ppiElectronicComponents": 4.5
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 1.4,
+        "services": 3.9
+      },
+      "shapiro": {
+        "demand": 2.4,
+        "supply": 2.7,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2021
+    },
+    {
+      "date": "2023-01",
+      "headlineYoy": 6.3,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 5.6,
+      "corePceYoy": 5,
+      "contributions": {
+        "food": 1.4,
+        "energy": 0.6,
+        "shelter": 2.7,
+        "usedVehicles": -0.3,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.4
+      },
+      "componentYoy": {
+        "food": 10.1,
+        "energy": 8.3,
+        "shelter": 7.9,
+        "usedVehicles": -11.6,
+        "airfares": 25.1
+      },
+      "pceCategories": {
+        "goods": 4.6,
+        "durables": 0.8,
+        "nondurables": 6.7,
+        "services": 6,
+        "food": 10.6,
+        "energy": 7.6,
+        "housingUtilities": 8.4,
+        "healthCare": 2,
+        "motorVehicles": 0.1,
+        "transportServices": 12.8,
+        "apparel": 2.9,
+        "recreationGoods": -1.5,
+        "recreationServices": 5.6,
+        "foodServices": 7.5,
+        "financialServices": 4.6,
+        "otherServices": 4.1
+      },
+      "techCategories": {
+        "cpiComputers": -6.2,
+        "cpiItHardware": -4.1,
+        "ppiSemiconductors": 4.6,
+        "ppiElectronicComponents": 2.2
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 1.5,
+        "services": 4
+      },
+      "shapiro": {
+        "demand": 2.6,
+        "supply": 2.6,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-02",
+      "headlineYoy": 6,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 5.2,
+      "corePceYoy": 4.9,
+      "contributions": {
+        "food": 1.3,
+        "energy": 0.3,
+        "shelter": 2.8,
+        "usedVehicles": -0.4,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.4
+      },
+      "componentYoy": {
+        "food": 9.4,
+        "energy": 4.9,
+        "shelter": 8.1,
+        "usedVehicles": -13.4,
+        "airfares": 26.4
+      },
+      "pceCategories": {
+        "goods": 3.7,
+        "durables": 0.4,
+        "nondurables": 5.5,
+        "services": 6,
+        "food": 9.5,
+        "energy": 4.1,
+        "housingUtilities": 8.4,
+        "healthCare": 2,
+        "motorVehicles": 0.1,
+        "transportServices": 12.8,
+        "apparel": 2.9,
+        "recreationGoods": -1.5,
+        "recreationServices": 5.6,
+        "foodServices": 7.5,
+        "financialServices": 4.6,
+        "otherServices": 4.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.6,
+        "cpiItHardware": -3.8,
+        "ppiSemiconductors": 5.3,
+        "ppiElectronicComponents": 2.2
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": 1.2,
+        "services": 3.9
+      },
+      "shapiro": {
+        "demand": 2.5,
+        "supply": 2.3,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-03",
+      "headlineYoy": 4.9,
+      "coreCpiYoy": 5.6,
+      "pceYoy": 4.5,
+      "corePceYoy": 4.9,
+      "contributions": {
+        "food": 1.1,
+        "energy": -0.5,
+        "shelter": 2.8,
+        "usedVehicles": -0.3,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.2
+      },
+      "componentYoy": {
+        "food": 8.5,
+        "energy": -6.7,
+        "shelter": 8.2,
+        "usedVehicles": -11,
+        "airfares": 17.6
+      },
+      "pceCategories": {
+        "goods": 2,
+        "durables": 0.5,
+        "nondurables": 2.7,
+        "services": 5.8,
+        "food": 8,
+        "energy": -7.9,
+        "housingUtilities": 8.4,
+        "healthCare": 2,
+        "motorVehicles": 0.1,
+        "transportServices": 12.8,
+        "apparel": 2.9,
+        "recreationGoods": -1.5,
+        "recreationServices": 5.6,
+        "foodServices": 7.5,
+        "financialServices": 4.6,
+        "otherServices": 4.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.8,
+        "cpiItHardware": -3,
+        "ppiSemiconductors": 4.5,
+        "ppiElectronicComponents": 1.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.6,
+        "services": 3.8
+      },
+      "shapiro": {
+        "demand": 1.9,
+        "supply": 2.1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-04",
+      "headlineYoy": 5,
+      "coreCpiYoy": 5.5,
+      "pceYoy": 4.5,
+      "corePceYoy": 4.9,
+      "contributions": {
+        "food": 1,
+        "energy": -0.3,
+        "shelter": 2.8,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.6,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 7.7,
+        "energy": -4.9,
+        "shelter": 8.1,
+        "usedVehicles": -6.6,
+        "airfares": -1
+      },
+      "pceCategories": {
+        "goods": 2.3,
+        "durables": 0.7,
+        "nondurables": 3.1,
+        "services": 5.7,
+        "food": 7.1,
+        "energy": -5.7,
+        "housingUtilities": 7.5,
+        "healthCare": 2.6,
+        "motorVehicles": 1.5,
+        "transportServices": 6.4,
+        "apparel": 3,
+        "recreationGoods": -1.7,
+        "recreationServices": 5.1,
+        "foodServices": 6.9,
+        "financialServices": 5.1,
+        "otherServices": 4.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.1,
+        "cpiItHardware": -2.3,
+        "ppiSemiconductors": 3,
+        "ppiElectronicComponents": 2
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.7,
+        "services": 3.8
+      },
+      "shapiro": {
+        "demand": 1.9,
+        "supply": 2.1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-05",
+      "headlineYoy": 4.1,
+      "coreCpiYoy": 5.3,
+      "pceYoy": 4.1,
+      "corePceYoy": 4.8,
+      "contributions": {
+        "food": 0.9,
+        "energy": -0.8,
+        "shelter": 2.8,
+        "usedVehicles": -0.1,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.5,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 6.7,
+        "energy": -11.3,
+        "shelter": 8,
+        "usedVehicles": -4.3,
+        "airfares": -13.5
+      },
+      "pceCategories": {
+        "goods": 1.3,
+        "durables": 0.5,
+        "nondurables": 1.6,
+        "services": 5.5,
+        "food": 6,
+        "energy": -12.2,
+        "housingUtilities": 7.5,
+        "healthCare": 2.6,
+        "motorVehicles": 1.5,
+        "transportServices": 6.4,
+        "apparel": 3,
+        "recreationGoods": -1.7,
+        "recreationServices": 5.1,
+        "foodServices": 6.9,
+        "financialServices": 5.1,
+        "otherServices": 4.6
+      },
+      "techCategories": {
+        "cpiComputers": -4.2,
+        "cpiItHardware": -1.8,
+        "ppiSemiconductors": 2.2,
+        "ppiElectronicComponents": 0.6
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.4,
+        "services": 3.7
+      },
+      "shapiro": {
+        "demand": 1.6,
+        "supply": 2.1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-06",
+      "headlineYoy": 3.1,
+      "coreCpiYoy": 4.9,
+      "pceYoy": 3.3,
+      "corePceYoy": 4.4,
+      "contributions": {
+        "food": 0.8,
+        "energy": -1.2,
+        "shelter": 2.7,
+        "usedVehicles": -0.1,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.4,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 5.8,
+        "energy": -16.6,
+        "shelter": 7.8,
+        "usedVehicles": -5.3,
+        "airfares": -18.7
+      },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -0.2,
+        "nondurables": -0.3,
+        "services": 5.2,
+        "food": 4.8,
+        "energy": -17.6,
+        "housingUtilities": 7.5,
+        "healthCare": 2.6,
+        "motorVehicles": 1.5,
+        "transportServices": 6.4,
+        "apparel": 3,
+        "recreationGoods": -1.7,
+        "recreationServices": 5.1,
+        "foodServices": 6.9,
+        "financialServices": 5.1,
+        "otherServices": 4.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.2,
+        "cpiItHardware": -1.6,
+        "ppiSemiconductors": 1.8,
+        "ppiElectronicComponents": 0.2
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": -0.1,
+        "services": 3.4
+      },
+      "shapiro": {
+        "demand": 1.4,
+        "supply": 1.5,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-07",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 4.7,
+      "pceYoy": 3.4,
+      "corePceYoy": 4.2,
+      "contributions": {
+        "food": 0.7,
+        "energy": -0.9,
+        "shelter": 2.6,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.4,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 4.9,
+        "energy": -12.3,
+        "shelter": 7.7,
+        "usedVehicles": -5.7,
+        "airfares": -18.4
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -0.7,
+        "nondurables": 0.2,
+        "services": 5.1,
+        "food": 3.8,
+        "energy": -13.1,
+        "housingUtilities": 6.4,
+        "healthCare": 2.3,
+        "motorVehicles": -0.4,
+        "transportServices": 5.7,
+        "apparel": 2.6,
+        "recreationGoods": -3.1,
+        "recreationServices": 5.1,
+        "foodServices": 6.1,
+        "financialServices": 4.3,
+        "otherServices": 4.3
+      },
+      "techCategories": {
+        "cpiComputers": -4.9,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": 1.7,
+        "ppiElectronicComponents": 0.4
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.1,
+        "services": 3.4
+      },
+      "shapiro": {
+        "demand": 1.3,
+        "supply": 1.4,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-08",
+      "headlineYoy": 3.7,
+      "coreCpiYoy": 4.4,
+      "pceYoy": 3.4,
+      "corePceYoy": 3.8,
+      "contributions": {
+        "food": 0.6,
+        "energy": -0.3,
+        "shelter": 2.5,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 4.3,
+        "energy": -3.7,
+        "shelter": 7.3,
+        "usedVehicles": -6.7,
+        "airfares": -13.1
+      },
+      "pceCategories": {
+        "goods": 0.9,
+        "durables": -1.4,
+        "nondurables": 2.1,
+        "services": 4.7,
+        "food": 3.2,
+        "energy": -3.6,
+        "housingUtilities": 6.4,
+        "healthCare": 2.3,
+        "motorVehicles": -0.4,
+        "transportServices": 5.7,
+        "apparel": 2.6,
+        "recreationGoods": -3.1,
+        "recreationServices": 5.1,
+        "foodServices": 6.1,
+        "financialServices": 4.3,
+        "otherServices": 4.3
+      },
+      "techCategories": {
+        "cpiComputers": -5,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": 2.3,
+        "ppiElectronicComponents": 1
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.5,
+        "services": 3.1
+      },
+      "shapiro": {
+        "demand": 1.4,
+        "supply": 1.5,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-09",
+      "headlineYoy": 3.7,
+      "coreCpiYoy": 4.1,
+      "pceYoy": 3.5,
+      "corePceYoy": 3.7,
+      "contributions": {
+        "food": 0.5,
+        "energy": 0,
+        "shelter": 2.5,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.7,
+        "energy": -0.5,
+        "shelter": 7.1,
+        "usedVehicles": -8,
+        "airfares": -13.3
+      },
+      "pceCategories": {
+        "goods": 1.1,
+        "durables": -1.7,
+        "nondurables": 2.7,
+        "services": 4.7,
+        "food": 2.8,
+        "energy": 0,
+        "housingUtilities": 6.4,
+        "healthCare": 2.3,
+        "motorVehicles": -0.4,
+        "transportServices": 5.7,
+        "apparel": 2.6,
+        "recreationGoods": -3.1,
+        "recreationServices": 5.1,
+        "foodServices": 6.1,
+        "financialServices": 4.3,
+        "otherServices": 4.3
+      },
+      "techCategories": {
+        "cpiComputers": -5.2,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": 2.3,
+        "ppiElectronicComponents": 1
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.6,
+        "services": 3.1
+      },
+      "shapiro": {
+        "demand": 1.3,
+        "supply": 1.4,
+        "ambiguous": 0.8
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-10",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 4,
+      "pceYoy": 3.1,
+      "corePceYoy": 3.6,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.3,
+        "shelter": 2.3,
+        "usedVehicles": -0.2,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.3,
+        "energy": -4.4,
+        "shelter": 6.7,
+        "usedVehicles": -7.1,
+        "airfares": -13.1
+      },
+      "pceCategories": {
+        "goods": 0.5,
+        "durables": -1.5,
+        "nondurables": 1.6,
+        "services": 4.4,
+        "food": 2.5,
+        "energy": -4.6,
+        "housingUtilities": 5.9,
+        "healthCare": 2.4,
+        "motorVehicles": -0.7,
+        "transportServices": 4.6,
+        "apparel": 1.7,
+        "recreationGoods": -2.3,
+        "recreationServices": 4.7,
+        "foodServices": 4.6,
+        "financialServices": 4.2,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -5.7,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -0.2,
+        "ppiElectronicComponents": 0.1
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.4,
+        "services": 2.9
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.4,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-11",
+      "headlineYoy": 3.1,
+      "coreCpiYoy": 4,
+      "pceYoy": 2.9,
+      "corePceYoy": 3.4,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.4,
+        "shelter": 2.2,
+        "usedVehicles": -0.1,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -5.4,
+        "shelter": 6.5,
+        "usedVehicles": -3.7,
+        "airfares": -12.1
+      },
+      "pceCategories": {
+        "goods": 0,
+        "durables": -1.3,
+        "nondurables": 0.7,
+        "services": 4.3,
+        "food": 1.8,
+        "energy": -5.9,
+        "housingUtilities": 5.9,
+        "healthCare": 2.4,
+        "motorVehicles": -0.7,
+        "transportServices": 4.6,
+        "apparel": 1.7,
+        "recreationGoods": -2.3,
+        "recreationServices": 4.7,
+        "foodServices": 4.6,
+        "financialServices": 4.2,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -4.6,
+        "cpiItHardware": -1.8,
+        "ppiSemiconductors": -0.4,
+        "ppiElectronicComponents": -0.2
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.2,
+        "services": 2.9
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.4,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2023-12",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 3.9,
+      "pceYoy": 2.9,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.1,
+        "shelter": 2.1,
+        "usedVehicles": 0,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.7,
+        "energy": -1.9,
+        "shelter": 6.2,
+        "usedVehicles": -1.3,
+        "airfares": -9.6
+      },
+      "pceCategories": {
+        "goods": 0.3,
+        "durables": -1.6,
+        "nondurables": 1.3,
+        "services": 4.1,
+        "food": 1.5,
+        "energy": -2.1,
+        "housingUtilities": 5.9,
+        "healthCare": 2.4,
+        "motorVehicles": -0.7,
+        "transportServices": 4.6,
+        "apparel": 1.7,
+        "recreationGoods": -2.3,
+        "recreationServices": 4.7,
+        "foodServices": 4.6,
+        "financialServices": 4.2,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -3.6,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": -0.9,
+        "ppiElectronicComponents": -0.4
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.3,
+        "services": 2.8
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.3,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2022
+    },
+    {
+      "date": "2024-01",
+      "headlineYoy": 3.1,
+      "coreCpiYoy": 3.9,
+      "pceYoy": 2.7,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 2.2,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.5,
+        "energy": -4.3,
+        "shelter": 6.1,
+        "usedVehicles": -3.8,
+        "airfares": -6.7
+      },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -1.7,
+        "nondurables": 0.4,
+        "services": 4.3,
+        "food": 1.5,
+        "energy": -4.7,
+        "housingUtilities": 5.4,
+        "healthCare": 3,
+        "motorVehicles": -0.5,
+        "transportServices": 2.8,
+        "apparel": 0.5,
+        "recreationGoods": -1.6,
+        "recreationServices": 4.4,
+        "foodServices": 3.8,
+        "financialServices": 5.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -2.1,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -0.2,
+        "ppiElectronicComponents": 0.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.1,
+        "services": 2.9
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-02",
+      "headlineYoy": 3.2,
+      "coreCpiYoy": 3.8,
+      "pceYoy": 2.8,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.1,
+        "shelter": 2.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": -1.9,
+        "shelter": 5.8,
+        "usedVehicles": -1.3,
+        "airfares": -6.2
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -1.6,
+        "nondurables": 0.7,
+        "services": 4.2,
+        "food": 1.4,
+        "energy": -2.3,
+        "housingUtilities": 5.4,
+        "healthCare": 3,
+        "motorVehicles": -0.5,
+        "transportServices": 2.8,
+        "apparel": 0.5,
+        "recreationGoods": -1.6,
+        "recreationServices": 4.4,
+        "foodServices": 3.8,
+        "financialServices": 5.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -2.7,
+        "cpiItHardware": -0.3,
+        "ppiSemiconductors": -0.9,
+        "ppiElectronicComponents": 0.7
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.1,
+        "services": 2.8
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.4,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-03",
+      "headlineYoy": 3.5,
+      "coreCpiYoy": 3.8,
+      "pceYoy": 3,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.3,
+        "energy": 2.1,
+        "shelter": 5.6,
+        "usedVehicles": -1.1,
+        "airfares": -7.2
+      },
+      "pceCategories": {
+        "goods": 0.2,
+        "durables": -1.5,
+        "nondurables": 1.1,
+        "services": 4.3,
+        "food": 1.5,
+        "energy": 1.6,
+        "housingUtilities": 5.4,
+        "healthCare": 3,
+        "motorVehicles": -0.5,
+        "transportServices": 2.8,
+        "apparel": 0.5,
+        "recreationGoods": -1.6,
+        "recreationServices": 4.4,
+        "foodServices": 3.8,
+        "financialServices": 5.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.8,
+        "cpiItHardware": -0.7,
+        "ppiSemiconductors": -0.8,
+        "ppiElectronicComponents": 0.6
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.2,
+        "services": 2.9
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.4,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-04",
+      "headlineYoy": 3.4,
+      "coreCpiYoy": 3.6,
+      "pceYoy": 2.8,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.2,
+        "shelter": 2,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.3,
+        "energy": 2.4,
+        "shelter": 5.5,
+        "usedVehicles": -5.5,
+        "airfares": -5.9
+      },
+      "pceCategories": {
+        "goods": 0.1,
+        "durables": -1.7,
+        "nondurables": 1.2,
+        "services": 4.2,
+        "food": 1.3,
+        "energy": 1.8,
+        "housingUtilities": 5.3,
+        "healthCare": 2.6,
+        "motorVehicles": -3,
+        "transportServices": 2.8,
+        "apparel": 1,
+        "recreationGoods": -1,
+        "recreationServices": 3.6,
+        "foodServices": 3.2,
+        "financialServices": 5.9,
+        "otherServices": 3.3
+      },
+      "techCategories": {
+        "cpiComputers": -1.6,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": 0.6,
+        "ppiElectronicComponents": 1.1
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.2,
+        "services": 2.8
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.3,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-05",
+      "headlineYoy": 3.2,
+      "coreCpiYoy": 3.4,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.2,
+        "shelter": 2,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 3.6,
+        "shelter": 5.4,
+        "usedVehicles": -9.2,
+        "airfares": -5.9
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -2.6,
+        "nondurables": 1.3,
+        "services": 4.1,
+        "food": 1.2,
+        "energy": 3.1,
+        "housingUtilities": 5.3,
+        "healthCare": 2.6,
+        "motorVehicles": -3,
+        "transportServices": 2.8,
+        "apparel": 1,
+        "recreationGoods": -1,
+        "recreationServices": 3.6,
+        "foodServices": 3.2,
+        "financialServices": 5.9,
+        "otherServices": 3.3
+      },
+      "techCategories": {
+        "cpiComputers": -2.2,
+        "cpiItHardware": -1,
+        "ppiSemiconductors": 0.7,
+        "ppiElectronicComponents": 2
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": 0.3,
+        "services": 2.7
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.2,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-06",
+      "headlineYoy": 3,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 1.9,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1.1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 0.9,
+        "shelter": 5.1,
+        "usedVehicles": -9.9,
+        "airfares": -4.9
+      },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -2.5,
+        "nondurables": 0.9,
+        "services": 4,
+        "food": 1.3,
+        "energy": 0.3,
+        "housingUtilities": 5.3,
+        "healthCare": 2.6,
+        "motorVehicles": -3,
+        "transportServices": 2.8,
+        "apparel": 1,
+        "recreationGoods": -1,
+        "recreationServices": 3.6,
+        "foodServices": 3.2,
+        "financialServices": 5.9,
+        "otherServices": 3.3
+      },
+      "techCategories": {
+        "cpiComputers": -4.2,
+        "cpiItHardware": -1.6,
+        "ppiSemiconductors": -0.2,
+        "ppiElectronicComponents": 1.6
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": 0.2,
+        "services": 2.7
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.2,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-07",
+      "headlineYoy": 2.9,
+      "coreCpiYoy": 3.2,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 1.8,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": 1,
+        "shelter": 5,
+        "usedVehicles": -10,
+        "airfares": -2.5
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -2.2,
+        "nondurables": 1.1,
+        "services": 3.9,
+        "food": 1.2,
+        "energy": 0.4,
+        "housingUtilities": 5,
+        "healthCare": 2.6,
+        "motorVehicles": -2.9,
+        "transportServices": 1.6,
+        "apparel": 0.6,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.3,
+        "foodServices": 3.2,
+        "financialServices": 6.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": -2.4,
+        "cpiItHardware": -0.9,
+        "ppiSemiconductors": -2.9,
+        "ppiElectronicComponents": 0.3
+      },
+      "pceContributions": {
+        "durables": -0.3,
+        "nondurables": 0.2,
+        "services": 2.6
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.3,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-08",
+      "headlineYoy": 2.6,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.4,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 1.9,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.1,
+        "energy": -4,
+        "shelter": 5.2,
+        "usedVehicles": -8.6,
+        "airfares": -1.2
+      },
+      "pceCategories": {
+        "goods": -0.8,
+        "durables": -2,
+        "nondurables": -0.2,
+        "services": 4,
+        "food": 1.1,
+        "energy": -5,
+        "housingUtilities": 5,
+        "healthCare": 2.6,
+        "motorVehicles": -2.9,
+        "transportServices": 1.6,
+        "apparel": 0.6,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.3,
+        "foodServices": 3.2,
+        "financialServices": 6.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": -2,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": -3.6,
+        "ppiElectronicComponents": 0.1
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0,
+        "services": 2.7
+      },
+      "shapiro": {
+        "demand": 0.7,
+        "supply": 1.2,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-09",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.3,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.5,
+        "shelter": 1.8,
+        "usedVehicles": -0.2,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.3,
+        "energy": -6.8,
+        "shelter": 4.8,
+        "usedVehicles": -6.3,
+        "airfares": 1.6
+      },
+      "pceCategories": {
+        "goods": -1.1,
+        "durables": -1.8,
+        "nondurables": -0.8,
+        "services": 3.9,
+        "food": 1.2,
+        "energy": -8.1,
+        "housingUtilities": 5,
+        "healthCare": 2.6,
+        "motorVehicles": -2.9,
+        "transportServices": 1.6,
+        "apparel": 0.6,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.3,
+        "foodServices": 3.2,
+        "financialServices": 6.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": -4.7,
+        "cpiItHardware": -2.5,
+        "ppiSemiconductors": -4.1,
+        "ppiElectronicComponents": -0.2
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.2,
+        "services": 2.6
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1,
+        "ambiguous": 0.3
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-10",
+      "headlineYoy": 2.6,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.4,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.3,
+        "shelter": 1.8,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": -0.1,
+        "servicesExShelter": 1
+      },
+      "componentYoy": {
+        "food": 2.2,
+        "energy": -4.8,
+        "shelter": 4.9,
+        "usedVehicles": -4.9,
+        "airfares": 4.2
+      },
+      "pceCategories": {
+        "goods": -1,
+        "durables": -1.8,
+        "nondurables": -0.6,
+        "services": 4.1,
+        "food": 1,
+        "energy": -5.9,
+        "housingUtilities": 4.7,
+        "healthCare": 2.8,
+        "motorVehicles": -1.5,
+        "transportServices": 2.9,
+        "apparel": 0.8,
+        "recreationGoods": -2,
+        "recreationServices": 3.3,
+        "foodServices": 3.3,
+        "financialServices": 6.8,
+        "otherServices": 2.9
+      },
+      "techCategories": {
+        "cpiComputers": -5.4,
+        "cpiItHardware": -2.9,
+        "ppiSemiconductors": -3,
+        "ppiElectronicComponents": 0.5
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": -0.1,
+        "services": 2.7
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-11",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.5,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": -0.2,
+        "shelter": 1.7,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": -3.1,
+        "shelter": 4.8,
+        "usedVehicles": -5,
+        "airfares": 4.8
+      },
+      "pceCategories": {
+        "goods": -0.5,
+        "durables": -1.5,
+        "nondurables": 0,
+        "services": 3.9,
+        "food": 1.4,
+        "energy": -4,
+        "housingUtilities": 4.7,
+        "healthCare": 2.8,
+        "motorVehicles": -1.5,
+        "transportServices": 2.9,
+        "apparel": 0.8,
+        "recreationGoods": -2,
+        "recreationServices": 3.3,
+        "foodServices": 3.3,
+        "financialServices": 6.8,
+        "otherServices": 2.9
+      },
+      "techCategories": {
+        "cpiComputers": -5.5,
+        "cpiItHardware": -3.5,
+        "ppiSemiconductors": -3.1,
+        "ppiElectronicComponents": 1.8
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0,
+        "services": 2.7
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 0.9,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2024-12",
+      "headlineYoy": 2.9,
+      "coreCpiYoy": 3.2,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.7,
+        "usedVehicles": -0.1,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.5,
+        "energy": -0.3,
+        "shelter": 4.6,
+        "usedVehicles": -4.7,
+        "airfares": 7.7
+      },
+      "pceCategories": {
+        "goods": -0.1,
+        "durables": -1.5,
+        "nondurables": 0.6,
+        "services": 4,
+        "food": 1.6,
+        "energy": -1.1,
+        "housingUtilities": 4.7,
+        "healthCare": 2.8,
+        "motorVehicles": -1.5,
+        "transportServices": 2.9,
+        "apparel": 0.8,
+        "recreationGoods": -2,
+        "recreationServices": 3.3,
+        "foodServices": 3.3,
+        "financialServices": 6.8,
+        "otherServices": 2.9
+      },
+      "techCategories": {
+        "cpiComputers": -5.1,
+        "cpiItHardware": -3.6,
+        "ppiSemiconductors": -3.2,
+        "ppiElectronicComponents": 1.7
+      },
+      "pceContributions": {
+        "durables": -0.2,
+        "nondurables": 0.1,
+        "services": 2.7
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 0.8,
+        "ambiguous": 0.7
+      },
+      "riVintage": 2023
+    },
+    {
+      "date": "2025-01",
+      "headlineYoy": 3,
+      "coreCpiYoy": 3.3,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.1,
+        "shelter": 1.6,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.4,
+        "energy": 0.8,
+        "shelter": 4.4,
+        "usedVehicles": 0.9,
+        "airfares": 6.9
+      },
+      "pceCategories": {
+        "goods": 0.4,
+        "durables": -1.3,
+        "nondurables": 1.4,
+        "services": 3.7,
+        "food": 1.5,
+        "energy": 0.7,
+        "housingUtilities": 4.3,
+        "healthCare": 2.4,
+        "motorVehicles": 0.2,
+        "transportServices": 3,
+        "apparel": 0.3,
+        "recreationGoods": -2.6,
+        "recreationServices": 3.8,
+        "foodServices": 3.1,
+        "financialServices": 5.7,
+        "otherServices": 2.3
+      },
+      "techCategories": {
+        "cpiComputers": -6,
+        "cpiItHardware": -3.9,
+        "ppiSemiconductors": -5,
+        "ppiElectronicComponents": 0.2
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.3,
+        "services": 2.5
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-02",
+      "headlineYoy": 2.8,
+      "coreCpiYoy": 3.1,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0,
+        "shelter": 1.5,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.9
+      },
+      "componentYoy": {
+        "food": 2.6,
+        "energy": -0.4,
+        "shelter": 4.2,
+        "usedVehicles": 0.7,
+        "airfares": -0.8
+      },
+      "pceCategories": {
+        "goods": 0.3,
+        "durables": -1.1,
+        "nondurables": 1,
+        "services": 3.6,
+        "food": 1.3,
+        "energy": -0.7,
+        "housingUtilities": 4.3,
+        "healthCare": 2.4,
+        "motorVehicles": 0.2,
+        "transportServices": 3,
+        "apparel": 0.3,
+        "recreationGoods": -2.6,
+        "recreationServices": 3.8,
+        "foodServices": 3.1,
+        "financialServices": 5.7,
+        "otherServices": 2.3
+      },
+      "techCategories": {
+        "cpiComputers": -6,
+        "cpiItHardware": -4.2,
+        "ppiSemiconductors": -4.9,
+        "ppiElectronicComponents": -0.2
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0.2,
+        "services": 2.5
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 0.9,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-03",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 2.3,
+      "corePceYoy": 2.6,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.2,
+        "shelter": 1.5,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -3.4,
+        "shelter": 4,
+        "usedVehicles": 0.6,
+        "airfares": -5.4
+      },
+      "pceCategories": {
+        "goods": -0.3,
+        "durables": -1.1,
+        "nondurables": 0.2,
+        "services": 3.4,
+        "food": 1.9,
+        "energy": -3.9,
+        "housingUtilities": 4.3,
+        "healthCare": 2.4,
+        "motorVehicles": 0.2,
+        "transportServices": 3,
+        "apparel": 0.3,
+        "recreationGoods": -2.6,
+        "recreationServices": 3.8,
+        "foodServices": 3.1,
+        "financialServices": 5.7,
+        "otherServices": 2.3
+      },
+      "techCategories": {
+        "cpiComputers": -5.4,
+        "cpiItHardware": -3.9,
+        "ppiSemiconductors": -4.1,
+        "ppiElectronicComponents": 0.3
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 2.3
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 0.9,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-04",
+      "headlineYoy": 2.3,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 2.3,
+      "corePceYoy": 2.7,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.2,
+        "shelter": 1.5,
+        "usedVehicles": 0,
+        "airfares": -0.1,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.8,
+        "energy": -3.6,
+        "shelter": 4,
+        "usedVehicles": 1.5,
+        "airfares": -8
+      },
+      "pceCategories": {
+        "goods": -0.4,
+        "durables": -0.7,
+        "nondurables": -0.2,
+        "services": 3.6,
+        "food": 1.7,
+        "energy": -4.3,
+        "housingUtilities": 4.4,
+        "healthCare": 2.7,
+        "motorVehicles": 1,
+        "transportServices": 2.5,
+        "apparel": -0.8,
+        "recreationGoods": -0.9,
+        "recreationServices": 4.1,
+        "foodServices": 3,
+        "financialServices": 5.5,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.6,
+        "cpiItHardware": -4.6,
+        "ppiSemiconductors": -4.9,
+        "ppiElectronicComponents": -0.2
+      },
+      "pceContributions": {
+        "durables": -0.1,
+        "nondurables": 0,
+        "services": 2.5
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-05",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 2.5,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.2,
+        "shelter": 1.4,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -3.1,
+        "shelter": 3.9,
+        "usedVehicles": 1.7,
+        "airfares": -7.4
+      },
+      "pceCategories": {
+        "goods": 0,
+        "durables": 0.3,
+        "nondurables": -0.1,
+        "services": 3.6,
+        "food": 1.8,
+        "energy": -3.7,
+        "housingUtilities": 4.4,
+        "healthCare": 2.7,
+        "motorVehicles": 1,
+        "transportServices": 2.5,
+        "apparel": -0.8,
+        "recreationGoods": -0.9,
+        "recreationServices": 4.1,
+        "foodServices": 3,
+        "financialServices": 5.5,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": -3.5,
+        "cpiItHardware": -4,
+        "ppiSemiconductors": -5.5,
+        "ppiElectronicComponents": 0
+      },
+      "pceContributions": {
+        "durables": 0,
+        "nondurables": 0,
+        "services": 2.5
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.2,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-06",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 2.9,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.4,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3,
+        "energy": -0.6,
+        "shelter": 3.8,
+        "usedVehicles": 2.7,
+        "airfares": -3.2
+      },
+      "pceCategories": {
+        "goods": 0.6,
+        "durables": 0.9,
+        "nondurables": 0.5,
+        "services": 3.5,
+        "food": 2,
+        "energy": -1.2,
+        "housingUtilities": 4.4,
+        "healthCare": 2.7,
+        "motorVehicles": 1,
+        "transportServices": 2.5,
+        "apparel": -0.8,
+        "recreationGoods": -0.9,
+        "recreationServices": 4.1,
+        "foodServices": 3,
+        "financialServices": 5.5,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": -0.3,
+        "cpiItHardware": -3.3,
+        "ppiSemiconductors": -5.2,
+        "ppiElectronicComponents": -1
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.1,
+        "services": 2.4
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.1,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-07",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 3.1,
+      "pceYoy": 2.6,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": -0.1,
+        "shelter": 1.3,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.1,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -1.2,
+        "shelter": 3.7,
+        "usedVehicles": 4.8,
+        "airfares": 1
+      },
+      "pceCategories": {
+        "goods": 0.6,
+        "durables": 1.2,
+        "nondurables": 0.3,
+        "services": 3.5,
+        "food": 1.8,
+        "energy": -1.8,
+        "housingUtilities": 4.2,
+        "healthCare": 2.8,
+        "motorVehicles": 2.3,
+        "transportServices": 3.8,
+        "apparel": -0.3,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.5,
+        "foodServices": 3.1,
+        "financialServices": 5,
+        "otherServices": 2.4
+      },
+      "techCategories": {
+        "cpiComputers": -1.8,
+        "cpiItHardware": -3.9,
+        "ppiSemiconductors": -2.6,
+        "ppiElectronicComponents": 0
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.1,
+        "services": 2.4
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-08",
+      "headlineYoy": 2.9,
+      "coreCpiYoy": 3.1,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.3,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.2,
+        "energy": 0.4,
+        "shelter": 3.6,
+        "usedVehicles": 6,
+        "airfares": 3.4
+      },
+      "pceCategories": {
+        "goods": 0.9,
+        "durables": 1.3,
+        "nondurables": 0.7,
+        "services": 3.5,
+        "food": 2.2,
+        "energy": -0.1,
+        "housingUtilities": 4.2,
+        "healthCare": 2.8,
+        "motorVehicles": 2.3,
+        "transportServices": 3.8,
+        "apparel": -0.3,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.5,
+        "foodServices": 3.1,
+        "financialServices": 5,
+        "otherServices": 2.4
+      },
+      "techCategories": {
+        "cpiComputers": -2,
+        "cpiItHardware": -2.7,
+        "ppiSemiconductors": -3.5,
+        "ppiElectronicComponents": 3.8
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.1,
+        "services": 2.4
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 1.1,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-09",
+      "headlineYoy": 3,
+      "coreCpiYoy": 3,
+      "pceYoy": 2.8,
+      "corePceYoy": 2.8,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.2,
+        "shelter": 1.3,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3.1,
+        "energy": 2.9,
+        "shelter": 3.6,
+        "usedVehicles": 5.1,
+        "airfares": 3
+      },
+      "pceCategories": {
+        "goods": 1.5,
+        "durables": 1.1,
+        "nondurables": 1.7,
+        "services": 3.4,
+        "food": 2.4,
+        "energy": 2.7,
+        "housingUtilities": 4.2,
+        "healthCare": 2.8,
+        "motorVehicles": 2.3,
+        "transportServices": 3.8,
+        "apparel": -0.3,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.5,
+        "foodServices": 3.1,
+        "financialServices": 5,
+        "otherServices": 2.4
+      },
+      "techCategories": {
+        "cpiComputers": -0.7,
+        "cpiItHardware": -2,
+        "ppiSemiconductors": -3.4,
+        "ppiElectronicComponents": 3.9
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.3,
+        "services": 2.3
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.2,
+        "ambiguous": 0.5
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-11",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.7,
+      "contributions": {
+        "food": 0.3,
+        "energy": 0.3,
+        "shelter": 1.1,
+        "usedVehicles": 0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.6,
+        "energy": 4.2,
+        "shelter": 3,
+        "usedVehicles": 3.6,
+        "airfares": -5.1
+      },
+      "pceCategories": {
+        "goods": 1.5,
+        "durables": 1.2,
+        "nondurables": 1.6,
+        "services": 3.3,
+        "food": 1.9,
+        "energy": 4.1,
+        "housingUtilities": 3.7,
+        "healthCare": 2.7,
+        "motorVehicles": 1.8,
+        "transportServices": 3.3,
+        "apparel": 0,
+        "recreationGoods": -0.3,
+        "recreationServices": 3.3,
+        "foodServices": 2.9,
+        "financialServices": 5,
+        "otherServices": 2.8
+      },
+      "techCategories": {
+        "cpiComputers": -0.2,
+        "cpiItHardware": 0.7,
+        "ppiSemiconductors": -3.5,
+        "ppiElectronicComponents": 3.5
+      },
+      "pceContributions": {
+        "durables": 0.1,
+        "nondurables": 0.3,
+        "services": 2.2
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.2,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2025-12",
+      "headlineYoy": 2.7,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 2.8,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.1,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 3,
+        "energy": 2.1,
+        "shelter": 3.2,
+        "usedVehicles": 1.6,
+        "airfares": -3.4
+      },
+      "pceCategories": {
+        "goods": 1.7,
+        "durables": 1.9,
+        "nondurables": 1.5,
+        "services": 3.3,
+        "food": 2.1,
+        "energy": 1.9,
+        "housingUtilities": 3.7,
+        "healthCare": 2.7,
+        "motorVehicles": 1.8,
+        "transportServices": 3.3,
+        "apparel": 0,
+        "recreationGoods": -0.3,
+        "recreationServices": 3.3,
+        "foodServices": 2.9,
+        "financialServices": 5,
+        "otherServices": 2.8
+      },
+      "techCategories": {
+        "cpiComputers": -0.6,
+        "cpiItHardware": -0.2,
+        "ppiSemiconductors": -2.9,
+        "ppiElectronicComponents": 4
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.3,
+        "services": 2.2
+      },
+      "shapiro": {
+        "demand": 0.9,
+        "supply": 1.4,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-01",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.5,
+      "pceYoy": 2.7,
+      "corePceYoy": 2.9,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": 0,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": -0.3,
+        "shelter": 3,
+        "usedVehicles": -2,
+        "airfares": 2.2
+      },
+      "pceCategories": {
+        "goods": 1.2,
+        "durables": 2,
+        "nondurables": 0.8,
+        "services": 3.4,
+        "food": 2.1,
+        "energy": -1,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 4.6,
+        "apparel": 2.1,
+        "recreationGoods": 3.1,
+        "recreationServices": 3.1,
+        "foodServices": 3.3,
+        "financialServices": 5.2,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 1.6,
+        "cpiItHardware": 0.3,
+        "ppiSemiconductors": -1.7,
+        "ppiElectronicComponents": 5.9
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.2,
+        "services": 2.4
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.3,
+        "ambiguous": 0.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-02",
+      "headlineYoy": 2.4,
+      "coreCpiYoy": 2.5,
+      "pceYoy": 2.8,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0,
+        "shelter": 1.1,
+        "usedVehicles": -0.1,
+        "airfares": 0,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 3.1,
+        "energy": 0.4,
+        "shelter": 3,
+        "usedVehicles": -3.2,
+        "airfares": 7.1
+      },
+      "pceCategories": {
+        "goods": 1.6,
+        "durables": 2.4,
+        "nondurables": 1.3,
+        "services": 3.3,
+        "food": 2.3,
+        "energy": -0.1,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 4.6,
+        "apparel": 2.1,
+        "recreationGoods": 3.1,
+        "recreationServices": 3.1,
+        "foodServices": 3.3,
+        "financialServices": 5.2,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 0.9,
+        "cpiItHardware": -1.2,
+        "ppiSemiconductors": 0,
+        "ppiElectronicComponents": 16.3
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.3,
+        "services": 2.3
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.2,
+        "ambiguous": 0.6
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-03",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 3.4,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.8,
+        "shelter": 1.1,
+        "usedVehicles": -0.1,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.7,
+        "energy": 12.6,
+        "shelter": 3,
+        "usedVehicles": -3.2,
+        "airfares": 14.9
+      },
+      "pceCategories": {
+        "goods": 3.4,
+        "durables": 2.7,
+        "nondurables": 3.7,
+        "services": 3.4,
+        "food": 1.8,
+        "energy": 13,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 4.6,
+        "apparel": 2.1,
+        "recreationGoods": 3.1,
+        "recreationServices": 3.1,
+        "foodServices": 3.3,
+        "financialServices": 5.2,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 2.2,
+        "cpiItHardware": -1.7,
+        "ppiSemiconductors": -0.6,
+        "ppiElectronicComponents": 18
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.8,
+        "services": 2.3
+      },
+      "shapiro": {
+        "demand": 1,
+        "supply": 1.2,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-04",
+      "headlineYoy": 3.8,
+      "coreCpiYoy": 2.7,
+      "pceYoy": 3.6,
+      "corePceYoy": 3.1,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1.1,
+        "shelter": 1.2,
+        "usedVehicles": -0.1,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 3.2,
+        "energy": 17.5,
+        "shelter": 3.3,
+        "usedVehicles": -2.7,
+        "airfares": 20.7
+      },
+      "pceCategories": {
+        "goods": 4.1,
+        "durables": 2.7,
+        "nondurables": 4.8,
+        "services": 3.3,
+        "food": 2.4,
+        "energy": 18.2,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 7.4,
+        "apparel": 3.5,
+        "recreationGoods": 4.3,
+        "recreationServices": 3,
+        "foodServices": 3.6,
+        "financialServices": 5,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": 2.3,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": 1.2,
+        "ppiElectronicComponents": 27.2
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 1,
+        "services": 2.3
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1.1,
+        "ambiguous": 1.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-05",
+      "headlineYoy": 4.2,
+      "coreCpiYoy": 2.8,
+      "pceYoy": 3.8,
+      "corePceYoy": 3.2,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1.5,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.3,
+        "servicesExShelter": 0.8
+      },
+      "componentYoy": {
+        "food": 3.1,
+        "energy": 23,
+        "shelter": 3.4,
+        "usedVehicles": -2,
+        "airfares": 26.7
+      },
+      "pceCategories": {
+        "goods": 4.4,
+        "durables": 2.7,
+        "nondurables": 5.4,
+        "services": 3.5,
+        "food": 2.3,
+        "energy": 23.7,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 7.4,
+        "apparel": 3.5,
+        "recreationGoods": 4.3,
+        "recreationServices": 3,
+        "foodServices": 3.6,
+        "financialServices": 5,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": 1.3,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": 0.8,
+        "ppiElectronicComponents": 26.6
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 1.1,
+        "services": 2.4
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 1.2,
+        "ambiguous": 1.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-06",
+      "headlineYoy": 3.5,
+      "coreCpiYoy": 2.6,
+      "pceYoy": 3.5,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 3,
+        "energy": 15.5,
+        "shelter": 3.3,
+        "usedVehicles": -1.8,
+        "airfares": 26.5
+      },
+      "pceCategories": {
+        "goods": 3.4,
+        "durables": 2.2,
+        "nondurables": 4.1,
+        "services": 3.5,
+        "food": 2.3,
+        "energy": 16.1,
+        "housingUtilities": 3.4,
+        "healthCare": 3.1,
+        "motorVehicles": 0,
+        "transportServices": 7.4,
+        "apparel": 3.5,
+        "recreationGoods": 4.3,
+        "recreationServices": 3,
+        "foodServices": 3.6,
+        "financialServices": 5,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": -0.8,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": -0.1,
+        "ppiElectronicComponents": 29
+      },
+      "pceContributions": {
+        "durables": 0.2,
+        "nondurables": 0.8,
+        "services": 2.4
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 0.9,
+        "ambiguous": 1.4
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-07",
+      "headlineYoy": 3.3,
+      "coreCpiYoy": 2.5,
+      "pceYoy": 3.4,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 0.9,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.6
+      },
+      "componentYoy": {
+        "food": 2.9,
+        "energy": 14.4,
+        "shelter": 3.2,
+        "usedVehicles": -1.9,
+        "airfares": 25.5
+      },
+      "pceCategories": {
+        "goods": 3.3,
+        "durables": 2.5,
+        "nondurables": 3.8,
+        "services": 3.4,
+        "food": 2.3,
+        "energy": 15.1,
+        "housingUtilities": null,
+        "healthCare": null,
+        "motorVehicles": null,
+        "transportServices": null,
+        "apparel": null,
+        "recreationGoods": null,
+        "recreationServices": null,
+        "foodServices": null,
+        "financialServices": null,
+        "otherServices": null
+      },
+      "techCategories": {
+        "cpiComputers": 3.9,
+        "cpiItHardware": -0.2,
+        "ppiSemiconductors": -2.5,
+        "ppiElectronicComponents": 28
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.8,
+        "services": 2.3
+      },
+      "shapiro": {
+        "demand": 1.1,
+        "supply": 1,
+        "ambiguous": 1.3
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-08",
+      "headlineYoy": 3.4,
+      "coreCpiYoy": 2.4,
+      "pceYoy": 3.4,
+      "corePceYoy": 3,
+      "contributions": {
+        "food": 0.4,
+        "energy": 1,
+        "shelter": 1.1,
+        "usedVehicles": -0.1,
+        "airfares": 0.2,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.6,
+        "energy": 16,
+        "shelter": 3,
+        "usedVehicles": -2.3,
+        "airfares": 23.4
+      },
+      "pceCategories": {
+        "goods": 3.6,
+        "durables": 2.6,
+        "nondurables": 4.1,
+        "services": 3.4,
+        "food": 1.9,
+        "energy": 16.8,
+        "housingUtilities": null,
+        "healthCare": null,
+        "motorVehicles": null,
+        "transportServices": null,
+        "apparel": null,
+        "recreationGoods": null,
+        "recreationServices": null,
+        "foodServices": null,
+        "financialServices": null,
+        "otherServices": null
+      },
+      "techCategories": {
+        "cpiComputers": 8.4,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -2.9,
+        "ppiElectronicComponents": 27.5
+      },
+      "pceContributions": {
+        "durables": 0.3,
+        "nondurables": 0.8,
+        "services": 2.3
+      },
+      "shapiro": {
+        "demand": 1.2,
+        "supply": 1,
+        "ambiguous": 1.2
+      },
+      "riVintage": 2024
+    },
+    {
+      "date": "2026-09",
+      "headlineYoy": 3.7,
+      "coreCpiYoy": 2.6,
+      "pceYoy": null,
+      "corePceYoy": null,
+      "contributions": {
+        "food": 0.3,
+        "energy": 1.3,
+        "shelter": 1.2,
+        "usedVehicles": 0,
+        "airfares": 0.1,
+        "coreGoodsExUsed": 0.2,
+        "servicesExShelter": 0.7
+      },
+      "componentYoy": {
+        "food": 2.5,
+        "energy": 20.4,
+        "shelter": 3.2,
+        "usedVehicles": -1.5,
+        "airfares": 22.4
+      },
+      "pceCategories": {
+        "goods": null,
+        "durables": null,
+        "nondurables": null,
+        "services": null,
+        "food": null,
+        "energy": null,
+        "housingUtilities": null,
+        "healthCare": null,
+        "motorVehicles": null,
+        "transportServices": null,
+        "apparel": null,
+        "recreationGoods": null,
+        "recreationServices": null,
+        "foodServices": null,
+        "financialServices": null,
+        "otherServices": null
+      },
+      "techCategories": {
+        "cpiComputers": 9.7,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -2.2,
+        "ppiElectronicComponents": 26.8
+      },
+      "pceContributions": {
+        "durables": null,
+        "nondurables": null,
+        "services": null
+      },
+      "shapiro": null,
+      "riVintage": 2024
+    }
+  ]
+}
