@@ -36,7 +36,13 @@
           "DHUTRG3Q086SBEA",
           "DHLCRG3Q086SBEA",
           "DMOTRG3Q086SBEA",
-          "DTRSRG3Q086SBEA"
+          "DTRSRG3Q086SBEA",
+          "DCLORG3Q086SBEA",
+          "DREQRG3Q086SBEA",
+          "DRCARG3Q086SBEA",
+          "DFSARG3Q086SBEA",
+          "DIFSRG3Q086SBEA",
+          "DOTSRG3Q086SBEA"
         ],
         "url": "https://fred.stlouisfed.org/release/tables?eid=44067&rid=53"
       },
@@ -82,7 +88,19 @@
       "housingUtilities": "DHUTRG3Q086SBEA",
       "healthCare": "DHLCRG3Q086SBEA",
       "motorVehicles": "DMOTRG3Q086SBEA",
-      "transportServices": "DTRSRG3Q086SBEA"
+      "transportServices": "DTRSRG3Q086SBEA",
+      "apparel": "DCLORG3Q086SBEA",
+      "recreationGoods": "DREQRG3Q086SBEA",
+      "recreationServices": "DRCARG3Q086SBEA",
+      "foodServices": "DFSARG3Q086SBEA",
+      "financialServices": "DIFSRG3Q086SBEA",
+      "otherServices": "DOTSRG3Q086SBEA"
+    },
+    "techOverlaySeries": {
+      "cpiComputers": "CUSR0000SEEE01",
+      "cpiItHardware": "CUSR0000SEEE",
+      "ppiSemiconductors": "PCU334413334413",
+      "ppiElectronicComponents": "WPU1178"
     },
     "pceExpenditureSeries": {
       "total": "PCE",
@@ -190,7 +208,19 @@
         "housingUtilities": 3,
         "healthCare": 1.8,
         "motorVehicles": 1.3,
-        "transportServices": 2.6
+        "transportServices": 2.6,
+        "apparel": -1,
+        "recreationGoods": -3.1,
+        "recreationServices": 2,
+        "foodServices": 2.7,
+        "financialServices": 2.8,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.4,
+        "cpiItHardware": -1,
+        "ppiSemiconductors": -6.3,
+        "ppiElectronicComponents": -1.5
       },
       "pceContributions": {
         "durables": -0.1,
@@ -232,7 +262,19 @@
         "housingUtilities": 3,
         "healthCare": 1.8,
         "motorVehicles": 1.3,
-        "transportServices": 2.6
+        "transportServices": 2.6,
+        "apparel": -1,
+        "recreationGoods": -3.1,
+        "recreationServices": 2,
+        "foodServices": 2.7,
+        "financialServices": 2.8,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.9,
+        "cpiItHardware": -0.5,
+        "ppiSemiconductors": -7.1,
+        "ppiElectronicComponents": -1.7
       },
       "pceContributions": {
         "durables": -0.1,
@@ -274,7 +316,19 @@
         "housingUtilities": 3,
         "healthCare": 1.8,
         "motorVehicles": 1.3,
-        "transportServices": 2.6
+        "transportServices": 2.6,
+        "apparel": -1,
+        "recreationGoods": -3.1,
+        "recreationServices": 2,
+        "foodServices": 2.7,
+        "financialServices": 2.8,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.3,
+        "cpiItHardware": -0.7,
+        "ppiSemiconductors": -6.9,
+        "ppiElectronicComponents": -1.8
       },
       "pceContributions": {
         "durables": -0.1,
@@ -316,7 +370,19 @@
         "housingUtilities": 3.1,
         "healthCare": 1.7,
         "motorVehicles": 1,
-        "transportServices": 2.4
+        "transportServices": 2.4,
+        "apparel": -2.5,
+        "recreationGoods": -3.7,
+        "recreationServices": 2.1,
+        "foodServices": 2.8,
+        "financialServices": 3,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -4.4,
+        "cpiItHardware": -0.3,
+        "ppiSemiconductors": -6.6,
+        "ppiElectronicComponents": -1.7
       },
       "pceContributions": {
         "durables": -0.1,
@@ -358,7 +424,19 @@
         "housingUtilities": 3.1,
         "healthCare": 1.7,
         "motorVehicles": 1,
-        "transportServices": 2.4
+        "transportServices": 2.4,
+        "apparel": -2.5,
+        "recreationGoods": -3.7,
+        "recreationServices": 2.1,
+        "foodServices": 2.8,
+        "financialServices": 3,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -4.9,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -6.6,
+        "ppiElectronicComponents": -1.5
       },
       "pceContributions": {
         "durables": -0.1,
@@ -400,7 +478,19 @@
         "housingUtilities": 3.1,
         "healthCare": 1.7,
         "motorVehicles": 1,
-        "transportServices": 2.4
+        "transportServices": 2.4,
+        "apparel": -2.5,
+        "recreationGoods": -3.7,
+        "recreationServices": 2.1,
+        "foodServices": 2.8,
+        "financialServices": 3,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.9,
+        "cpiItHardware": -1.7,
+        "ppiSemiconductors": -6.3,
+        "ppiElectronicComponents": -1.1
       },
       "pceContributions": {
         "durables": 0,
@@ -442,7 +532,19 @@
         "housingUtilities": 3.1,
         "healthCare": 1.8,
         "motorVehicles": 0.5,
-        "transportServices": 1.7
+        "transportServices": 1.7,
+        "apparel": -0.1,
+        "recreationGoods": -4.4,
+        "recreationServices": 1.7,
+        "foodServices": 3,
+        "financialServices": 2.5,
+        "otherServices": 0.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.2,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -4.7,
+        "ppiElectronicComponents": -0.5
       },
       "pceContributions": {
         "durables": -0.1,
@@ -484,7 +586,19 @@
         "housingUtilities": 3.1,
         "healthCare": 1.8,
         "motorVehicles": 0.5,
-        "transportServices": 1.7
+        "transportServices": 1.7,
+        "apparel": -0.1,
+        "recreationGoods": -4.4,
+        "recreationServices": 1.7,
+        "foodServices": 3,
+        "financialServices": 2.5,
+        "otherServices": 0.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.3,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -3,
+        "ppiElectronicComponents": 0.3
       },
       "pceContributions": {
         "durables": -0.1,
@@ -526,7 +640,19 @@
         "housingUtilities": 3.1,
         "healthCare": 1.8,
         "motorVehicles": 0.5,
-        "transportServices": 1.7
+        "transportServices": 1.7,
+        "apparel": -0.1,
+        "recreationGoods": -4.4,
+        "recreationServices": 1.7,
+        "foodServices": 3,
+        "financialServices": 2.5,
+        "otherServices": 0.9
+      },
+      "techCategories": {
+        "cpiComputers": -3.3,
+        "cpiItHardware": -1.9,
+        "ppiSemiconductors": -2.4,
+        "ppiElectronicComponents": -0.2
       },
       "pceContributions": {
         "durables": -0.1,
@@ -568,7 +694,19 @@
         "housingUtilities": 3,
         "healthCare": 1.9,
         "motorVehicles": 0.5,
-        "transportServices": 1.4
+        "transportServices": 1.4,
+        "apparel": -1.7,
+        "recreationGoods": -4.7,
+        "recreationServices": 2.3,
+        "foodServices": 2.7,
+        "financialServices": 1.6,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -4,
+        "cpiItHardware": -1.8,
+        "ppiSemiconductors": -2.4,
+        "ppiElectronicComponents": 0
       },
       "pceContributions": {
         "durables": -0.1,
@@ -610,7 +748,19 @@
         "housingUtilities": 3,
         "healthCare": 1.9,
         "motorVehicles": 0.5,
-        "transportServices": 1.4
+        "transportServices": 1.4,
+        "apparel": -1.7,
+        "recreationGoods": -4.7,
+        "recreationServices": 2.3,
+        "foodServices": 2.7,
+        "financialServices": 1.6,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -2.4,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -2.4,
+        "ppiElectronicComponents": -0.2
       },
       "pceContributions": {
         "durables": -0.1,
@@ -652,7 +802,19 @@
         "housingUtilities": 3,
         "healthCare": 1.9,
         "motorVehicles": 0.5,
-        "transportServices": 1.4
+        "transportServices": 1.4,
+        "apparel": -1.7,
+        "recreationGoods": -4.7,
+        "recreationServices": 2.3,
+        "foodServices": 2.7,
+        "financialServices": 1.6,
+        "otherServices": 1.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.3,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": -1.8,
+        "ppiElectronicComponents": 0.2
       },
       "pceContributions": {
         "durables": -0.2,
@@ -694,7 +856,19 @@
         "housingUtilities": 3,
         "healthCare": 2,
         "motorVehicles": 0.2,
-        "transportServices": 1.2
+        "transportServices": 1.2,
+        "apparel": -1.7,
+        "recreationGoods": -5.2,
+        "recreationServices": 2.4,
+        "foodServices": 2.3,
+        "financialServices": 2.5,
+        "otherServices": 1.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.8,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -0.9,
+        "ppiElectronicComponents": 0.8
       },
       "pceContributions": {
         "durables": -0.2,
@@ -736,7 +910,19 @@
         "housingUtilities": 3,
         "healthCare": 2,
         "motorVehicles": 0.2,
-        "transportServices": 1.2
+        "transportServices": 1.2,
+        "apparel": -1.7,
+        "recreationGoods": -5.2,
+        "recreationServices": 2.4,
+        "foodServices": 2.3,
+        "financialServices": 2.5,
+        "otherServices": 1.6
+      },
+      "techCategories": {
+        "cpiComputers": -3.5,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -0.3,
+        "ppiElectronicComponents": 0.8
       },
       "pceContributions": {
         "durables": -0.2,
@@ -778,7 +964,19 @@
         "housingUtilities": 3,
         "healthCare": 2,
         "motorVehicles": 0.2,
-        "transportServices": 1.2
+        "transportServices": 1.2,
+        "apparel": -1.7,
+        "recreationGoods": -5.2,
+        "recreationServices": 2.4,
+        "foodServices": 2.3,
+        "financialServices": 2.5,
+        "otherServices": 1.6
+      },
+      "techCategories": {
+        "cpiComputers": -3,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": 0,
+        "ppiElectronicComponents": 0.9
       },
       "pceContributions": {
         "durables": -0.2,
@@ -820,7 +1018,19 @@
         "housingUtilities": 2.8,
         "healthCare": 2.6,
         "motorVehicles": -0.1,
-        "transportServices": -1.5
+        "transportServices": -1.5,
+        "apparel": -7.1,
+        "recreationGoods": -5.3,
+        "recreationServices": 2.3,
+        "foodServices": 1.1,
+        "financialServices": -0.2,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.5,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": -3.1,
+        "ppiElectronicComponents": -0.5
       },
       "pceContributions": {
         "durables": -0.2,
@@ -862,7 +1072,19 @@
         "housingUtilities": 2.8,
         "healthCare": 2.6,
         "motorVehicles": -0.1,
-        "transportServices": -1.5
+        "transportServices": -1.5,
+        "apparel": -7.1,
+        "recreationGoods": -5.3,
+        "recreationServices": 2.3,
+        "foodServices": 1.1,
+        "financialServices": -0.2,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": -1.8,
+        "cpiItHardware": -0.2,
+        "ppiSemiconductors": -2.8,
+        "ppiElectronicComponents": -0.2
       },
       "pceContributions": {
         "durables": -0.2,
@@ -904,7 +1126,19 @@
         "housingUtilities": 2.8,
         "healthCare": 2.6,
         "motorVehicles": -0.1,
-        "transportServices": -1.5
+        "transportServices": -1.5,
+        "apparel": -7.1,
+        "recreationGoods": -5.3,
+        "recreationServices": 2.3,
+        "foodServices": 1.1,
+        "financialServices": -0.2,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": 0.5,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": -3.1,
+        "ppiElectronicComponents": -0.6
       },
       "pceContributions": {
         "durables": -0.3,
@@ -946,7 +1180,19 @@
         "housingUtilities": 2.5,
         "healthCare": 2.9,
         "motorVehicles": 2.1,
-        "transportServices": -1.8
+        "transportServices": -1.8,
+        "apparel": -6.5,
+        "recreationGoods": -3.8,
+        "recreationServices": 2.1,
+        "foodServices": 1.9,
+        "financialServices": 0.9,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": -2.7,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -3.7,
+        "ppiElectronicComponents": -1.1
       },
       "pceContributions": {
         "durables": -0.1,
@@ -988,7 +1234,19 @@
         "housingUtilities": 2.5,
         "healthCare": 2.9,
         "motorVehicles": 2.1,
-        "transportServices": -1.8
+        "transportServices": -1.8,
+        "apparel": -6.5,
+        "recreationGoods": -3.8,
+        "recreationServices": 2.1,
+        "foodServices": 1.9,
+        "financialServices": 0.9,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": -3,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": -4.3,
+        "ppiElectronicComponents": -1.4
       },
       "pceContributions": {
         "durables": 0,
@@ -1030,7 +1288,19 @@
         "housingUtilities": 2.5,
         "healthCare": 2.9,
         "motorVehicles": 2.1,
-        "transportServices": -1.8
+        "transportServices": -1.8,
+        "apparel": -6.5,
+        "recreationGoods": -3.8,
+        "recreationServices": 2.1,
+        "foodServices": 1.9,
+        "financialServices": 0.9,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": -5.7,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": -4.6,
+        "ppiElectronicComponents": -1.7
       },
       "pceContributions": {
         "durables": 0,
@@ -1072,7 +1342,19 @@
         "housingUtilities": 2.4,
         "healthCare": 2.6,
         "motorVehicles": 4.3,
-        "transportServices": -1.4
+        "transportServices": -1.4,
+        "apparel": -4.9,
+        "recreationGoods": -3,
+        "recreationServices": 2.1,
+        "foodServices": 2.6,
+        "financialServices": 1.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": -4.5,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.9
       },
       "pceContributions": {
         "durables": 0,
@@ -1114,7 +1396,19 @@
         "housingUtilities": 2.4,
         "healthCare": 2.6,
         "motorVehicles": 4.3,
-        "transportServices": -1.4
+        "transportServices": -1.4,
+        "apparel": -4.9,
+        "recreationGoods": -3,
+        "recreationServices": 2.1,
+        "foodServices": 2.6,
+        "financialServices": 1.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": -2.3,
+        "cpiItHardware": -1.2,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.7
       },
       "pceContributions": {
         "durables": 0.1,
@@ -1156,7 +1450,19 @@
         "housingUtilities": 2.4,
         "healthCare": 2.6,
         "motorVehicles": 4.3,
-        "transportServices": -1.4
+        "transportServices": -1.4,
+        "apparel": -4.9,
+        "recreationGoods": -3,
+        "recreationServices": 2.1,
+        "foodServices": 2.6,
+        "financialServices": 1.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 0.8,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.3
       },
       "pceContributions": {
         "durables": 0.1,
@@ -1198,7 +1504,19 @@
         "housingUtilities": 2.1,
         "healthCare": 3.6,
         "motorVehicles": 3.5,
-        "transportServices": -0.8
+        "transportServices": -0.8,
+        "apparel": -3.6,
+        "recreationGoods": -0.7,
+        "recreationServices": 1.7,
+        "foodServices": 2.6,
+        "financialServices": 2.2,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": 1.6,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": -6.8,
+        "ppiElectronicComponents": -2.1
       },
       "pceContributions": {
         "durables": 0.1,
@@ -1240,7 +1558,19 @@
         "housingUtilities": 2.1,
         "healthCare": 3.6,
         "motorVehicles": 3.5,
-        "transportServices": -0.8
+        "transportServices": -0.8,
+        "apparel": -3.6,
+        "recreationGoods": -0.7,
+        "recreationServices": 1.7,
+        "foodServices": 2.6,
+        "financialServices": 2.2,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -0.1,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2.1
       },
       "pceContributions": {
         "durables": 0.1,
@@ -1282,7 +1612,19 @@
         "housingUtilities": 2.1,
         "healthCare": 3.6,
         "motorVehicles": 3.5,
-        "transportServices": -0.8
+        "transportServices": -0.8,
+        "apparel": -3.6,
+        "recreationGoods": -0.7,
+        "recreationServices": 1.7,
+        "foodServices": 2.6,
+        "financialServices": 2.2,
+        "otherServices": 1.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.2,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": -7.4,
+        "ppiElectronicComponents": -2
       },
       "pceContributions": {
         "durables": 0.2,
@@ -1324,7 +1666,19 @@
         "housingUtilities": 2.5,
         "healthCare": 3,
         "motorVehicles": 11,
-        "transportServices": 5.7
+        "transportServices": 5.7,
+        "apparel": 4,
+        "recreationGoods": 2.2,
+        "recreationServices": 2.5,
+        "foodServices": 5,
+        "financialServices": 5.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 0.9,
+        "cpiItHardware": 0,
+        "ppiSemiconductors": -5.1,
+        "ppiElectronicComponents": -1.1
       },
       "pceContributions": {
         "durables": 0.4,
@@ -1366,7 +1720,19 @@
         "housingUtilities": 2.5,
         "healthCare": 3,
         "motorVehicles": 11,
-        "transportServices": 5.7
+        "transportServices": 5.7,
+        "apparel": 4,
+        "recreationGoods": 2.2,
+        "recreationServices": 2.5,
+        "foodServices": 5,
+        "financialServices": 5.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 2.5,
+        "cpiItHardware": 0.1,
+        "ppiSemiconductors": -4.4,
+        "ppiElectronicComponents": -0.6
       },
       "pceContributions": {
         "durables": 0.6,
@@ -1408,7 +1774,19 @@
         "housingUtilities": 2.5,
         "healthCare": 3,
         "motorVehicles": 11,
-        "transportServices": 5.7
+        "transportServices": 5.7,
+        "apparel": 4,
+        "recreationGoods": 2.2,
+        "recreationServices": 2.5,
+        "foodServices": 5,
+        "financialServices": 5.8,
+        "otherServices": 1.8
+      },
+      "techCategories": {
+        "cpiComputers": 2.3,
+        "cpiItHardware": 0.1,
+        "ppiSemiconductors": -4.1,
+        "ppiElectronicComponents": -0.5
       },
       "pceContributions": {
         "durables": 0.9,
@@ -1450,7 +1828,19 @@
         "housingUtilities": 3.1,
         "healthCare": 2.5,
         "motorVehicles": 14.2,
-        "transportServices": 7.5
+        "transportServices": 7.5,
+        "apparel": 3.3,
+        "recreationGoods": 2.3,
+        "recreationServices": 3.8,
+        "foodServices": 6.5,
+        "financialServices": 5.6,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": 3.7,
+        "cpiItHardware": 0.6,
+        "ppiSemiconductors": -4.7,
+        "ppiElectronicComponents": -0.3
       },
       "pceContributions": {
         "durables": 0.8,
@@ -1492,7 +1882,19 @@
         "housingUtilities": 3.1,
         "healthCare": 2.5,
         "motorVehicles": 14.2,
-        "transportServices": 7.5
+        "transportServices": 7.5,
+        "apparel": 3.3,
+        "recreationGoods": 2.3,
+        "recreationServices": 3.8,
+        "foodServices": 6.5,
+        "financialServices": 5.6,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": 3.4,
+        "cpiItHardware": 1.4,
+        "ppiSemiconductors": -3.9,
+        "ppiElectronicComponents": 0.2
       },
       "pceContributions": {
         "durables": 0.8,
@@ -1538,7 +1940,19 @@
         "housingUtilities": 3.1,
         "healthCare": 2.5,
         "motorVehicles": 14.2,
-        "transportServices": 7.5
+        "transportServices": 7.5,
+        "apparel": 3.3,
+        "recreationGoods": 2.3,
+        "recreationServices": 3.8,
+        "foodServices": 6.5,
+        "financialServices": 5.6,
+        "otherServices": 2
+      },
+      "techCategories": {
+        "cpiComputers": 8.5,
+        "cpiItHardware": 2.8,
+        "ppiSemiconductors": -3.9,
+        "ppiElectronicComponents": 0.4
       },
       "pceContributions": {
         "durables": 0.8,
@@ -1584,7 +1998,19 @@
         "housingUtilities": 4.1,
         "healthCare": 2.5,
         "motorVehicles": 16.9,
-        "transportServices": 6.5
+        "transportServices": 6.5,
+        "apparel": 5,
+        "recreationGoods": 2.7,
+        "recreationServices": 4.2,
+        "foodServices": 7.7,
+        "financialServices": 6.1,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 8.4,
+        "cpiItHardware": 2.7,
+        "ppiSemiconductors": -1.1,
+        "ppiElectronicComponents": 2
       },
       "pceContributions": {
         "durables": 0.9,
@@ -1630,7 +2056,19 @@
         "housingUtilities": 4.1,
         "healthCare": 2.5,
         "motorVehicles": 16.9,
-        "transportServices": 6.5
+        "transportServices": 6.5,
+        "apparel": 5,
+        "recreationGoods": 2.7,
+        "recreationServices": 4.2,
+        "foodServices": 7.7,
+        "financialServices": 6.1,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 4.8,
+        "cpiItHardware": 1.9,
+        "ppiSemiconductors": -0.4,
+        "ppiElectronicComponents": 2.6
       },
       "pceContributions": {
         "durables": 1,
@@ -1676,7 +2114,19 @@
         "housingUtilities": 4.1,
         "healthCare": 2.5,
         "motorVehicles": 16.9,
-        "transportServices": 6.5
+        "transportServices": 6.5,
+        "apparel": 5,
+        "recreationGoods": 2.7,
+        "recreationServices": 4.2,
+        "foodServices": 7.7,
+        "financialServices": 6.1,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 2.8,
+        "cpiItHardware": 1.9,
+        "ppiSemiconductors": -0.4,
+        "ppiElectronicComponents": 2.3
       },
       "pceContributions": {
         "durables": 1.1,
@@ -1722,7 +2172,19 @@
         "housingUtilities": 5.1,
         "healthCare": 2.2,
         "motorVehicles": 20.8,
-        "transportServices": 8.7
+        "transportServices": 8.7,
+        "apparel": 6.3,
+        "recreationGoods": 3,
+        "recreationServices": 5.4,
+        "foodServices": 8.4,
+        "financialServices": 5.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": 3.5,
+        "cpiItHardware": 2,
+        "ppiSemiconductors": 0.9,
+        "ppiElectronicComponents": 3.9
       },
       "pceContributions": {
         "durables": 1.3,
@@ -1768,7 +2230,19 @@
         "housingUtilities": 5.1,
         "healthCare": 2.2,
         "motorVehicles": 20.8,
-        "transportServices": 8.7
+        "transportServices": 8.7,
+        "apparel": 6.3,
+        "recreationGoods": 3,
+        "recreationServices": 5.4,
+        "foodServices": 8.4,
+        "financialServices": 5.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": 4.6,
+        "cpiItHardware": 2,
+        "ppiSemiconductors": 1.2,
+        "ppiElectronicComponents": 4
       },
       "pceContributions": {
         "durables": 1.3,
@@ -1814,7 +2288,19 @@
         "housingUtilities": 5.1,
         "healthCare": 2.2,
         "motorVehicles": 20.8,
-        "transportServices": 8.7
+        "transportServices": 8.7,
+        "apparel": 6.3,
+        "recreationGoods": 3,
+        "recreationServices": 5.4,
+        "foodServices": 8.4,
+        "financialServices": 5.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": 7.6,
+        "cpiItHardware": 1.9,
+        "ppiSemiconductors": 1.4,
+        "ppiElectronicComponents": 4.2
       },
       "pceContributions": {
         "durables": 1.4,
@@ -1860,7 +2346,19 @@
         "housingUtilities": 6.2,
         "healthCare": 2.1,
         "motorVehicles": 13.7,
-        "transportServices": 11
+        "transportServices": 11,
+        "apparel": 5.3,
+        "recreationGoods": 1.2,
+        "recreationServices": 5.6,
+        "foodServices": 8.3,
+        "financialServices": 4.7,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": 0.2,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": 2.4,
+        "ppiElectronicComponents": 3.9
       },
       "pceContributions": {
         "durables": 1.2,
@@ -1906,7 +2404,19 @@
         "housingUtilities": 6.2,
         "healthCare": 2.1,
         "motorVehicles": 13.7,
-        "transportServices": 11
+        "transportServices": 11,
+        "apparel": 5.3,
+        "recreationGoods": 1.2,
+        "recreationServices": 5.6,
+        "foodServices": 8.3,
+        "financialServices": 4.7,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -1.8,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": 2.5,
+        "ppiElectronicComponents": 3.9
       },
       "pceContributions": {
         "durables": 0.9,
@@ -1952,7 +2462,19 @@
         "housingUtilities": 6.2,
         "healthCare": 2.1,
         "motorVehicles": 13.7,
-        "transportServices": 11
+        "transportServices": 11,
+        "apparel": 5.3,
+        "recreationGoods": 1.2,
+        "recreationServices": 5.6,
+        "foodServices": 8.3,
+        "financialServices": 4.7,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -0.6,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": 2.8,
+        "ppiElectronicComponents": 4.4
       },
       "pceContributions": {
         "durables": 0.8,
@@ -1998,7 +2520,19 @@
         "housingUtilities": 7.6,
         "healthCare": 2.7,
         "motorVehicles": 9.5,
-        "transportServices": 11.5
+        "transportServices": 11.5,
+        "apparel": 5.3,
+        "recreationGoods": 1,
+        "recreationServices": 5.2,
+        "foodServices": 7,
+        "financialServices": 4.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.5,
+        "cpiItHardware": -2.3,
+        "ppiSemiconductors": 4,
+        "ppiElectronicComponents": 4.5
       },
       "pceContributions": {
         "durables": 0.7,
@@ -2044,7 +2578,19 @@
         "housingUtilities": 7.6,
         "healthCare": 2.7,
         "motorVehicles": 9.5,
-        "transportServices": 11.5
+        "transportServices": 11.5,
+        "apparel": 5.3,
+        "recreationGoods": 1,
+        "recreationServices": 5.2,
+        "foodServices": 7,
+        "financialServices": 4.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -4.3,
+        "cpiItHardware": -3.4,
+        "ppiSemiconductors": 3,
+        "ppiElectronicComponents": 3.8
       },
       "pceContributions": {
         "durables": 0.7,
@@ -2090,7 +2636,19 @@
         "housingUtilities": 7.6,
         "healthCare": 2.7,
         "motorVehicles": 9.5,
-        "transportServices": 11.5
+        "transportServices": 11.5,
+        "apparel": 5.3,
+        "recreationGoods": 1,
+        "recreationServices": 5.2,
+        "foodServices": 7,
+        "financialServices": 4.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.6,
+        "cpiItHardware": -4.3,
+        "ppiSemiconductors": 3.7,
+        "ppiElectronicComponents": 4
       },
       "pceContributions": {
         "durables": 0.7,
@@ -2136,7 +2694,19 @@
         "housingUtilities": 8,
         "healthCare": 2.8,
         "motorVehicles": 4.3,
-        "transportServices": 13
+        "transportServices": 13,
+        "apparel": 3.8,
+        "recreationGoods": 0.2,
+        "recreationServices": 5.3,
+        "foodServices": 7.3,
+        "financialServices": 5,
+        "otherServices": 4
+      },
+      "techCategories": {
+        "cpiComputers": -3.1,
+        "cpiItHardware": -4.2,
+        "ppiSemiconductors": 6.6,
+        "ppiElectronicComponents": 4.8
       },
       "pceContributions": {
         "durables": 0.5,
@@ -2182,7 +2752,19 @@
         "housingUtilities": 8,
         "healthCare": 2.8,
         "motorVehicles": 4.3,
-        "transportServices": 13
+        "transportServices": 13,
+        "apparel": 3.8,
+        "recreationGoods": 0.2,
+        "recreationServices": 5.3,
+        "foodServices": 7.3,
+        "financialServices": 5,
+        "otherServices": 4
+      },
+      "techCategories": {
+        "cpiComputers": -4.4,
+        "cpiItHardware": -4.1,
+        "ppiSemiconductors": 6.2,
+        "ppiElectronicComponents": 4.7
       },
       "pceContributions": {
         "durables": 0.4,
@@ -2228,7 +2810,19 @@
         "housingUtilities": 8,
         "healthCare": 2.8,
         "motorVehicles": 4.3,
-        "transportServices": 13
+        "transportServices": 13,
+        "apparel": 3.8,
+        "recreationGoods": 0.2,
+        "recreationServices": 5.3,
+        "foodServices": 7.3,
+        "financialServices": 5,
+        "otherServices": 4
+      },
+      "techCategories": {
+        "cpiComputers": -5.8,
+        "cpiItHardware": -4.6,
+        "ppiSemiconductors": 5.9,
+        "ppiElectronicComponents": 4.5
       },
       "pceContributions": {
         "durables": 0.2,
@@ -2274,7 +2868,19 @@
         "housingUtilities": 8.4,
         "healthCare": 2,
         "motorVehicles": 0.1,
-        "transportServices": 12.8
+        "transportServices": 12.8,
+        "apparel": 2.9,
+        "recreationGoods": -1.5,
+        "recreationServices": 5.6,
+        "foodServices": 7.5,
+        "financialServices": 4.6,
+        "otherServices": 4.1
+      },
+      "techCategories": {
+        "cpiComputers": -6.2,
+        "cpiItHardware": -4.1,
+        "ppiSemiconductors": 4.6,
+        "ppiElectronicComponents": 2.2
       },
       "pceContributions": {
         "durables": 0.1,
@@ -2320,7 +2926,19 @@
         "housingUtilities": 8.4,
         "healthCare": 2,
         "motorVehicles": 0.1,
-        "transportServices": 12.8
+        "transportServices": 12.8,
+        "apparel": 2.9,
+        "recreationGoods": -1.5,
+        "recreationServices": 5.6,
+        "foodServices": 7.5,
+        "financialServices": 4.6,
+        "otherServices": 4.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.6,
+        "cpiItHardware": -3.8,
+        "ppiSemiconductors": 5.3,
+        "ppiElectronicComponents": 2.2
       },
       "pceContributions": {
         "durables": 0,
@@ -2366,7 +2984,19 @@
         "housingUtilities": 8.4,
         "healthCare": 2,
         "motorVehicles": 0.1,
-        "transportServices": 12.8
+        "transportServices": 12.8,
+        "apparel": 2.9,
+        "recreationGoods": -1.5,
+        "recreationServices": 5.6,
+        "foodServices": 7.5,
+        "financialServices": 4.6,
+        "otherServices": 4.1
+      },
+      "techCategories": {
+        "cpiComputers": -5.8,
+        "cpiItHardware": -3,
+        "ppiSemiconductors": 4.5,
+        "ppiElectronicComponents": 1.8
       },
       "pceContributions": {
         "durables": 0.1,
@@ -2412,7 +3042,19 @@
         "housingUtilities": 7.5,
         "healthCare": 2.6,
         "motorVehicles": 1.5,
-        "transportServices": 6.4
+        "transportServices": 6.4,
+        "apparel": 3,
+        "recreationGoods": -1.7,
+        "recreationServices": 5.1,
+        "foodServices": 6.9,
+        "financialServices": 5.1,
+        "otherServices": 4.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.1,
+        "cpiItHardware": -2.3,
+        "ppiSemiconductors": 3,
+        "ppiElectronicComponents": 2
       },
       "pceContributions": {
         "durables": 0.1,
@@ -2458,7 +3100,19 @@
         "housingUtilities": 7.5,
         "healthCare": 2.6,
         "motorVehicles": 1.5,
-        "transportServices": 6.4
+        "transportServices": 6.4,
+        "apparel": 3,
+        "recreationGoods": -1.7,
+        "recreationServices": 5.1,
+        "foodServices": 6.9,
+        "financialServices": 5.1,
+        "otherServices": 4.6
+      },
+      "techCategories": {
+        "cpiComputers": -4.2,
+        "cpiItHardware": -1.8,
+        "ppiSemiconductors": 2.2,
+        "ppiElectronicComponents": 0.6
       },
       "pceContributions": {
         "durables": 0.1,
@@ -2504,7 +3158,19 @@
         "housingUtilities": 7.5,
         "healthCare": 2.6,
         "motorVehicles": 1.5,
-        "transportServices": 6.4
+        "transportServices": 6.4,
+        "apparel": 3,
+        "recreationGoods": -1.7,
+        "recreationServices": 5.1,
+        "foodServices": 6.9,
+        "financialServices": 5.1,
+        "otherServices": 4.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.2,
+        "cpiItHardware": -1.6,
+        "ppiSemiconductors": 1.8,
+        "ppiElectronicComponents": 0.2
       },
       "pceContributions": {
         "durables": 0,
@@ -2550,7 +3216,19 @@
         "housingUtilities": 6.4,
         "healthCare": 2.3,
         "motorVehicles": -0.4,
-        "transportServices": 5.7
+        "transportServices": 5.7,
+        "apparel": 2.6,
+        "recreationGoods": -3.1,
+        "recreationServices": 5.1,
+        "foodServices": 6.1,
+        "financialServices": 4.3,
+        "otherServices": 4.3
+      },
+      "techCategories": {
+        "cpiComputers": -4.9,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": 1.7,
+        "ppiElectronicComponents": 0.4
       },
       "pceContributions": {
         "durables": -0.1,
@@ -2596,7 +3274,19 @@
         "housingUtilities": 6.4,
         "healthCare": 2.3,
         "motorVehicles": -0.4,
-        "transportServices": 5.7
+        "transportServices": 5.7,
+        "apparel": 2.6,
+        "recreationGoods": -3.1,
+        "recreationServices": 5.1,
+        "foodServices": 6.1,
+        "financialServices": 4.3,
+        "otherServices": 4.3
+      },
+      "techCategories": {
+        "cpiComputers": -5,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": 2.3,
+        "ppiElectronicComponents": 1
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2642,7 +3332,19 @@
         "housingUtilities": 6.4,
         "healthCare": 2.3,
         "motorVehicles": -0.4,
-        "transportServices": 5.7
+        "transportServices": 5.7,
+        "apparel": 2.6,
+        "recreationGoods": -3.1,
+        "recreationServices": 5.1,
+        "foodServices": 6.1,
+        "financialServices": 4.3,
+        "otherServices": 4.3
+      },
+      "techCategories": {
+        "cpiComputers": -5.2,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": 2.3,
+        "ppiElectronicComponents": 1
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2688,7 +3390,19 @@
         "housingUtilities": 5.9,
         "healthCare": 2.4,
         "motorVehicles": -0.7,
-        "transportServices": 4.6
+        "transportServices": 4.6,
+        "apparel": 1.7,
+        "recreationGoods": -2.3,
+        "recreationServices": 4.7,
+        "foodServices": 4.6,
+        "financialServices": 4.2,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -5.7,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -0.2,
+        "ppiElectronicComponents": 0.1
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2734,7 +3448,19 @@
         "housingUtilities": 5.9,
         "healthCare": 2.4,
         "motorVehicles": -0.7,
-        "transportServices": 4.6
+        "transportServices": 4.6,
+        "apparel": 1.7,
+        "recreationGoods": -2.3,
+        "recreationServices": 4.7,
+        "foodServices": 4.6,
+        "financialServices": 4.2,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -4.6,
+        "cpiItHardware": -1.8,
+        "ppiSemiconductors": -0.4,
+        "ppiElectronicComponents": -0.2
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2780,7 +3506,19 @@
         "housingUtilities": 5.9,
         "healthCare": 2.4,
         "motorVehicles": -0.7,
-        "transportServices": 4.6
+        "transportServices": 4.6,
+        "apparel": 1.7,
+        "recreationGoods": -2.3,
+        "recreationServices": 4.7,
+        "foodServices": 4.6,
+        "financialServices": 4.2,
+        "otherServices": 3.2
+      },
+      "techCategories": {
+        "cpiComputers": -3.6,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": -0.9,
+        "ppiElectronicComponents": -0.4
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2826,7 +3564,19 @@
         "housingUtilities": 5.4,
         "healthCare": 3,
         "motorVehicles": -0.5,
-        "transportServices": 2.8
+        "transportServices": 2.8,
+        "apparel": 0.5,
+        "recreationGoods": -1.6,
+        "recreationServices": 4.4,
+        "foodServices": 3.8,
+        "financialServices": 5.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -2.1,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -0.2,
+        "ppiElectronicComponents": 0.8
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2872,7 +3622,19 @@
         "housingUtilities": 5.4,
         "healthCare": 3,
         "motorVehicles": -0.5,
-        "transportServices": 2.8
+        "transportServices": 2.8,
+        "apparel": 0.5,
+        "recreationGoods": -1.6,
+        "recreationServices": 4.4,
+        "foodServices": 3.8,
+        "financialServices": 5.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -2.7,
+        "cpiItHardware": -0.3,
+        "ppiSemiconductors": -0.9,
+        "ppiElectronicComponents": 0.7
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2918,7 +3680,19 @@
         "housingUtilities": 5.4,
         "healthCare": 3,
         "motorVehicles": -0.5,
-        "transportServices": 2.8
+        "transportServices": 2.8,
+        "apparel": 0.5,
+        "recreationGoods": -1.6,
+        "recreationServices": 4.4,
+        "foodServices": 3.8,
+        "financialServices": 5.9,
+        "otherServices": 3.5
+      },
+      "techCategories": {
+        "cpiComputers": -3.8,
+        "cpiItHardware": -0.7,
+        "ppiSemiconductors": -0.8,
+        "ppiElectronicComponents": 0.6
       },
       "pceContributions": {
         "durables": -0.2,
@@ -2964,7 +3738,19 @@
         "housingUtilities": 5.3,
         "healthCare": 2.6,
         "motorVehicles": -3,
-        "transportServices": 2.8
+        "transportServices": 2.8,
+        "apparel": 1,
+        "recreationGoods": -1,
+        "recreationServices": 3.6,
+        "foodServices": 3.2,
+        "financialServices": 5.9,
+        "otherServices": 3.3
+      },
+      "techCategories": {
+        "cpiComputers": -1.6,
+        "cpiItHardware": -0.4,
+        "ppiSemiconductors": 0.6,
+        "ppiElectronicComponents": 1.1
       },
       "pceContributions": {
         "durables": -0.2,
@@ -3010,7 +3796,19 @@
         "housingUtilities": 5.3,
         "healthCare": 2.6,
         "motorVehicles": -3,
-        "transportServices": 2.8
+        "transportServices": 2.8,
+        "apparel": 1,
+        "recreationGoods": -1,
+        "recreationServices": 3.6,
+        "foodServices": 3.2,
+        "financialServices": 5.9,
+        "otherServices": 3.3
+      },
+      "techCategories": {
+        "cpiComputers": -2.2,
+        "cpiItHardware": -1,
+        "ppiSemiconductors": 0.7,
+        "ppiElectronicComponents": 2
       },
       "pceContributions": {
         "durables": -0.3,
@@ -3056,7 +3854,19 @@
         "housingUtilities": 5.3,
         "healthCare": 2.6,
         "motorVehicles": -3,
-        "transportServices": 2.8
+        "transportServices": 2.8,
+        "apparel": 1,
+        "recreationGoods": -1,
+        "recreationServices": 3.6,
+        "foodServices": 3.2,
+        "financialServices": 5.9,
+        "otherServices": 3.3
+      },
+      "techCategories": {
+        "cpiComputers": -4.2,
+        "cpiItHardware": -1.6,
+        "ppiSemiconductors": -0.2,
+        "ppiElectronicComponents": 1.6
       },
       "pceContributions": {
         "durables": -0.3,
@@ -3102,7 +3912,19 @@
         "housingUtilities": 5,
         "healthCare": 2.6,
         "motorVehicles": -2.9,
-        "transportServices": 1.6
+        "transportServices": 1.6,
+        "apparel": 0.6,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.3,
+        "foodServices": 3.2,
+        "financialServices": 6.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": -2.4,
+        "cpiItHardware": -0.9,
+        "ppiSemiconductors": -2.9,
+        "ppiElectronicComponents": 0.3
       },
       "pceContributions": {
         "durables": -0.3,
@@ -3148,7 +3970,19 @@
         "housingUtilities": 5,
         "healthCare": 2.6,
         "motorVehicles": -2.9,
-        "transportServices": 1.6
+        "transportServices": 1.6,
+        "apparel": 0.6,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.3,
+        "foodServices": 3.2,
+        "financialServices": 6.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": -2,
+        "cpiItHardware": -1.3,
+        "ppiSemiconductors": -3.6,
+        "ppiElectronicComponents": 0.1
       },
       "pceContributions": {
         "durables": -0.2,
@@ -3194,7 +4028,19 @@
         "housingUtilities": 5,
         "healthCare": 2.6,
         "motorVehicles": -2.9,
-        "transportServices": 1.6
+        "transportServices": 1.6,
+        "apparel": 0.6,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.3,
+        "foodServices": 3.2,
+        "financialServices": 6.6,
+        "otherServices": 3.1
+      },
+      "techCategories": {
+        "cpiComputers": -4.7,
+        "cpiItHardware": -2.5,
+        "ppiSemiconductors": -4.1,
+        "ppiElectronicComponents": -0.2
       },
       "pceContributions": {
         "durables": -0.2,
@@ -3240,7 +4086,19 @@
         "housingUtilities": 4.7,
         "healthCare": 2.8,
         "motorVehicles": -1.5,
-        "transportServices": 2.9
+        "transportServices": 2.9,
+        "apparel": 0.8,
+        "recreationGoods": -2,
+        "recreationServices": 3.3,
+        "foodServices": 3.3,
+        "financialServices": 6.8,
+        "otherServices": 2.9
+      },
+      "techCategories": {
+        "cpiComputers": -5.4,
+        "cpiItHardware": -2.9,
+        "ppiSemiconductors": -3,
+        "ppiElectronicComponents": 0.5
       },
       "pceContributions": {
         "durables": -0.2,
@@ -3286,7 +4144,19 @@
         "housingUtilities": 4.7,
         "healthCare": 2.8,
         "motorVehicles": -1.5,
-        "transportServices": 2.9
+        "transportServices": 2.9,
+        "apparel": 0.8,
+        "recreationGoods": -2,
+        "recreationServices": 3.3,
+        "foodServices": 3.3,
+        "financialServices": 6.8,
+        "otherServices": 2.9
+      },
+      "techCategories": {
+        "cpiComputers": -5.5,
+        "cpiItHardware": -3.5,
+        "ppiSemiconductors": -3.1,
+        "ppiElectronicComponents": 1.8
       },
       "pceContributions": {
         "durables": -0.2,
@@ -3332,7 +4202,19 @@
         "housingUtilities": 4.7,
         "healthCare": 2.8,
         "motorVehicles": -1.5,
-        "transportServices": 2.9
+        "transportServices": 2.9,
+        "apparel": 0.8,
+        "recreationGoods": -2,
+        "recreationServices": 3.3,
+        "foodServices": 3.3,
+        "financialServices": 6.8,
+        "otherServices": 2.9
+      },
+      "techCategories": {
+        "cpiComputers": -5.1,
+        "cpiItHardware": -3.6,
+        "ppiSemiconductors": -3.2,
+        "ppiElectronicComponents": 1.7
       },
       "pceContributions": {
         "durables": -0.2,
@@ -3378,7 +4260,19 @@
         "housingUtilities": 4.3,
         "healthCare": 2.4,
         "motorVehicles": 0.2,
-        "transportServices": 3
+        "transportServices": 3,
+        "apparel": 0.3,
+        "recreationGoods": -2.6,
+        "recreationServices": 3.8,
+        "foodServices": 3.1,
+        "financialServices": 5.7,
+        "otherServices": 2.3
+      },
+      "techCategories": {
+        "cpiComputers": -6,
+        "cpiItHardware": -3.9,
+        "ppiSemiconductors": -5,
+        "ppiElectronicComponents": 0.2
       },
       "pceContributions": {
         "durables": -0.1,
@@ -3424,7 +4318,19 @@
         "housingUtilities": 4.3,
         "healthCare": 2.4,
         "motorVehicles": 0.2,
-        "transportServices": 3
+        "transportServices": 3,
+        "apparel": 0.3,
+        "recreationGoods": -2.6,
+        "recreationServices": 3.8,
+        "foodServices": 3.1,
+        "financialServices": 5.7,
+        "otherServices": 2.3
+      },
+      "techCategories": {
+        "cpiComputers": -6,
+        "cpiItHardware": -4.2,
+        "ppiSemiconductors": -4.9,
+        "ppiElectronicComponents": -0.2
       },
       "pceContributions": {
         "durables": -0.1,
@@ -3470,7 +4376,19 @@
         "housingUtilities": 4.3,
         "healthCare": 2.4,
         "motorVehicles": 0.2,
-        "transportServices": 3
+        "transportServices": 3,
+        "apparel": 0.3,
+        "recreationGoods": -2.6,
+        "recreationServices": 3.8,
+        "foodServices": 3.1,
+        "financialServices": 5.7,
+        "otherServices": 2.3
+      },
+      "techCategories": {
+        "cpiComputers": -5.4,
+        "cpiItHardware": -3.9,
+        "ppiSemiconductors": -4.1,
+        "ppiElectronicComponents": 0.3
       },
       "pceContributions": {
         "durables": -0.1,
@@ -3516,7 +4434,19 @@
         "housingUtilities": 4.4,
         "healthCare": 2.7,
         "motorVehicles": 1,
-        "transportServices": 2.5
+        "transportServices": 2.5,
+        "apparel": -0.8,
+        "recreationGoods": -0.9,
+        "recreationServices": 4.1,
+        "foodServices": 3,
+        "financialServices": 5.5,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": -5.6,
+        "cpiItHardware": -4.6,
+        "ppiSemiconductors": -4.9,
+        "ppiElectronicComponents": -0.2
       },
       "pceContributions": {
         "durables": -0.1,
@@ -3562,7 +4492,19 @@
         "housingUtilities": 4.4,
         "healthCare": 2.7,
         "motorVehicles": 1,
-        "transportServices": 2.5
+        "transportServices": 2.5,
+        "apparel": -0.8,
+        "recreationGoods": -0.9,
+        "recreationServices": 4.1,
+        "foodServices": 3,
+        "financialServices": 5.5,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": -3.5,
+        "cpiItHardware": -4,
+        "ppiSemiconductors": -5.5,
+        "ppiElectronicComponents": 0
       },
       "pceContributions": {
         "durables": 0,
@@ -3608,7 +4550,19 @@
         "housingUtilities": 4.4,
         "healthCare": 2.7,
         "motorVehicles": 1,
-        "transportServices": 2.5
+        "transportServices": 2.5,
+        "apparel": -0.8,
+        "recreationGoods": -0.9,
+        "recreationServices": 4.1,
+        "foodServices": 3,
+        "financialServices": 5.5,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": -0.3,
+        "cpiItHardware": -3.3,
+        "ppiSemiconductors": -5.2,
+        "ppiElectronicComponents": -1
       },
       "pceContributions": {
         "durables": 0.1,
@@ -3654,7 +4608,19 @@
         "housingUtilities": 4.2,
         "healthCare": 2.8,
         "motorVehicles": 2.3,
-        "transportServices": 3.8
+        "transportServices": 3.8,
+        "apparel": -0.3,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.5,
+        "foodServices": 3.1,
+        "financialServices": 5,
+        "otherServices": 2.4
+      },
+      "techCategories": {
+        "cpiComputers": -1.8,
+        "cpiItHardware": -3.9,
+        "ppiSemiconductors": -2.6,
+        "ppiElectronicComponents": 0
       },
       "pceContributions": {
         "durables": 0.1,
@@ -3700,7 +4666,19 @@
         "housingUtilities": 4.2,
         "healthCare": 2.8,
         "motorVehicles": 2.3,
-        "transportServices": 3.8
+        "transportServices": 3.8,
+        "apparel": -0.3,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.5,
+        "foodServices": 3.1,
+        "financialServices": 5,
+        "otherServices": 2.4
+      },
+      "techCategories": {
+        "cpiComputers": -2,
+        "cpiItHardware": -2.7,
+        "ppiSemiconductors": -3.5,
+        "ppiElectronicComponents": 3.8
       },
       "pceContributions": {
         "durables": 0.1,
@@ -3746,7 +4724,19 @@
         "housingUtilities": 4.2,
         "healthCare": 2.8,
         "motorVehicles": 2.3,
-        "transportServices": 3.8
+        "transportServices": 3.8,
+        "apparel": -0.3,
+        "recreationGoods": -0.8,
+        "recreationServices": 3.5,
+        "foodServices": 3.1,
+        "financialServices": 5,
+        "otherServices": 2.4
+      },
+      "techCategories": {
+        "cpiComputers": -0.7,
+        "cpiItHardware": -2,
+        "ppiSemiconductors": -3.4,
+        "ppiElectronicComponents": 3.9
       },
       "pceContributions": {
         "durables": 0.1,
@@ -3792,7 +4782,19 @@
         "housingUtilities": 3.7,
         "healthCare": 2.7,
         "motorVehicles": 1.8,
-        "transportServices": 3.3
+        "transportServices": 3.3,
+        "apparel": 0,
+        "recreationGoods": -0.3,
+        "recreationServices": 3.3,
+        "foodServices": 2.9,
+        "financialServices": 5,
+        "otherServices": 2.8
+      },
+      "techCategories": {
+        "cpiComputers": -0.2,
+        "cpiItHardware": 0.7,
+        "ppiSemiconductors": -3.5,
+        "ppiElectronicComponents": 3.5
       },
       "pceContributions": {
         "durables": 0.1,
@@ -3838,7 +4840,19 @@
         "housingUtilities": 3.7,
         "healthCare": 2.7,
         "motorVehicles": 1.8,
-        "transportServices": 3.3
+        "transportServices": 3.3,
+        "apparel": 0,
+        "recreationGoods": -0.3,
+        "recreationServices": 3.3,
+        "foodServices": 2.9,
+        "financialServices": 5,
+        "otherServices": 2.8
+      },
+      "techCategories": {
+        "cpiComputers": -0.6,
+        "cpiItHardware": -0.2,
+        "ppiSemiconductors": -2.9,
+        "ppiElectronicComponents": 4
       },
       "pceContributions": {
         "durables": 0.2,
@@ -3884,7 +4898,19 @@
         "housingUtilities": 3.4,
         "healthCare": 3.1,
         "motorVehicles": 0,
-        "transportServices": 4.6
+        "transportServices": 4.6,
+        "apparel": 2.1,
+        "recreationGoods": 3.1,
+        "recreationServices": 3.1,
+        "foodServices": 3.3,
+        "financialServices": 5.2,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 1.6,
+        "cpiItHardware": 0.3,
+        "ppiSemiconductors": -1.7,
+        "ppiElectronicComponents": 5.9
       },
       "pceContributions": {
         "durables": 0.2,
@@ -3930,7 +4956,19 @@
         "housingUtilities": 3.4,
         "healthCare": 3.1,
         "motorVehicles": 0,
-        "transportServices": 4.6
+        "transportServices": 4.6,
+        "apparel": 2.1,
+        "recreationGoods": 3.1,
+        "recreationServices": 3.1,
+        "foodServices": 3.3,
+        "financialServices": 5.2,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 0.9,
+        "cpiItHardware": -1.2,
+        "ppiSemiconductors": 0,
+        "ppiElectronicComponents": 16.3
       },
       "pceContributions": {
         "durables": 0.3,
@@ -3976,7 +5014,19 @@
         "housingUtilities": 3.4,
         "healthCare": 3.1,
         "motorVehicles": 0,
-        "transportServices": 4.6
+        "transportServices": 4.6,
+        "apparel": 2.1,
+        "recreationGoods": 3.1,
+        "recreationServices": 3.1,
+        "foodServices": 3.3,
+        "financialServices": 5.2,
+        "otherServices": 2.6
+      },
+      "techCategories": {
+        "cpiComputers": 2.2,
+        "cpiItHardware": -1.7,
+        "ppiSemiconductors": -0.6,
+        "ppiElectronicComponents": 18
       },
       "pceContributions": {
         "durables": 0.3,
@@ -4022,7 +5072,19 @@
         "housingUtilities": 3.4,
         "healthCare": 3.1,
         "motorVehicles": 0,
-        "transportServices": 7.4
+        "transportServices": 7.4,
+        "apparel": 3.5,
+        "recreationGoods": 4.3,
+        "recreationServices": 3,
+        "foodServices": 3.6,
+        "financialServices": 5,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": 2.3,
+        "cpiItHardware": -1.5,
+        "ppiSemiconductors": 1.2,
+        "ppiElectronicComponents": 27.2
       },
       "pceContributions": {
         "durables": 0.3,
@@ -4068,7 +5130,19 @@
         "housingUtilities": 3.4,
         "healthCare": 3.1,
         "motorVehicles": 0,
-        "transportServices": 7.4
+        "transportServices": 7.4,
+        "apparel": 3.5,
+        "recreationGoods": 4.3,
+        "recreationServices": 3,
+        "foodServices": 3.6,
+        "financialServices": 5,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": 1.3,
+        "cpiItHardware": -0.8,
+        "ppiSemiconductors": 0.8,
+        "ppiElectronicComponents": 26.6
       },
       "pceContributions": {
         "durables": 0.3,
@@ -4114,7 +5188,19 @@
         "housingUtilities": 3.4,
         "healthCare": 3.1,
         "motorVehicles": 0,
-        "transportServices": 7.4
+        "transportServices": 7.4,
+        "apparel": 3.5,
+        "recreationGoods": 4.3,
+        "recreationServices": 3,
+        "foodServices": 3.6,
+        "financialServices": 5,
+        "otherServices": 1.9
+      },
+      "techCategories": {
+        "cpiComputers": -0.8,
+        "cpiItHardware": -1.4,
+        "ppiSemiconductors": -0.1,
+        "ppiElectronicComponents": 29
       },
       "pceContributions": {
         "durables": 0.2,
@@ -4160,7 +5246,19 @@
         "housingUtilities": null,
         "healthCare": null,
         "motorVehicles": null,
-        "transportServices": null
+        "transportServices": null,
+        "apparel": null,
+        "recreationGoods": null,
+        "recreationServices": null,
+        "foodServices": null,
+        "financialServices": null,
+        "otherServices": null
+      },
+      "techCategories": {
+        "cpiComputers": 3.9,
+        "cpiItHardware": -0.2,
+        "ppiSemiconductors": -2.5,
+        "ppiElectronicComponents": 28
       },
       "pceContributions": {
         "durables": 0.3,
@@ -4206,7 +5304,19 @@
         "housingUtilities": null,
         "healthCare": null,
         "motorVehicles": null,
-        "transportServices": null
+        "transportServices": null,
+        "apparel": null,
+        "recreationGoods": null,
+        "recreationServices": null,
+        "foodServices": null,
+        "financialServices": null,
+        "otherServices": null
+      },
+      "techCategories": {
+        "cpiComputers": 8.4,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -2.9,
+        "ppiElectronicComponents": 27.5
       },
       "pceContributions": {
         "durables": 0.3,
@@ -4252,7 +5362,19 @@
         "housingUtilities": null,
         "healthCare": null,
         "motorVehicles": null,
-        "transportServices": null
+        "transportServices": null,
+        "apparel": null,
+        "recreationGoods": null,
+        "recreationServices": null,
+        "foodServices": null,
+        "financialServices": null,
+        "otherServices": null
+      },
+      "techCategories": {
+        "cpiComputers": 9.7,
+        "cpiItHardware": -1.1,
+        "ppiSemiconductors": -2.2,
+        "ppiElectronicComponents": 26.8
       },
       "pceContributions": {
         "durables": null,

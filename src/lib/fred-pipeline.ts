@@ -33,6 +33,20 @@ export const PCE_PRICE_QUARTERLY_IDS = {
   healthCare: "DHLCRG3Q086SBEA",
   motorVehicles: "DMOTRG3Q086SBEA",
   transportServices: "DTRSRG3Q086SBEA",
+  apparel: "DCLORG3Q086SBEA",
+  recreationGoods: "DREQRG3Q086SBEA",
+  recreationServices: "DRCARG3Q086SBEA",
+  foodServices: "DFSARG3Q086SBEA",
+  financialServices: "DIFSRG3Q086SBEA",
+  otherServices: "DOTSRG3Q086SBEA",
+} as const;
+
+/** CPI / PPI electronics & semiconductor overlays (monthly; not CPI contribution math) */
+export const TECH_OVERLAY_IDS = {
+  cpiComputers: "CUSR0000SEEE01",
+  cpiItHardware: "CUSR0000SEEE",
+  ppiSemiconductors: "PCU334413334413",
+  ppiElectronicComponents: "WPU1178",
 } as const;
 
 /** Current-dollar PCE for share-based contribution approximation */
@@ -271,6 +285,7 @@ export type BuiltObservation = {
     airfares: number | null;
   };
   pceCategories?: Record<string, number | null>;
+  techCategories?: Record<string, number | null>;
   pceContributions?: {
     durables: number | null;
     nondurables: number | null;
@@ -307,7 +322,8 @@ function pceShareContrib(
 export function buildInflationObservations(
   csvByKey: Record<keyof typeof INFLATION_SERIES_IDS, string>,
   shapiro: ShapiroMap | null,
-  pceCsv?: PceCsvBundle | null
+  pceCsv?: PceCsvBundle | null,
+  techCsv?: Record<keyof typeof TECH_OVERLAY_IDS, string> | null
 ): BuiltObservation[] {
   const maps = {} as Record<
     keyof typeof INFLATION_SERIES_IDS,
@@ -336,6 +352,18 @@ export function buildInflationObservations(
       keyof typeof PCE_EXPENDITURE_IDS
     >) {
       pceExp[key] = parseFredCsvText(pceCsv.expenditure[key]);
+    }
+  }
+
+  const techMaps = {} as Record<
+    keyof typeof TECH_OVERLAY_IDS,
+    Map<string, number>
+  >;
+  if (techCsv) {
+    for (const key of Object.keys(TECH_OVERLAY_IDS) as Array<
+      keyof typeof TECH_OVERLAY_IDS
+    >) {
+      techMaps[key] = parseFredCsvText(techCsv[key]);
     }
   }
 
@@ -378,6 +406,14 @@ export function buildInflationObservations(
     for (const key of Object.keys(pcePrice)) {
       const v = yoy(pcePrice[key], ym);
       pceCategories[key] = v == null ? null : round1(v);
+    }
+
+    const techCategories: Record<string, number | null> = {};
+    for (const key of Object.keys(techMaps) as Array<
+      keyof typeof TECH_OVERLAY_IDS
+    >) {
+      const v = yoy(techMaps[key], ym);
+      techCategories[key] = v == null ? null : round1(v);
     }
 
     let pceContributions:
@@ -438,6 +474,9 @@ export function buildInflationObservations(
       },
       pceCategories: Object.keys(pceCategories).length
         ? pceCategories
+        : undefined,
+      techCategories: Object.keys(techCategories).length
+        ? techCategories
         : undefined,
       pceContributions,
       shapiro: shap

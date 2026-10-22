@@ -13,7 +13,13 @@ export type PceCategoryId =
   | "housingUtilities"
   | "healthCare"
   | "motorVehicles"
-  | "transportServices";
+  | "transportServices"
+  | "apparel"
+  | "recreationGoods"
+  | "recreationServices"
+  | "foodServices"
+  | "financialServices"
+  | "otherServices";
 
 export type PceCategoryDef = {
   id: PceCategoryId;
@@ -25,7 +31,7 @@ export type PceCategoryDef = {
   defaultOn: boolean;
   /** If true, OFF also removes approx. contribution from headline PCE (non-overlapping partition only) */
   contributionToggle?: boolean;
-  group: "aggregate" | "detail";
+  group: "aggregate" | "detail" | "more";
   color: string;
   note?: string;
 };
@@ -142,6 +148,72 @@ export const PCE_CATEGORY_DEFS: PceCategoryDef[] = [
     color: "#a8c0cf",
     note: "Quarterly; subset of services.",
   },
+  {
+    id: "apparel",
+    label: "Clothing & footwear",
+    shortLabel: "Apparel",
+    fredId: "DCLORG3Q086SBEA",
+    frequency: "quarterly",
+    defaultOn: false,
+    group: "more",
+    color: "#d4a574",
+    note: "Quarterly BEA; subset of nondurables. No clean monthly FRED chain index.",
+  },
+  {
+    id: "recreationGoods",
+    label: "Recreational goods & vehicles",
+    shortLabel: "Rec goods",
+    fredId: "DREQRG3Q086SBEA",
+    frequency: "quarterly",
+    defaultOn: false,
+    group: "more",
+    color: "#8bc4a8",
+    note: "Quarterly; includes video/audio/info-processing equipment in BEA durables — closest PCE electronics proxy (not a pure computers line).",
+  },
+  {
+    id: "recreationServices",
+    label: "Recreation services",
+    shortLabel: "Rec services",
+    fredId: "DRCARG3Q086SBEA",
+    frequency: "quarterly",
+    defaultOn: false,
+    group: "more",
+    color: "#7ab89a",
+    note: "Quarterly; subset of services.",
+  },
+  {
+    id: "foodServices",
+    label: "Food services & accommodations",
+    shortLabel: "Food svc / hotels",
+    fredId: "DFSARG3Q086SBEA",
+    frequency: "quarterly",
+    defaultOn: false,
+    group: "more",
+    color: "#e0a070",
+    note: "Quarterly BEA; restaurants + accommodations.",
+  },
+  {
+    id: "financialServices",
+    label: "Financial services & insurance",
+    shortLabel: "Financial svc",
+    fredId: "DIFSRG3Q086SBEA",
+    frequency: "quarterly",
+    defaultOn: false,
+    group: "more",
+    color: "#9a8ec4",
+    note: "Quarterly; subset of services.",
+  },
+  {
+    id: "otherServices",
+    label: "Other services",
+    shortLabel: "Other svc",
+    fredId: "DOTSRG3Q086SBEA",
+    frequency: "quarterly",
+    defaultOn: false,
+    group: "more",
+    color: "#a0a8b8",
+    note: "Quarterly residual services bucket.",
+  },
 ];
 
 /** Current-dollar PCE for share-based contribution approximation */
@@ -172,4 +244,4 @@ export const DEFAULT_PCE_CONTRIBUTION_STATE: PceContributionState = {
 };
 
 export const PCE_OMITTED_NOTE =
-  "BEA Table 2.4.4 has many finer lines (apparel, recreation, financial services, etc.). This app shows the standard published aggregates students use plus food, energy, housing & utilities, health care, motor vehicles, and transportation services. Finer lines are omitted for UX — not missing from BEA.";
+  "Still not on FRED as clean monthly chain-type price indexes: net foreign travel, and most finer 2.4.4U lines. Apparel / recreation / food services / financial / other services are quarterly only (held constant within quarter). No dedicated PCE “computers / information processing equipment” FRED ID — use recreational goods & vehicles (includes that BEA bucket) plus CPI computers / IT overlays.";

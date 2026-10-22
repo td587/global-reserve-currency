@@ -23,6 +23,13 @@ import {
   type PceOverlayState,
 } from "@/lib/pce-categories";
 import {
+  DEFAULT_TECH_OVERLAY_STATE,
+  TECH_OVERLAY_DEFS,
+  TECH_OVERLAY_NOTE,
+  type TechOverlayId,
+  type TechOverlayState,
+} from "@/lib/tech-overlays";
+import {
   CPI_SHOCK_IDS,
   DEFAULT_SHOCK_STATE,
   SHOCKS,
@@ -43,6 +50,9 @@ export function InflationExplorer() {
   const [pceContrib, setPceContrib] = useState<PceContributionState>(
     DEFAULT_PCE_CONTRIBUTION_STATE
   );
+  const [techOverlay, setTechOverlay] = useState<TechOverlayState>(
+    DEFAULT_TECH_OVERLAY_STATE
+  );
   const [, startTransition] = useTransition();
 
   const chartData = useMemo(() => {
@@ -52,8 +62,8 @@ export function InflationExplorer() {
       observations,
       pceContribState: mode === "pce" ? pceContrib : undefined,
     });
-    return withPceOverlayKeys(base, pceOverlay);
-  }, [state, mode, observations, pceContrib, pceOverlay]);
+    return withPceOverlayKeys(base, pceOverlay, techOverlay);
+  }, [state, mode, observations, pceContrib, pceOverlay, techOverlay]);
 
   const showCf = anyRemoved(state, mode, mode === "pce" ? pceContrib : undefined);
   const { last, peak } = useMemo(
@@ -96,8 +106,17 @@ export function InflationExplorer() {
     });
   }
 
+  function toggleTechOverlay(id: TechOverlayId) {
+    startTransition(() => {
+      setTechOverlay((s) => ({ ...s, [id]: !s[id] }));
+    });
+  }
+
   const aggregates = PCE_CATEGORY_DEFS.filter((d) => d.group === "aggregate");
   const details = PCE_CATEGORY_DEFS.filter((d) => d.group === "detail");
+  const moreDetail = PCE_CATEGORY_DEFS.filter((d) => d.group === "more");
+  const techCpi = TECH_OVERLAY_DEFS.filter((d) => d.source === "CPI");
+  const techPpi = TECH_OVERLAY_DEFS.filter((d) => d.source === "PPI");
 
   return (
     <section
@@ -177,8 +196,77 @@ export function InflationExplorer() {
                 showHeadlinePce={showHeadlinePce}
                 showCorePce={showCorePce}
                 pceOverlayState={pceOverlay}
+                techOverlayState={techOverlay}
               />
             </div>
+          </div>
+
+          {/* AI / electronics / memory — CPI consumer + PPI producer */}
+          <div className="mt-5 rounded-xl border border-[#7ec8e3]/25 bg-[#7ec8e3]/5 px-3 py-3">
+            <p className="text-[0.65rem] tracking-wider text-[#7ec8e3] uppercase">
+              AI / electronics / memory (FRED) — show / hide y/y
+            </p>
+            <p className="mt-1 text-[0.7rem] text-mist">
+              Consumer CPI vs producer chip/component PPI. Overlay only — not
+              contribution-remove. Works in CPI and PCE modes.
+            </p>
+            <p className="mt-3 text-[0.65rem] tracking-wider text-mist/80 uppercase">
+              Consumer (CPI)
+            </p>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {techCpi.map((d) => (
+                <button
+                  key={d.id}
+                  type="button"
+                  role="switch"
+                  aria-checked={techOverlay[d.id]}
+                  onClick={() => toggleTechOverlay(d.id)}
+                  className={cn(
+                    "rounded-lg border px-2.5 py-1.5 text-[0.7rem] transition-colors",
+                    techOverlay[d.id]
+                      ? "border-white/30 bg-paper/10 text-paper"
+                      : "border-white/10 text-mist"
+                  )}
+                  title={`${d.fredId} — ${d.note}`}
+                >
+                  <span
+                    className="mr-1.5 inline-block size-1.5 rounded-full"
+                    style={{ background: d.color }}
+                  />
+                  {d.shortLabel}
+                </button>
+              ))}
+            </div>
+            <p className="mt-3 text-[0.65rem] tracking-wider text-mist/80 uppercase">
+              Producer (PPI) — ≠ CPI electronics
+            </p>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {techPpi.map((d) => (
+                <button
+                  key={d.id}
+                  type="button"
+                  role="switch"
+                  aria-checked={techOverlay[d.id]}
+                  onClick={() => toggleTechOverlay(d.id)}
+                  className={cn(
+                    "rounded-lg border px-2.5 py-1.5 text-[0.7rem] transition-colors",
+                    techOverlay[d.id]
+                      ? "border-[#c9a0dc]/50 bg-[#c9a0dc]/15 text-paper"
+                      : "border-white/10 text-mist"
+                  )}
+                  title={`${d.fredId} — ${d.note}`}
+                >
+                  <span
+                    className="mr-1.5 inline-block size-1.5 rounded-full"
+                    style={{ background: d.color }}
+                  />
+                  {d.shortLabel}
+                </button>
+              ))}
+            </div>
+            <p className="mt-2 text-[0.65rem] leading-relaxed text-mist/60">
+              {TECH_OVERLAY_NOTE}
+            </p>
           </div>
 
           {/* Headline + Core PCE — always visible, equally clear */}
@@ -361,6 +449,36 @@ export function InflationExplorer() {
                 </button>
               ))}
             </div>
+
+            <p className="mt-3 text-[0.65rem] tracking-wider text-mist/80 uppercase">
+              More BEA detail (quarterly) — apparel · recreation · food svc · finance
+            </p>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {moreDetail.map((d) => (
+                <button
+                  key={d.id}
+                  type="button"
+                  role="switch"
+                  aria-checked={pceOverlay[d.id]}
+                  disabled={mode !== "pce"}
+                  onClick={() => togglePceOverlay(d.id)}
+                  className={cn(
+                    "rounded-lg border px-2.5 py-1.5 text-[0.7rem] transition-colors",
+                    mode !== "pce" && "cursor-not-allowed opacity-40",
+                    pceOverlay[d.id] && mode === "pce"
+                      ? "border-white/30 bg-paper/10 text-paper"
+                      : "border-white/10 text-mist"
+                  )}
+                  title={`${d.fredId}${d.note ? ` — ${d.note}` : ""}`}
+                >
+                  <span
+                    className="mr-1.5 inline-block size-1.5 rounded-full"
+                    style={{ background: d.color }}
+                  />
+                  {d.shortLabel} (Q)
+                </button>
+              ))}
+            </div>
             <p className="mt-2 text-[0.65rem] leading-relaxed text-mist/60">
               {PCE_OMITTED_NOTE}
             </p>
@@ -395,6 +513,7 @@ export function InflationExplorer() {
                 setState({ ...DEFAULT_SHOCK_STATE });
                 setPceContrib({ ...DEFAULT_PCE_CONTRIBUTION_STATE });
                 setPceOverlay({ ...DEFAULT_PCE_OVERLAY_STATE });
+                setTechOverlay({ ...DEFAULT_TECH_OVERLAY_STATE });
                 setShowHeadlinePce(true);
                 setShowCorePce(true);
               })

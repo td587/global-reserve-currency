@@ -4,6 +4,7 @@ import type {
   PceContributionState,
   PceOverlayState,
 } from "@/lib/pce-categories";
+import type { TechOverlayState } from "@/lib/tech-overlays";
 import {
   CPI_SHOCK_IDS,
   type CpiShockId,
@@ -23,6 +24,8 @@ export type ChartPoint = {
   corePce?: number | null;
   /** PCE category y/y overlays keyed by category id */
   pceCat?: Record<string, number | null>;
+  /** CPI/PPI electronics overlays */
+  techCat?: Record<string, number | null>;
 };
 
 export const inflationMeta = series.meta;
@@ -81,6 +84,7 @@ export function buildChartSeries(
     .filter((o) => o.date >= start)
     .map((o) => {
       const pceCat = o.pceCategories ?? undefined;
+      const techCat = o.techCategories ?? undefined;
 
       if (mode === "pce") {
         const actual = o.pceYoy;
@@ -94,6 +98,7 @@ export function buildChartSeries(
             headlinePce: o.pceYoy,
             corePce: o.corePceYoy,
             pceCat,
+            techCat,
           };
         }
         let removed = 0;
@@ -114,6 +119,7 @@ export function buildChartSeries(
           headlinePce: o.pceYoy,
           corePce: o.corePceYoy,
           pceCat,
+          techCat,
         };
       }
 
@@ -131,6 +137,7 @@ export function buildChartSeries(
         headlinePce: o.pceYoy,
         corePce: o.corePceYoy,
         pceCat,
+        techCat,
       };
     })
     .filter((p) => Number.isFinite(p.actual));
@@ -194,13 +201,19 @@ export function removedLabels(
 /** Flatten category overlays onto chart rows for Recharts dataKeys */
 export function withPceOverlayKeys(
   points: ChartPoint[],
-  overlayState: PceOverlayState
+  overlayState: PceOverlayState,
+  techOverlayState?: TechOverlayState
 ): Array<Record<string, unknown>> {
   return points.map((p) => {
     const row: Record<string, unknown> = { ...p };
     if (p.pceCat) {
       for (const [id, on] of Object.entries(overlayState)) {
         if (on) row[`pce_${id}`] = p.pceCat[id] ?? null;
+      }
+    }
+    if (p.techCat && techOverlayState) {
+      for (const [id, on] of Object.entries(techOverlayState)) {
+        if (on) row[`tech_${id}`] = p.techCat[id] ?? null;
       }
     }
     return row;

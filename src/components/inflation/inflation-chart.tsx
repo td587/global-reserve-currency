@@ -12,6 +12,7 @@ import {
   YAxis,
 } from "recharts";
 import { PCE_CATEGORY_DEFS, type PceOverlayState } from "@/lib/pce-categories";
+import { TECH_OVERLAY_DEFS, type TechOverlayState } from "@/lib/tech-overlays";
 
 type Props = {
   data: Array<Record<string, unknown>>;
@@ -20,6 +21,7 @@ type Props = {
   showHeadlinePce: boolean;
   showCorePce: boolean;
   pceOverlayState?: PceOverlayState;
+  techOverlayState?: TechOverlayState;
 };
 
 const NAME: Record<string, string> = {
@@ -31,6 +33,9 @@ const NAME: Record<string, string> = {
 
 for (const d of PCE_CATEGORY_DEFS) {
   NAME[`pce_${d.id}`] = `${d.label} y/y`;
+}
+for (const d of TECH_OVERLAY_DEFS) {
+  NAME[`tech_${d.id}`] = `${d.label} y/y`;
 }
 
 function CustomTooltip({
@@ -69,9 +74,13 @@ export function InflationChart({
   showHeadlinePce,
   showCorePce,
   pceOverlayState,
+  techOverlayState,
 }: Props) {
   const activeCats = PCE_CATEGORY_DEFS.filter(
     (d) => pceOverlayState?.[d.id] && mode === "pce"
+  );
+  const activeTech = TECH_OVERLAY_DEFS.filter(
+    (d) => techOverlayState?.[d.id]
   );
 
   return (
@@ -179,6 +188,21 @@ export function InflationChart({
               stroke={d.color}
               strokeWidth={1.5}
               strokeDasharray={d.frequency === "quarterly" ? "2 3" : undefined}
+              dot={false}
+              connectNulls
+              isAnimationActive
+              animationDuration={500}
+            />
+          ))}
+          {activeTech.map((d) => (
+            <Line
+              key={d.id}
+              type="monotone"
+              dataKey={`tech_${d.id}`}
+              name={`${d.shortLabel} (${d.source})`}
+              stroke={d.color}
+              strokeWidth={1.6}
+              strokeDasharray={d.source === "PPI" ? "5 3" : "3 2"}
               dot={false}
               connectNulls
               isAnimationActive

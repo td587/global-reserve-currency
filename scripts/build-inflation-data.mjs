@@ -107,6 +107,12 @@ const PCE_PRICE_QUARTERLY = {
   healthCare: "DHLCRG3Q086SBEA",
   motorVehicles: "DMOTRG3Q086SBEA",
   transportServices: "DTRSRG3Q086SBEA",
+  apparel: "DCLORG3Q086SBEA",
+  recreationGoods: "DREQRG3Q086SBEA",
+  recreationServices: "DRCARG3Q086SBEA",
+  foodServices: "DFSARG3Q086SBEA",
+  financialServices: "DIFSRG3Q086SBEA",
+  otherServices: "DOTSRG3Q086SBEA",
 };
 
 /** Current-dollar PCE for share × y/y contribution approximation */
@@ -115,6 +121,14 @@ const PCE_EXPENDITURE = {
   durables: "PCEDG",
   nondurables: "PCEND",
   services: "PCES",
+};
+
+/** CPI / PPI electronics & semiconductor overlays (monthly y/y) */
+const TECH_OVERLAYS = {
+  cpiComputers: "CUSR0000SEEE01",
+  cpiItHardware: "CUSR0000SEEE",
+  ppiSemiconductors: "PCU334413334413",
+  ppiElectronicComponents: "WPU1178",
 };
 
 function parseFredCsv(filePath) {
@@ -246,6 +260,13 @@ function main() {
     pceExp[key] = parseFredCsv(fp);
   }
 
+  const techMaps = {};
+  for (const [key, id] of Object.entries(TECH_OVERLAYS)) {
+    const fp = path.join(fredDir, `${id}.csv`);
+    if (!fs.existsSync(fp)) throw new Error(`Missing ${fp}`);
+    techMaps[key] = parseFredCsv(fp);
+  }
+
   const shapiro = parseShapiroYoy(
     path.join(root, "data", "shapiro-headline-yoy.csv")
   );
@@ -294,6 +315,12 @@ function main() {
       pceCategories[key] = v == null ? null : round1(v);
     }
 
+    const techCategories = {};
+    for (const key of Object.keys(techMaps)) {
+      const v = yoy(techMaps[key], ym);
+      techCategories[key] = v == null ? null : round1(v);
+    }
+
     const cDur = pceShareContrib(
       pceExp.durables,
       pceExp.total,
@@ -337,6 +364,7 @@ function main() {
         airfares: airYoy == null ? null : round1(airYoy),
       },
       pceCategories,
+      techCategories,
       pceContributions: {
         durables: cDur == null ? null : round1(cDur),
         nondurables: cNd == null ? null : round1(cNd),
@@ -394,6 +422,7 @@ function main() {
       ],
       seriesIds: SERIES,
       pcePriceSeries: { ...PCE_PRICE_MONTHLY, ...PCE_PRICE_QUARTERLY },
+      techOverlaySeries: TECH_OVERLAYS,
       pceExpenditureSeries: PCE_EXPENDITURE,
       relativeImportanceByDec: RI_BY_DEC,
       update:

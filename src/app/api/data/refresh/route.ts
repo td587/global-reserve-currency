@@ -8,6 +8,7 @@ import {
   PCE_PRICE_MONTHLY_IDS,
   PCE_PRICE_QUARTERLY_IDS,
   RATES_SERIES_IDS,
+  TECH_OVERLAY_IDS,
   type ShapiroMap,
 } from "@/lib/fred-pipeline";
 
@@ -102,6 +103,7 @@ export async function POST() {
     const pceMonthly = await fetchGroup(PCE_PRICE_MONTHLY_IDS);
     const pceQuarterly = await fetchGroup(PCE_PRICE_QUARTERLY_IDS);
     const pceExp = await fetchGroup(PCE_EXPENDITURE_IDS);
+    const techCsv = await fetchGroup(TECH_OVERLAY_IDS);
     const pceCsv =
       pceMonthly && pceQuarterly && pceExp
         ? {
@@ -114,7 +116,8 @@ export async function POST() {
     const observations = buildInflationObservations(
       inflationCsv,
       shapiro,
-      pceCsv
+      pceCsv,
+      techCsv
     );
 
     const ratesEntries = await Promise.all(
@@ -170,6 +173,11 @@ export async function POST() {
             end: observations.at(-1)?.date,
           },
           seriesIds: INFLATION_SERIES_IDS,
+          techOverlaySeries: TECH_OVERLAY_IDS,
+          pcePriceSeries: {
+            ...PCE_PRICE_MONTHLY_IDS,
+            ...PCE_PRICE_QUARTERLY_IDS,
+          },
         },
         observations,
       },

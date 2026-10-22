@@ -149,9 +149,23 @@ counterfactual(t) = CPI_y/y(t) − Σ contribution_j(t)  for j toggled OFF`}
           <p className="text-sm text-mist">
             Additional BEA Table 2.4.4 category price indexes (goods, durables,
             nondurables, services, food, energy, housing &amp; utilities, health
-            care, motor vehicles, transportation services) are toggleable in PCE
-            mode. Contribution-remove applies only to durables / nondurables /
-            services via current-dollar share × price y/y.
+            care, motor vehicles, transportation services, plus quarterly apparel,
+            recreational goods &amp; vehicles, recreation services, food services
+            &amp; accommodations, financial services &amp; insurance, and other
+            services) are toggleable in PCE mode. Contribution-remove applies only
+            to durables / nondurables / services via current-dollar share × price
+            y/y.
+          </p>
+          <p className="text-sm text-mist">
+            <strong className="text-paper">AI / electronics / memory</strong>{" "}
+            overlays (both modes): CPI computers (
+            <code className="text-paper">CUSR0000SEEE01</code>), CPI IT hardware
+            &amp; services (<code className="text-paper">CUSR0000SEEE</code>),
+            PPI semiconductor devices (
+            <code className="text-paper">PCU334413334413</code>), and PPI
+            electronic components (<code className="text-paper">WPU1178</code>).
+            Chip PPI ≠ CPI electronics; CPI IT lines overlap. Overlay only — not
+            contribution math.
           </p>
         </section>
 
